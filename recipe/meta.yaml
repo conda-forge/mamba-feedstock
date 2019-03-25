@@ -34,7 +34,7 @@ test:
     - mamba
     - mamba.mamba_api
   commands:
-    - mamba --help
+    - mamba --help  # [not win]
 
 about:
   home: https://github.com/QuantStack/mamba
