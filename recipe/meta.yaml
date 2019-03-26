@@ -1,6 +1,6 @@
 {% set name = "mamba" %}
-{% set version = "0.0.2" %}
-{% set sha256 = "a68ff92ba96cf2c1663e685dcf15dfe81bc8a8ef7e041ec78c17119431b3e410" %}
+{% set version = "0.0.3" %}
+{% set sha256 = "3452eed905c050e8e1f96309cb242305c4f80042d0627fb0e80b0d7d08ae10d7" %}
 
 package:
   name: {{ name|lower }}
