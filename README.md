@@ -1,7 +1,7 @@
 About mamba
 ===========
 
-Home: https://github.com/wolfv/mamba
+Home: https://github.com/QuantStack/mamba
 
 Package license: BSD 3-Clause
 
