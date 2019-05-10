@@ -1,7 +1,7 @@
 About mamba
 ===========
 
-Home: https://github.com/wolfv/mamba
+Home: https://github.com/QuantStack/mamba
 
 Package license: BSD 3-Clause
 
@@ -97,6 +97,7 @@ Current build status
       </details>
     </td>
   </tr>
+![ppc64le disabled](https://img.shields.io/badge/ppc64le-disabled-lightgrey.svg)
 </table>
 
 Current release info
