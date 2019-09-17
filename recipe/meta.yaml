@@ -1,6 +1,6 @@
 {% set name = "mamba" %}
-{% set version = "0.0.8" %}
-{% set sha256 = "9b18c63210c2c0e942142171201201c9808865393ff4f744c80762c960e55603" %}
+{% set version = "0.0.9" %}
+{% set sha256 = "99610fcae871c44465ae5daa629f048fbc66130937726abbba8c4ce65a729eef" %}
 
 package:
   name: {{ name|lower }}
@@ -12,7 +12,6 @@ source:
 
 build:
   number: 1
-  skip: True  # [win]
   # script: "{{ PYTHON }} -m pip install . --no-deps -vv"
   entry_points:
     - mamba = mamba.mamba:main
@@ -24,12 +23,12 @@ requirements:
     - setuptools
     - python
     - pip
-    - pybind11 2.2.*
-    - conda 4.6.*|4.7.*
-    - libsolv 0.7.5
+    - pybind11 2.3.*
+    - conda >=4.7.12,<4.8
+    - libsolv 0.7.*
   run:
     - python
-    - conda 4.6.*|4.7.*
+    - conda >=4.7.12,<4.8
 
 test:
   imports:
