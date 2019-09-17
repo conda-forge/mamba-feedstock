@@ -1,6 +1,6 @@
 {% set name = "mamba" %}
-{% set version = "0.0.8" %}
-{% set sha256 = "9b18c63210c2c0e942142171201201c9808865393ff4f744c80762c960e55603" %}
+{% set version = "0.0.9" %}
+{% set sha256 = "99610fcae871c44465ae5daa629f048fbc66130937726abbba8c4ce65a729eef" %}
 
 package:
   name: {{ name|lower }}
@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   skip: True  # [win]
   # script: "{{ PYTHON }} -m pip install . --no-deps -vv"
   entry_points:
