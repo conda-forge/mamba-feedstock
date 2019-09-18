@@ -12,6 +12,7 @@ source:
 
 build:
   number: 1
+  skip: true  # [win]
   # script: "{{ PYTHON }} -m pip install . --no-deps -vv"
   entry_points:
     - mamba = mamba.mamba:main
