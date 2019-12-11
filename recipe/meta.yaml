@@ -1,6 +1,6 @@
 {% set name = "mamba" %}
-{% set version = "0.0.10" %}
-{% set sha256 = "285d1bb89faca89ece69a27c309e5a4136c2429712211a4bded606adbb9473f2" %}
+{% set version = "0.1.0" %}
+{% set sha256 = "5150081d5b43bd2e34226172590dbea5b61a1ae9621e049a809e49c1047debfb" %}
 
 package:
   name: {{ name|lower }}
@@ -9,11 +9,12 @@ package:
 source:
   url: https://github.com/QuantStack/mamba/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - mamba_osx.patch  # [osx]
 
 build:
   number: 1
-  skip: true  # [win]
-  # script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  skip: true  # [win and vc<14]
   entry_points:
     - mamba = mamba.mamba:main
 
@@ -26,7 +27,7 @@ requirements:
     - pip
     - pybind11 2.3.*
     - conda >=4.7.12,<4.8
-    - libsolv 0.7.*
+    - libsolv >=0.7.9,<0.8.0
   run:
     - python
     - conda >=4.7.12,<4.8
@@ -37,11 +38,14 @@ test:
     - mamba.mamba_api
   commands:
     - mamba --help
-    - mamba install python=2.7 --dry-run
+    # these tests work when run on win, but for some reason not during conda build
+    - mamba create -n test_py2 python=2.7 --dry-run  # [not win]
+    - mamba install xtensor xsimd -c conda-forge --dry-run  # [not win]
 
 about:
   home: https://github.com/QuantStack/mamba
   license: BSD 3-Clause
+  license_file: LICENSE
   license_family: BSD
   summary: 'A faster conda?!'
   description: 'mamba, a (hopefully faster) reimplementation of parts of conda.'
