@@ -10,16 +10,12 @@ jobs:
   strategy:
     maxParallel: 4
     matrix:
-      win_cxx_compilervs2008python2.7:
-        CONFIG: win_cxx_compilervs2008python2.7
+      win_cxx_compilervs2015python3.6vc14:
+        CONFIG: win_cxx_compilervs2015python3.6vc14
         CONDA_BLD_PATH: D:\\bld\\
         UPLOAD_PACKAGES: True
-      win_cxx_compilervs2015python3.6:
-        CONFIG: win_cxx_compilervs2015python3.6
-        CONDA_BLD_PATH: D:\\bld\\
-        UPLOAD_PACKAGES: True
-      win_cxx_compilervs2015python3.7:
-        CONFIG: win_cxx_compilervs2015python3.7
+      win_cxx_compilervs2015python3.7vc14:
+        CONFIG: win_cxx_compilervs2015python3.7vc14
         CONDA_BLD_PATH: D:\\bld\\
         UPLOAD_PACKAGES: True
   steps:
@@ -105,6 +101,7 @@ jobs:
     - script: |
         set "GIT_BRANCH=%BUILD_SOURCEBRANCHNAME%"
         upload_package .\ .\recipe .ci_support\%CONFIG%.yaml
+      displayName: Upload package
       env:
         BINSTAR_TOKEN: $(BINSTAR_TOKEN)
       condition: not(eq(variables['UPLOAD_PACKAGES'], 'False'))
