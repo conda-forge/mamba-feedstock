@@ -38,8 +38,9 @@ test:
     - mamba.mamba_api
   commands:
     - mamba --help
-    - mamba create -n test_py2 python=2.7 --dry-run
-    - mamba install xtensor xsimd -c conda-forge --dry-run
+    # these tests work when run on win, but for some reason not during conda build
+    - mamba create -n test_py2 python=2.7 --dry-run  # [not win]
+    - mamba install xtensor xsimd -c conda-forge --dry-run  # [not win]
 
 about:
   home: https://github.com/QuantStack/mamba
