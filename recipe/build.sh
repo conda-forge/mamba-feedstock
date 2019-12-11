@@ -1,3 +1,7 @@
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	export CXXFLAGS=$CXXFLAGS -fno-aligned-allocation -std=c++14
+fi
+
 $PYTHON -m pip install . --no-deps -vv
 
 if [ -d "$PREFIX/condabin" ]; then
