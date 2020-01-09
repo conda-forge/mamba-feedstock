@@ -13,7 +13,7 @@ source:
     - mamba_osx.patch  # [osx]
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win and vc<14]
   entry_points:
     - mamba = mamba.mamba:main
@@ -26,11 +26,11 @@ requirements:
     - python
     - pip
     - pybind11 2.3.*
-    - conda >=4.7.12,<4.8
-    - libsolv >=0.7.9,<0.8.0
+    - conda >=4.7.12
+    - libsolv >=0.7.9
   run:
     - python
-    - conda >=4.7.12,<4.8
+    - conda >=4.7.12
 
 test:
   imports:
