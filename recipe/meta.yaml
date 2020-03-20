@@ -13,7 +13,7 @@ source:
     - mamba_osx.patch  # [osx]
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win and vc<14]
   entry_points:
     - mamba = mamba.mamba:main
