@@ -13,7 +13,7 @@ source:
     - mamba_osx.patch  # [osx]
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win and vc<14]
   entry_points:
     - mamba = mamba.mamba:main
@@ -47,8 +47,8 @@ about:
   license: BSD 3-Clause
   license_file: LICENSE
   license_family: BSD
-  summary: 'A faster conda?!'
-  description: 'mamba, a (hopefully faster) reimplementation of parts of conda.'
+  summary: 'A fast drop-in alternative to conda, using libsolv for dependency resolution'
+  description: 'A fast drop-in alternative to conda, using libsolv for dependency resolution'
   dev_url: https://github.com/QuantStack/mamba
 
 extra:
