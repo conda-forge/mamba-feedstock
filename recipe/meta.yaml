@@ -25,7 +25,7 @@ requirements:
     - setuptools
     - python
     - pip
-    - pybind11 2.3.*
+    - pybind11
     - conda >=4.7.12
     - libsolv >=0.7.9
   run:
