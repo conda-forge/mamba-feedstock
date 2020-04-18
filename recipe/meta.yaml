@@ -1,6 +1,6 @@
 {% set name = "mamba" %}
-{% set version = "0.1.2" %}
-{% set sha256 = "30980f9769f59b76246d58933294ac7b7db0b88496e8c9adbb05a82976ed677e" %}
+{% set version = "0.2.0" %}
+{% set sha256 = "79bd335aab743cea7360d859afcdb7b29bcf84f771ca51c111478cc4f88e7571" %}
 
 package:
   name: {{ name|lower }}
@@ -47,8 +47,8 @@ about:
   license: BSD 3-Clause
   license_file: LICENSE
   license_family: BSD
-  summary: 'A fast drop-in alternative to conda, using libsolv for dependency resolution'
-  description: 'A fast drop-in alternative to conda, using libsolv for dependency resolution'
+  summary: A fast drop-in alternative to conda, using libsolv for dependency resolution
+  description: A fast drop-in alternative to conda, using libsolv for dependency resolution
   dev_url: https://github.com/QuantStack/mamba
 
 extra:
