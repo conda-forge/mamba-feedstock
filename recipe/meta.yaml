@@ -1,6 +1,6 @@
 {% set name = "mamba" %}
-{% set version = "0.1.2" %}
-{% set sha256 = "30980f9769f59b76246d58933294ac7b7db0b88496e8c9adbb05a82976ed677e" %}
+{% set version = "0.2.0" %}
+{% set sha256 = "79bd335aab743cea7360d859afcdb7b29bcf84f771ca51c111478cc4f88e7571" %}
 
 package:
   name: {{ name|lower }}
@@ -9,8 +9,6 @@ package:
 source:
   url: https://github.com/QuantStack/mamba/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
-  patches:
-    - mamba_osx.patch  # [osx]
 
 build:
   number: 0
@@ -26,8 +24,12 @@ requirements:
     - python
     - pip
     - pybind11
-    - conda >=4.7.12
-    - libsolv >=0.7.9
+    - conda >=4.8
+    - libsolv >=0.7.11
+    - libcurl
+    - openssl
+    - libarchive
+    - nlohmann_json
   run:
     - python
     - conda >=4.7.12
