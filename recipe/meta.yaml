@@ -9,6 +9,8 @@ package:
 source:
   url: https://github.com/QuantStack/mamba/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - win_cpp14_compat.patch  # [win]
 
 build:
   number: 0
