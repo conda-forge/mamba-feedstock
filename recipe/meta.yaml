@@ -20,7 +20,8 @@ build:
 
 requirements:
   build:
-    - {{ compiler('cxx') }}
+    - {{ compiler('cxx') }}  # [not win]
+    - vs2017_win-64          # [win64]
   host:
     - setuptools
     - python
