@@ -47,7 +47,7 @@ test:
 
 about:
   home: https://github.com/QuantStack/mamba
-  license: BSD 3-Clause
+  license: BSD-3-Clause
   license_file: LICENSE
   license_family: BSD
   summary: 'A fast drop-in alternative to conda, using libsolv for dependency resolution'
