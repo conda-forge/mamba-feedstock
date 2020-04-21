@@ -1,6 +1,6 @@
 {% set name = "mamba" %}
-{% set version = "0.2.0" %}
-{% set sha256 = "79bd335aab743cea7360d859afcdb7b29bcf84f771ca51c111478cc4f88e7571" %}
+{% set version = "0.2.1" %}
+{% set sha256 = "9b920812531be43b5913f2daf4948eaa438ae860a77e94da1fb3e3ee4fe9fb82" %}
 
 package:
   name: {{ name|lower }}
@@ -9,8 +9,6 @@ package:
 source:
   url: https://github.com/QuantStack/mamba/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
-  patches:
-    - win_cpp14_compat.patch  # [win]
 
 build:
   number: 0
