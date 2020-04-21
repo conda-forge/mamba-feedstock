@@ -1,0 +1,22 @@
+diff --git a/include/output.hpp b/include/output.hpp
+index 6b12b2c..a0ee100 100644
+--- a/include/output.hpp
++++ b/include/output.hpp
+@@ -3,6 +3,7 @@
+ 
+ #include "thirdparty/minilog.hpp"
+ 
++#include <string_view>
+ #include <iostream>
+ #include <iomanip>
+ #include <chrono>
+diff --git a/src/fetch.cpp b/src/fetch.cpp
+index d8696fe..ee86d43 100644
+--- a/src/fetch.cpp
++++ b/src/fetch.cpp
+@@ -1,3 +1,5 @@
++#include <string_view>
++
+ #include "context.hpp"
+ #include "fetch.hpp"
+ #include "util.hpp"
