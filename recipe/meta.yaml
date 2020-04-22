@@ -1,6 +1,6 @@
 {% set name = "mamba" %}
-{% set version = "0.2.1" %}
-{% set sha256 = "9b920812531be43b5913f2daf4948eaa438ae860a77e94da1fb3e3ee4fe9fb82" %}
+{% set version = "0.2.2" %}
+{% set sha256 = "a34b43c88e09e2bb0c46b962067214f9c025081c1199335825c0018c9f04912a" %}
 
 package:
   name: {{ name|lower }}
@@ -9,8 +9,6 @@ package:
 source:
   url: https://github.com/QuantStack/mamba/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
-  patches:
-    - win_compat.patch  # [win]
 
 build:
   number: 0
@@ -20,22 +18,21 @@ build:
 
 requirements:
   build:
-    - {{ compiler('cxx') }}  # [not win]
-    - vs2017_win-64          # [win64]
+    - {{ compiler('cxx') }}
   host:
     - setuptools
     - python
     - pip
     - pybind11
     - conda >=4.8
-    - libsolv >=0.7.11
+    - libsolv >=0.7.12
     - libcurl
     - openssl
     - libarchive
     - nlohmann_json
   run:
     - python
-    - conda >=4.7.12
+    - conda >=4.8
 
 test:
   imports:

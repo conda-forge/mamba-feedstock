@@ -3,7 +3,7 @@ About mamba
 
 Home: https://github.com/QuantStack/mamba
 
-Package license: BSD 3-Clause
+Package license: BSD-3-Clause
 
 Feedstock license: BSD 3-Clause
 
