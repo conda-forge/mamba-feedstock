@@ -49,8 +49,8 @@ about:
   license: BSD-3-Clause
   license_file: LICENSE
   license_family: BSD
-  summary: 'A fast drop-in alternative to conda, using libsolv for dependency resolution'
-  description: 'A fast drop-in alternative to conda, using libsolv for dependency resolution'
+  summary: A fast drop-in alternative to conda, using libsolv for dependency resolution
+  description: A fast drop-in alternative to conda, using libsolv for dependency resolution
   dev_url: https://github.com/QuantStack/mamba
 
 extra:
