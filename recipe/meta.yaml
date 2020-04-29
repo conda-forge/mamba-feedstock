@@ -1,6 +1,6 @@
 {% set name = "mamba" %}
-{% set version = "0.2.5" %}
-{% set sha256 = "8f7b9d0e72551bf6722d6112d0078584f834b3bd6389a6b497f790596a0adddb" %}
+{% set version = "0.2.6" %}
+{% set sha256 = "b22d0d4278820d1b611d561633fd2b6a0d402e40c70f530b16235625e30a2705" %}
 
 package:
   name: {{ name|lower }}
@@ -30,6 +30,7 @@ requirements:
     - openssl
     - libarchive
     - nlohmann_json
+    - cpp-tabulate >=1.2
   run:
     - python
     - conda >=4.8
