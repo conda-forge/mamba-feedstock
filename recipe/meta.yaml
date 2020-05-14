@@ -1,6 +1,6 @@
 {% set name = "mamba" %}
-{% set version = "0.2.7" %}
-{% set sha256 = "ab8fe8d941faf01ebc0a2c7466b33cb0dfbdf99abac30f3c3d0d4129163eb048" %}
+{% set version = "0.2.8" %}
+{% set sha256 = "42959ee3af256e25f041d54550c44753cd2065e7953bdc6358cbb805664b3ea0" %}
 
 package:
   name: {{ name|lower }}
@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win and vc<14]
   entry_points:
     - mamba = mamba.mamba:main
