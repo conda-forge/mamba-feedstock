@@ -1,6 +1,6 @@
 {% set name = "mamba" %}
-{% set version = "0.2.12" %}
-{% set sha256 = "fabb40e0a1cf7ba1f639ad588a39e274104cc9e2cc0b27b4c4a18c82088917f0" %}
+{% set version = "0.3.0" %}
+{% set sha256 = "ea93b9e3f87796c8068007e0934eb2ddf6f96d3815559adb0cbb96d0a9d0d351" %}
 
 package:
   name: {{ name|lower }}
@@ -25,7 +25,7 @@ requirements:
     - pip
     - pybind11
     - conda >=4.8
-    - libsolv >=0.7.13
+    - libsolv >=0.7.14
     - libcurl
     - openssl
     - libarchive
@@ -42,7 +42,7 @@ test:
     - mamba --help
     # these tests work when run on win, but for some reason not during conda build
     - mamba create -n test_py2 python=2.7 --dry-run  # [linux]
-    - mamba install xtensor xsimd -c conda-forge --dry-run  # [linux]
+    - mamba install xtensor xsimd -c conda-forge --dry-run  # [linux and x86_64]
 
 about:
   home: https://github.com/QuantStack/mamba
