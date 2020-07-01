@@ -9,8 +9,6 @@ package:
 source:
   url: https://github.com/QuantStack/mamba/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
-  patches:
-    - placeholder.patch
 
 build:
   number: 0
