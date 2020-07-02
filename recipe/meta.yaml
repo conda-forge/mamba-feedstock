@@ -1,6 +1,6 @@
 {% set name = "mamba" %}
-{% set version = "0.4.0" %}
-{% set sha256 = "2acf5046964184056f6e87b5dc5b57166f3d2da8be8c6a50bc9be56bced92398" %}
+{% set version = "0.4.1" %}
+{% set sha256 = "985e8de16d64ec1bc90104f0c701500fa70f7f2eb1c7b79c7aea9a6876248e8d" %}
 
 package:
   name: {{ name|lower }}
@@ -9,8 +9,6 @@ package:
 source:
   url: https://github.com/QuantStack/mamba/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
-  patches:
-    - placeholder.patch
 
 build:
   number: 0
