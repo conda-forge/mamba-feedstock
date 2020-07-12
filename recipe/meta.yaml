@@ -29,6 +29,7 @@ requirements:
     - libcurl
     - openssl
     - libarchive
+    - libiconv
     - nlohmann_json
   run:
     - python
@@ -58,3 +59,4 @@ extra:
     - SylvainCorlay
     - JohanMabille
     - wolfv
+    - ericmjl
