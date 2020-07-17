@@ -1,13 +1,13 @@
 {% set name = "mamba" %}
-{% set version = "0.4.1" %}
-{% set sha256 = "985e8de16d64ec1bc90104f0c701500fa70f7f2eb1c7b79c7aea9a6876248e8d" %}
+{% set version = "0.4.2" %}
+{% set sha256 = "76d40ceac03ba6d05856f2a277a89bb3ee59e4f27c5a8d2c3cbf7031979a0ab5" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/QuantStack/mamba/archive/{{ version }}.tar.gz
+  url: https://github.com/TheSnakePit/mamba/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
@@ -46,13 +46,13 @@ test:
     - mamba install xtensor xsimd -c conda-forge --dry-run  # [linux and x86_64]
 
 about:
-  home: https://github.com/QuantStack/mamba
+  home: https://github.com/TheSnakePit/mamba
   license: BSD-3-Clause
   license_file: LICENSE
   license_family: BSD
   summary: A fast drop-in alternative to conda, using libsolv for dependency resolution
   description: A fast drop-in alternative to conda, using libsolv for dependency resolution
-  dev_url: https://github.com/QuantStack/mamba
+  dev_url: https://github.com/TheSnakePit/mamba
 
 extra:
   recipe-maintainers:
