@@ -7,11 +7,13 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '9'
+- '10'
 libarchive:
 - '3.3'
 libcurl:
 - '7'
+libiconv:
+- '1.15'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 macos_min_version:
@@ -21,6 +23,8 @@ openssl:
 pin_run_as_build:
   libcurl:
     max_pin: x
+  libiconv:
+    max_pin: x.x
   openssl:
     max_pin: x.x.x
   python:

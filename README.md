@@ -1,11 +1,11 @@
 About mamba
 ===========
 
-Home: https://github.com/QuantStack/mamba
+Home: https://github.com/TheSnakePit/mamba
 
 Package license: BSD-3-Clause
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: A fast drop-in alternative to conda, using libsolv for dependency resolution
 
@@ -277,5 +277,6 @@ Feedstock Maintainers
 
 * [@JohanMabille](https://github.com/JohanMabille/)
 * [@SylvainCorlay](https://github.com/SylvainCorlay/)
+* [@ericmjl](https://github.com/ericmjl/)
 * [@wolfv](https://github.com/wolfv/)
 
