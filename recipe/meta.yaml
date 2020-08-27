@@ -1,6 +1,6 @@
 {% set name = "mamba" %}
-{% set version = "0.4.4" %}
-{% set sha256 = "2798b642d4c93e0ae453a3dc55db86b29684b2e71ed73bf341c8f5a3cd660d53" %}
+{% set version = "0.5.0" %}
+{% set sha256 = "28ce137d8960831bf4a5057e9d9a7061bb1899bb24470f759db82d029dd274eb" %}
 
 package:
   name: {{ name|lower }}
@@ -31,6 +31,7 @@ requirements:
     - libarchive
     - libiconv
     - nlohmann_json
+    - cpp-filesystem
   run:
     - python
     - conda >=4.8
