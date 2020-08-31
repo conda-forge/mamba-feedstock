@@ -29,22 +29,45 @@ requirements:
     - libcurl
     - openssl
     - libarchive
-    - libiconv
     - nlohmann_json
     - cpp-filesystem
   run:
     - python
     - conda >=4.8
 
-test:
-  imports:
-    - mamba
-    - mamba.mamba_api
-  commands:
-    - mamba --help
-    # these tests work when run on win, but for some reason not during conda build
-    - mamba create -n test_py2 python=2.7 --dry-run  # [linux]
-    - mamba install xtensor xsimd -c conda-forge --dry-run  # [linux and x86_64]
+outputs:
+  - name: mamba
+    script: build.sh  # [unix]
+    script: build.bat  # [win]
+    test:
+      imports:
+        - mamba
+        - mamba.mamba_api
+      commands:
+        - mamba --help
+        # these tests work when run on win, but for some reason not during conda build
+        - mamba create -n test_py2 python=2.7 --dry-run  # [linux]
+        - mamba install xtensor xsimd -c conda-forge --dry-run  # [linux and x86_64]
+
+  - name: libmamba
+    script: build_lib.sh  # [unix]
+    requirements:
+      build:
+        - cmake
+        - ninja
+        - {{ compiler('cxx') }}
+      host:
+        - libsolv >=0.7.14
+        - libcurl
+        - openssl
+        - libarchive
+        - nlohmann_json
+        - cpp-filesystem
+    test:
+      commands:
+        - test -f $PREFIX/lib/libmamba.so
+        - test -f $PREFIX/include/mamba/context.hpp
+        - test -f $PREFIX/include/mamba/channel.hpp
 
 about:
   home: https://github.com/TheSnakePit/mamba
