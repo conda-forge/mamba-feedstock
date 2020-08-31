@@ -51,6 +51,7 @@ outputs:
 
   - name: libmamba
     script: build_lib.sh  # [unix]
+    script: build_lib.bat  # [win]
     requirements:
       build:
         - cmake
@@ -65,9 +66,13 @@ outputs:
         - cpp-filesystem
     test:
       commands:
-        - test -f $PREFIX/lib/libmamba.so
-        - test -f $PREFIX/include/mamba/context.hpp
-        - test -f $PREFIX/include/mamba/channel.hpp
+        - test -f $PREFIX/lib/libmamba${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/include/mamba/context.hpp  # [unix]
+        - test -f $PREFIX/include/mamba/channel.hpp  # [unix]
+        - if exist %LIBRARY_INC%\mamba\channel.hpp (exit 0) else (exit 1)  # [win]
+        - if exist %LIBRARY_INC%\mamba\context.hpp (exit 0) else (exit 1)  # [win]
+        - if exist %LIBRARY_LIB%\mamba.lib (exit 0) else (exit 1)  # [win]
+        - if exist %LIBRARY_BIN%\mamba.dll (exit 0) else (exit 1)  # [win]
 
 about:
   home: https://github.com/TheSnakePit/mamba
