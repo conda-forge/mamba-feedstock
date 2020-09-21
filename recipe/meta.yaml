@@ -49,7 +49,9 @@ test:
 about:
   home: https://github.com/TheSnakePit/mamba
   license: BSD-3-Clause
-  license_file: LICENSE
+  license_file:
+    - LICENSE
+    - CPP_FILESYSTEM_LICENSE.txt
   license_family: BSD
   summary: A fast drop-in alternative to conda, using libsolv for dependency resolution
   description: A fast drop-in alternative to conda, using libsolv for dependency resolution
