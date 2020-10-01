@@ -11,7 +11,7 @@ channel_targets:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '7'
+- '7.5'
 docker_image:
 - condaforge/linux-anvil-aarch64
 libarchive:
@@ -19,7 +19,7 @@ libarchive:
 libcurl:
 - '7'
 libiconv:
-- '1.15'
+- '1.16'
 openssl:
 - 1.1.1
 pin_run_as_build:
