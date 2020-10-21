@@ -1,6 +1,5 @@
 {% set name = "mamba" %}
-{% set version = "0.6.0" %}
-{% set sha256 = "229b621bdb6bf48f3b67c87a66ed5f450fc48efc1d7ea235c45202487b5a4872" %}
+{% set version = "0.6.1" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +7,7 @@ package:
 
 source:
   url: https://github.com/TheSnakePit/mamba/archive/{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: 597d1a3dd3834678e292943672749b2e1ee40d32f6c4f4454ccc915699253d38
 
 build:
   number: 0
