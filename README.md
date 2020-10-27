@@ -1,7 +1,7 @@
 About mamba
 ===========
 
-Home: https://github.com/TheSnakePit/mamba
+Home: https://github.com/mamba-org/mamba
 
 Package license: BSD-3-Clause
 
@@ -9,7 +9,7 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/mamba-feedstock
 
 Summary: A fast drop-in alternative to conda, using libsolv for dependency resolution
 
-Development: https://github.com/TheSnakePit/mamba
+Development: https://github.com/mamba-org/mamba
 
 A fast drop-in alternative to conda, using libsolv for dependency resolution
 
