@@ -1,5 +1,5 @@
 {% set name = "mamba" %}
-{% set version = "0.6.4" %}
+{% set version = "0.7.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/{{ version }}.tar.gz
-  sha256: 7706d83dfab7cc7cb5bfb6f17806853e0e3b519771cee1c2baccb9a1deb5d586
+  sha256: e01a6f77a7c5d49b35033307360bbd22c34560b9ef21048bc742bf644692bddc
 
 build:
   number: 0
@@ -31,6 +31,7 @@ requirements:
     - libiconv
     - nlohmann_json
     - cpp-filesystem
+    - reproc-cpp
   run:
     - python
     - conda >=4.8
