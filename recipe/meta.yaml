@@ -30,7 +30,7 @@ requirements:
     - libiconv
     - nlohmann_json
     - cpp-filesystem
-    - reproc-cpp >= 14.2.1
+    - reproc-cpp >=14.2.1
   run:
     - python
     - conda >=4.8
