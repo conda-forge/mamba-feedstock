@@ -27,7 +27,6 @@ requirements:
     - libcurl
     - openssl
     - libarchive
-    - libiconv
     - nlohmann_json
     - cpp-filesystem
     - reproc-cpp >=14.2.1
