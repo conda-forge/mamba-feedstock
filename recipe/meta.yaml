@@ -1,5 +1,5 @@
 {% set name = "mamba" %}
-{% set version = "0.7.2" %}
+{% set version = "0.7.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/{{ version }}.tar.gz
-  sha256: da47d89595a02d759943888c590113b1131c03f3ab01a4aa679a45154a737d20
+  sha256: e9c47a0b873eab929fe0ec7b7417fdb3525b0c400242b935cdb7334fee7bd333
 
 build:
   number: 0
@@ -23,11 +23,10 @@ requirements:
     - pip
     - pybind11
     - conda >=4.8
-    - libsolv >=0.7.14
+    - libsolv >=0.7.16
     - libcurl
     - openssl
     - libarchive
-    - libiconv
     - nlohmann_json
     - cpp-filesystem
     - reproc-cpp >=14.2.1
