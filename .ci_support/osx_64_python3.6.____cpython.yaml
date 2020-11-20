@@ -12,8 +12,6 @@ libarchive:
 - '3.3'
 libcurl:
 - '7'
-libiconv:
-- '1.16'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 openssl:
@@ -21,8 +19,6 @@ openssl:
 pin_run_as_build:
   libcurl:
     max_pin: x
-  libiconv:
-    max_pin: x.x
   openssl:
     max_pin: x.x.x
   python:
