@@ -11,7 +11,7 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-ppc64le
 libarchive:
-- '3.3'
+- '3.5'
 libcurl:
 - '7'
 openssl:

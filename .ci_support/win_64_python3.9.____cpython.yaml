@@ -5,7 +5,7 @@ channel_targets:
 cxx_compiler:
 - vs2017
 libarchive:
-- '3.3'
+- '3.5'
 libcurl:
 - '7'
 openssl:
