@@ -1,7 +1,7 @@
 MACOSX_DEPLOYMENT_TARGET:
 - '11.0'
 channel_sources:
-- conda-forge/label/rust_dev,conda-forge
+- conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -9,7 +9,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '11'
 libarchive:
-- '3.3'
+- '3.5'
 libcurl:
 - '7'
 macos_machine:
