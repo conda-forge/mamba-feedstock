@@ -10,7 +10,7 @@ source:
   sha256: 5c763f9ecab86c171c9cc781a8dc2f1b218863d52a26748f0237b71f6fc54a00
 
 build:
-  number: 0
+  number: 1
   entry_points:
     - mamba = mamba.mamba:main
 
@@ -33,6 +33,7 @@ requirements:
     - nlohmann_json
     - cpp-filesystem
     - reproc-cpp >=14.2.1
+    - libiconv                                # [unix]
   run:
     - python
     - conda >=4.8
