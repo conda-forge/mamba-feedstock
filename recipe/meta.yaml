@@ -33,7 +33,7 @@ requirements:
     - nlohmann_json
     - cpp-filesystem
     - reproc-cpp >=14.2.1
-    - libiconv                                # [unix]
+    - libiconv                               # [unix]
   run:
     - python
     - conda >=4.8
