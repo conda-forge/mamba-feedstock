@@ -64,6 +64,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - adriendelsalle
     - SylvainCorlay
     - JohanMabille
     - wolfv
