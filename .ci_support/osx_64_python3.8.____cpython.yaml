@@ -23,8 +23,6 @@ pin_run_as_build:
     max_pin: x
   libiconv:
     max_pin: x.x
-  openssl:
-    max_pin: x.x.x
   python:
     min_pin: x.x
     max_pin: x.x
