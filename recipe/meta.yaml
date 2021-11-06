@@ -1,59 +1,139 @@
 {% set name = "mamba" %}
-{% set version = "0.17.0" %}
+{% set libmamba_version = "0.18.0" %}
+{% set libmambapy_version = "0.18.0" %}
+{% set mamba_version = "0.18.0" %}
+{% set release = "2021.11.17" %}
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: mamba-split
 
 source:
-  url: https://github.com/mamba-org/mamba/archive/{{ version }}.tar.gz
-  sha256: c5f4add077f41ca9ff905d95003cf793c59e9d6959f19a139325dc66c904733a
+  url: https://github.com/mamba-org/mamba/archive/{{ release }}.tar.gz
+  sha256: 3db3356d872a250fb9fccfd2bb347c7a3008058d746029e39393341e839241a7
 
 build:
   number: 0
-  entry_points:
-    - mamba = mamba.mamba:main
 
-requirements:
-  build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - pybind11                               # [build_platform != target_platform]
-    - {{ compiler('cxx') }}
-  host:
-    - setuptools
-    - python
-    - pip
-    - pybind11
-    - conda >=4.8
-    - libsolv >=0.7.19
-    - libcurl
-    - openssl
-    - libarchive
-    - nlohmann_json
-    - cpp-filesystem >=1.5.8
-    - reproc-cpp >=14.2.1
-    - libiconv                               # [unix]
-  run:
-    - python
-    - conda >=4.8
+outputs:
+  - name: libmamba
+    version: {{ libmamba_version }}
+    script: build_mamba.sh                       # [unix]
+    script: build_mamba.bat                      # [win]
+    build:
+      run_exports:
+        - {{ pin_subpackage('libmamba', max_pin='x.x') }}
+      ignore_run_exports:
+        - spdlog
+    requirements:
+      build:
+        - {{ compiler('cxx') }}
+        - cmake
+        - ninja
+      host:
+        - libsolv >=0.7.19
+        - libcurl
+        - openssl
+        - libarchive
+        - nlohmann_json
+        - cpp-filesystem >=1.5.8
+        - reproc-cpp >=14.2.1
+        - spdlog
+        - yaml-cpp
+        - termcolor-cpp
+        - cli11
+        - libiconv                               # [unix]
+    test:
+      commands:
+        - test -d ${PREFIX}/include/mamba  # [unix]
+        - test -f ${PREFIX}/include/mamba/version.hpp  # [unix]
+        - test -f ${PREFIX}/lib/cmake/libmamba/libmambaConfig.cmake  # [unix]
+        - test -f ${PREFIX}/lib/cmake/libmamba/libmambaConfigVersion.cmake  # [unix]
+        - test -e ${PREFIX}/lib/libmamba${SHLIB_EXT}  # [unix]
+        - if not exist %LIBRARY_PREFIX%\include\mamba\version.hpp (exit 1)  # [win]
+        - if not exist %LIBRARY_PREFIX%\lib\cmake\libmamba\libmambaConfig.cmake (exit 1)  # [win]
+        - if not exist %LIBRARY_PREFIX%\lib\cmake\libmamba\libmambaConfigVersion.cmake (exit 1)  # [win]
+        - if not exist %LIBRARY_PREFIX%\bin\libmamba.dll (exit 1)  # [win]
+        - if not exist %LIBRARY_PREFIX%\lib\libmamba.lib (exit 1)  # [win]
+        - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_STRING \"{{ libmamba_version }}\""  # [unix]
 
-test:
-  imports:
-    - mamba
-    - mamba.mamba_api
-  requires:
-    - pip
-  commands:
-    - mamba --help
-    - if exist %PREFIX%\condabin\mamba.bat (exit 0) else (exit 1)  # [win]
-    - test -f ${PREFIX}/etc/profile.d/mamba.sh  # [linux]
-    # these tests work when run on win, but for some reason not during conda build
-    - mamba create -n test_py2 python=2.7 --dry-run  # [linux]
-    - mamba install xtensor xsimd -c conda-forge --dry-run  # [linux and x86_64]
-    # for some reason tqdm doesn't have a proper colorama dependency so pip check fails
-    # but that's completely unrelated to mamba
-    - pip check  # [not win]
+  - name: libmambapy
+    version: {{ libmambapy_version }}
+    script: build_mamba.sh                       # [unix]
+    script: build_mamba.bat                      # [win]
+    build:
+      string: py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+      run_exports:
+        - {{ pin_subpackage('libmambapy', max_pin='x.x') }}
+      ignore_run_exports:
+        - spdlog
+    requirements:
+      build:
+        - {{ compiler('cxx') }}
+        - cmake
+        - ninja
+        - python                                 # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+        - pybind11                               # [build_platform != target_platform]
+        - pybind11-abi                           # [build_platform != target_platform]
+      host:
+        - python
+        - pip
+        - pybind11
+        - pybind11-abi
+        - openssl
+        - yaml-cpp
+        - spdlog
+        - cpp-filesystem >=1.5.8
+        - termcolor-cpp
+        - nlohmann_json
+        - {{ pin_subpackage('libmamba', exact=True) }}
+      run:
+        - python
+        - {{ pin_subpackage('libmamba', exact=True) }}
+    test:
+      imports:
+        - libmambapy
+        - libmambapy.bindings
+      commands:
+        - python -c "import libmambapy._version; assert libmambapy._version.__version__ == '{{ libmambapy_version }}'"
+
+  - name: mamba
+    version: {{ mamba_version }}
+    script: build_mamba.sh                       # [unix]
+    script: build_mamba.bat                      # [win]
+    build:
+      string: py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+      entry_points:
+        - mamba = mamba.mamba:main
+    requirements:
+      build:
+        - python                              # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}  # [build_platform != target_platform]
+      host:
+        - python
+        - pip
+        - openssl
+        - {{ pin_subpackage('libmambapy', exact=True) }}
+      run:
+        - python
+        - conda >=4.8
+        - {{ pin_subpackage('libmambapy', exact=True) }}
+
+    test:
+      imports:
+        - mamba
+      requires:
+        - pip
+      commands:
+        - mamba --help
+        - if exist %PREFIX%\condabin\mamba.bat (exit 0) else (exit 1)  # [win]
+        - test -f ${PREFIX}/etc/profile.d/mamba.sh  # [linux]
+        # these tests work when run on win, but for some reason not during conda build
+        - mamba create -n test_py2 python=2.7 --dry-run  # [linux]
+        - mamba install xtensor xsimd -c conda-forge --dry-run  # [linux and x86_64]
+        # for some reason tqdm doesn't have a proper colorama dependency so pip check fails
+        # but that's completely unrelated to mamba
+        - python -c "import mamba._version; assert mamba._version.__version__ == '{{ mamba_version }}'"
 
 about:
   home: https://github.com/mamba-org/mamba
