@@ -12,7 +12,7 @@ source:
   sha256: 3db3356d872a250fb9fccfd2bb347c7a3008058d746029e39393341e839241a7
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: libmamba
@@ -134,6 +134,7 @@ outputs:
         # for some reason tqdm doesn't have a proper colorama dependency so pip check fails
         # but that's completely unrelated to mamba
         - python -c "import mamba._version; assert mamba._version.__version__ == '{{ mamba_version }}'"
+        - test -f ${PREFIX}/condabin/mamba  # [unix]
 
 about:
   home: https://github.com/mamba-org/mamba
