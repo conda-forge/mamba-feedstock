@@ -29,6 +29,7 @@ pin_run_as_build:
 pybind11_abi:
 - '4'
 python:
+- 3.10.* *_cpython
 - 3.8.* *_cpython
 - 3.9.* *_cpython
 spdlog:
