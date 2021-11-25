@@ -54,7 +54,10 @@ outputs:
         - if not exist %LIBRARY_PREFIX%\lib\cmake\libmamba\libmambaConfigVersion.cmake (exit 1)  # [win]
         - if not exist %LIBRARY_PREFIX%\bin\libmamba.dll (exit 1)  # [win]
         - if not exist %LIBRARY_PREFIX%\lib\libmamba.lib (exit 1)  # [win]
-        - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_STRING \"{{ libmamba_version }}\""  # [unix]
+        {% set libmamba_version_split = libmamba_version.split('.') %}
+        - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_MAJOR {{ libmamba_version_split[0] }}"  # [unix]
+        - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_MINOR {{ libmamba_version_split[1] }}"  # [unix]
+        - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_PATCH {{ libmamba_version_split[2] }}"  # [unix]
 
   - name: libmambapy
     version: {{ libmambapy_version }}
