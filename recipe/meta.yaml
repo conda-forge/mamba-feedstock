@@ -1,18 +1,18 @@
 {% set name = "mamba" %}
-{% set libmamba_version = "0.18.1" %}
-{% set libmambapy_version = "0.18.1" %}
-{% set mamba_version = "0.18.1" %}
-{% set release = "2021.11.19" %}
+{% set libmamba_version = "0.18.2" %}
+{% set libmambapy_version = "0.18.2" %}
+{% set mamba_version = "0.18.2" %}
+{% set release = "2021.11.24" %}
 
 package:
   name: mamba-split
 
 source:
   url: https://github.com/mamba-org/mamba/archive/{{ release }}.tar.gz
-  sha256: ba1bf5eebfbffecdf4fbd8999956f0b9eecf819fcaed744866e55d261d67cd1b
+  sha256: 6e42c9cc20c74e00b9e6771231f7f57adeeff273fe3913cf28c59c3ee2118161
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - name: libmamba
@@ -54,7 +54,10 @@ outputs:
         - if not exist %LIBRARY_PREFIX%\lib\cmake\libmamba\libmambaConfigVersion.cmake (exit 1)  # [win]
         - if not exist %LIBRARY_PREFIX%\bin\libmamba.dll (exit 1)  # [win]
         - if not exist %LIBRARY_PREFIX%\lib\libmamba.lib (exit 1)  # [win]
-        - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_STRING \"{{ libmamba_version }}\""  # [unix]
+        {% set libmamba_version_split = libmamba_version.split('.') %}
+        - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_MAJOR {{ libmamba_version_split[0] }}"  # [unix]
+        - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_MINOR {{ libmamba_version_split[1] }}"  # [unix]
+        - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_PATCH {{ libmamba_version_split[2] }}"  # [unix]
 
   - name: libmambapy
     version: {{ libmambapy_version }}
