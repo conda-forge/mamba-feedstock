@@ -1,15 +1,15 @@
 {% set name = "mamba" %}
-{% set libmamba_version = "0.19.0" %}
-{% set libmambapy_version = "0.19.0" %}
-{% set mamba_version = "0.19.0" %}
-{% set release = "2021.11.30" %}
+{% set libmamba_version = "0.19.1" %}
+{% set libmambapy_version = "0.19.1" %}
+{% set mamba_version = "0.19.1" %}
+{% set release = "2021.12.08" %}
 
 package:
   name: mamba-split
 
 source:
   url: https://github.com/mamba-org/mamba/archive/{{ release }}.tar.gz
-  sha256: c306933e02cc6ba94f0f644149961eab54cb8bb8d708209a7e8f6583480a2a2b
+  sha256: 0b25dd26d21cf44940c528c3026eec6c6761f21ae53cffe3c3efb19b9ff614a2
 
 build:
   number: 0
@@ -42,6 +42,7 @@ outputs:
         - termcolor-cpp
         - cli11
         - libiconv                               # [unix]
+        - winreg                                 # [win]
     test:
       commands:
         - test -d ${PREFIX}/include/mamba  # [unix]
