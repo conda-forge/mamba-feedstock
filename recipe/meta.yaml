@@ -2,7 +2,7 @@
 {% set libmamba_version = "0.20.0" %}
 {% set libmambapy_version = "0.20.0" %}
 {% set mamba_version = "0.20.0" %}
-{% set release = "2021.01.25" %}
+{% set release = "2022.01.25" %}
 
 package:
   name: mamba-split
