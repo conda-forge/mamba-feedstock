@@ -35,6 +35,6 @@ python:
 - 3.8.* *_cpython
 - 3.9.* *_cpython
 spdlog:
-- '1.9'
+- '1.10'
 target_platform:
 - linux-64
