@@ -40,6 +40,7 @@ outputs:
         - libarchive
         - nlohmann_json
         - cpp-filesystem >=1.5.8
+        - cpp-expected
         - reproc-cpp >=14.2.1
         - spdlog
         - yaml-cpp
@@ -90,6 +91,7 @@ outputs:
         - pybind11-abi
         - openssl
         - yaml-cpp
+        - cpp-expected
         - spdlog
         - cpp-filesystem >=1.5.8
         - termcolor-cpp
