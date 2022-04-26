@@ -1,0 +1,28 @@
+diff --git a/libmamba/CMakeLists.txt b/libmamba/CMakeLists.txt
+index c8351a5..8448ffe 100644
+--- a/libmamba/CMakeLists.txt
++++ b/libmamba/CMakeLists.txt
+@@ -108,9 +108,10 @@ set(SHELL_SCRIPTS
+ file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/shell_scripts)
+ foreach(script ${SHELL_SCRIPTS})
+     string(REPLACE "." "_" script_var ${script})
++    find_program(PYTHON_PROGRAM NAMES python3 python)
+     add_custom_command(OUTPUT shell_scripts/${script}.cpp
+                        DEPENDS data/${script}
+-                       COMMAND python3 ${LIBMAMBA_DATA_DIR}/bin2header.py
++                       COMMAND ${PYTHON_PROGRAM} ${LIBMAMBA_DATA_DIR}/bin2header.py
+                         --extern
+                         -v data_${script_var}
+                         -i ${CMAKE_CURRENT_SOURCE_DIR}/data/${script}
+diff --git a/libmamba/include/mamba/core/util.hpp b/libmamba/include/mamba/core/util.hpp
+index bfe5fba..4db079c 100644
+--- a/libmamba/include/mamba/core/util.hpp
++++ b/libmamba/include/mamba/core/util.hpp
+@@ -20,6 +20,7 @@
+ #include <time.h>
+ #include <vector>
+ #include <chrono>
++#include <iomanip>
+ 
+ #define MAMBA_EMPTY_SHA "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
+ 
