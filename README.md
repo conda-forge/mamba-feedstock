@@ -209,6 +209,3 @@ Feedstock Maintainers
 * [@ericmjl](https://github.com/ericmjl/)
 * [@wolfv](https://github.com/wolfv/)
 
-
-<!-- dummy commit to enable rerendering -->
-
