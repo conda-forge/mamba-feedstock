@@ -30,9 +30,10 @@ pybind11_abi:
 - '4'
 python:
 - 3.10.* *_cpython
-- 3.7.* *_73_pypy
 - 3.7.* *_cpython
+- 3.8.* *_73_pypy
 - 3.8.* *_cpython
+- 3.9.* *_73_pypy
 - 3.9.* *_cpython
 spdlog:
 - '1.10'
