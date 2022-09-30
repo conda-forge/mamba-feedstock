@@ -1,20 +1,20 @@
 {% set name = "mamba" %}
-{% set libmamba_version = "0.25.0" %}
-{% set libmambapy_version = "0.25.0" %}
-{% set mamba_version = "0.25.0" %}
-{% set release = "2022.07.26" %}
+{% set libmamba_version = "0.26.0" %}
+{% set libmambapy_version = "0.26.0" %}
+{% set mamba_version = "0.26.0" %}
+{% set release = "2022.09.30" %}
 
 package:
   name: mamba-split
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
-  sha256: b61cfa51b08a7a2c11fa7352f223263ad3037d613dd6bb32144785cd9643d74c
+  sha256: 6b82912551325fdf8ab8190cdc45c97aa02ff90e798a822ecf402dc93454bc4f
   patches:
     - fix_build_issues.patch
 
 build:
-  number: 2
+  number: 0
 
 outputs:
   - name: libmamba
@@ -39,7 +39,6 @@ outputs:
         - openssl
         - libarchive
         - nlohmann_json
-        - cpp-filesystem >=1.5.8
         - cpp-expected
         - reproc-cpp >=14.2.1
         - spdlog
@@ -93,7 +92,6 @@ outputs:
         - yaml-cpp
         - cpp-expected
         - spdlog
-        - cpp-filesystem >=1.5.8
         - termcolor-cpp
         - nlohmann_json
         - {{ pin_subpackage('libmamba', exact=True) }}
@@ -150,9 +148,7 @@ outputs:
 about:
   home: https://github.com/mamba-org/mamba
   license: BSD-3-Clause
-  license_file:
-    - LICENSE
-    - CPP_FILESYSTEM_LICENSE.txt
+  license_file: LICENSE
   license_family: BSD
   summary: A fast drop-in alternative to conda, using libsolv for dependency resolution
   description: A fast drop-in alternative to conda, using libsolv for dependency resolution
