@@ -10,8 +10,6 @@ package:
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
   sha256: 6b82912551325fdf8ab8190cdc45c97aa02ff90e798a822ecf402dc93454bc4f
-  patches:
-    - fix_build_issues.patch
 
 build:
   number: 0
@@ -125,7 +123,7 @@ outputs:
         - {{ pin_subpackage('libmambapy', exact=True) }}
       run:
         - python
-        - conda >=4.8
+        - conda >=4.8,<23.4
         - {{ pin_subpackage('libmambapy', exact=True) }}
 
     test:
