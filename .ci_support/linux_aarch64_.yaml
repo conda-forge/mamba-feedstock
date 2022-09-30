@@ -19,14 +19,10 @@ libarchive:
 libcurl:
 - '7'
 libiconv:
-- '1.16'
+- '1'
 openssl:
 - 1.1.1
 pin_run_as_build:
-  libcurl:
-    max_pin: x
-  libiconv:
-    max_pin: x.x
   python:
     min_pin: x.x
     max_pin: x.x

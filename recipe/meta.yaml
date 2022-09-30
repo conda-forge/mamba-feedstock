@@ -1,20 +1,18 @@
 {% set name = "mamba" %}
-{% set libmamba_version = "0.25.0" %}
-{% set libmambapy_version = "0.25.0" %}
-{% set mamba_version = "0.25.0" %}
-{% set release = "2022.07.26" %}
+{% set libmamba_version = "0.26.0" %}
+{% set libmambapy_version = "0.26.0" %}
+{% set mamba_version = "0.26.0" %}
+{% set release = "2022.09.30" %}
 
 package:
   name: mamba-split
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
-  sha256: b61cfa51b08a7a2c11fa7352f223263ad3037d613dd6bb32144785cd9643d74c
-  patches:
-    - fix_build_issues.patch
+  sha256: 7b9b74c6063c66f3274564fe2fbde4cc20f244c7e401b73949dfc4471f31d936
 
 build:
-  number: 2
+  number: 0
 
 outputs:
   - name: libmamba
@@ -39,7 +37,6 @@ outputs:
         - openssl
         - libarchive
         - nlohmann_json
-        - cpp-filesystem >=1.5.8
         - cpp-expected
         - reproc-cpp >=14.2.1
         - spdlog
@@ -93,7 +90,6 @@ outputs:
         - yaml-cpp
         - cpp-expected
         - spdlog
-        - cpp-filesystem >=1.5.8
         - termcolor-cpp
         - nlohmann_json
         - {{ pin_subpackage('libmamba', exact=True) }}
@@ -127,7 +123,7 @@ outputs:
         - {{ pin_subpackage('libmambapy', exact=True) }}
       run:
         - python
-        - conda >=4.8
+        - conda >=4.8,<23.4
         - {{ pin_subpackage('libmambapy', exact=True) }}
 
     test:
@@ -150,9 +146,7 @@ outputs:
 about:
   home: https://github.com/mamba-org/mamba
   license: BSD-3-Clause
-  license_file:
-    - LICENSE
-    - CPP_FILESYSTEM_LICENSE.txt
+  license_file: LICENSE
   license_family: BSD
   summary: A fast drop-in alternative to conda, using libsolv for dependency resolution
   description: A fast drop-in alternative to conda, using libsolv for dependency resolution
