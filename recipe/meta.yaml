@@ -43,6 +43,7 @@ outputs:
         - yaml-cpp
         - termcolor-cpp
         - cli11
+        - fmt
         - libiconv                               # [unix]
         - winreg                                 # [win]
     test:
@@ -90,6 +91,7 @@ outputs:
         - yaml-cpp
         - cpp-expected
         - spdlog
+        - fmt
         - termcolor-cpp
         - nlohmann_json
         - {{ pin_subpackage('libmamba', exact=True) }}
