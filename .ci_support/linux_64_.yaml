@@ -10,6 +10,8 @@ cxx_compiler_version:
 - '10'
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
+fmt:
+- '9'
 libarchive:
 - '3.5'
 libcurl:
