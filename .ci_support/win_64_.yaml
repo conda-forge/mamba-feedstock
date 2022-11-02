@@ -4,6 +4,8 @@ channel_targets:
 - conda-forge main
 cxx_compiler:
 - vs2019
+fmt:
+- '9'
 libarchive:
 - '3.5'
 libcurl:
@@ -18,7 +20,6 @@ pybind11_abi:
 - '4'
 python:
 - 3.10.* *_cpython
-- 3.7.* *_cpython
 - 3.8.* *_73_pypy
 - 3.8.* *_cpython
 - 3.9.* *_73_pypy

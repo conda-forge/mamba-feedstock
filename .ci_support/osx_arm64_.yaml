@@ -8,6 +8,8 @@ cxx_compiler:
 - clangxx
 cxx_compiler_version:
 - '14'
+fmt:
+- '9'
 libarchive:
 - '3.5'
 libcurl:
