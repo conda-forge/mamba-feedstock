@@ -33,6 +33,6 @@ python:
 - 3.9.* *_73_pypy
 - 3.9.* *_cpython
 spdlog:
-- '1.10'
+- '1.11'
 target_platform:
 - linux-ppc64le
