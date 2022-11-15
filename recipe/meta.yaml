@@ -26,7 +26,8 @@ outputs:
         - {{ pin_subpackage('libmamba', max_pin='x.x') }}
       ignore_run_exports:
         - spdlog
-        - python  # [win]
+        - python    # [win]
+        - libiconv  # [osx]
     requirements:
       build:
         - {{ compiler('cxx') }}
@@ -46,7 +47,7 @@ outputs:
         - termcolor-cpp
         - cli11
         - fmt
-        - libiconv                               # [unix]
+        - libiconv                               # [osx]
         - winreg                                 # [win]
     test:
       commands:
