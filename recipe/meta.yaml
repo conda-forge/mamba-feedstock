@@ -27,7 +27,6 @@ outputs:
       ignore_run_exports:
         - spdlog
         - python    # [win]
-        - libiconv  # [osx]
     requirements:
       build:
         - {{ compiler('cxx') }}
@@ -47,7 +46,6 @@ outputs:
         - termcolor-cpp
         - cli11
         - fmt
-        - libiconv                               # [osx]
         - winreg                                 # [win]
     test:
       commands:
