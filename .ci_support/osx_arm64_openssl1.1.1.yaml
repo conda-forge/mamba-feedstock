@@ -11,7 +11,7 @@ cxx_compiler_version:
 fmt:
 - '9'
 libarchive:
-- '3.5'
+- '3.6'
 libcurl:
 - '7'
 libiconv:
