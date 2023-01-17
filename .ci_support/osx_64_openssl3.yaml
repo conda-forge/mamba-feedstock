@@ -14,8 +14,6 @@ libarchive:
 - '3.6'
 libcurl:
 - '7'
-libiconv:
-- '1'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 openssl:

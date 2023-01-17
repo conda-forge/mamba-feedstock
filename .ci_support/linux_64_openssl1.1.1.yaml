@@ -16,8 +16,6 @@ libarchive:
 - '3.6'
 libcurl:
 - '7'
-libiconv:
-- '1'
 openssl:
 - 1.1.1
 pin_run_as_build:
