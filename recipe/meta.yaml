@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
-  sha256: ca998101cf9f2e0b53bb0bcf437a530c1bc00c55575e8c554cff131a3a4885df
+  sha256: 4c794246dd6008caebebef8c6266e6ba3f9ff5ce48908c830e448811587e9921
   patches:
     - cmake_deps.patch
 
