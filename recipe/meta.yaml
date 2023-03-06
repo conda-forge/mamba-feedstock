@@ -12,7 +12,7 @@ source:
   sha256: 21e12253a8360b5e0199649ce4c66a2a9830f0cd83811d9527c57c72a2a4ec84
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: libmamba
@@ -123,7 +123,7 @@ outputs:
         - {{ pin_subpackage('libmambapy', exact=True) }}
       run:
         - python
-        - conda >=4.8,<23.4
+        - conda >=4.14,<23.4
         - {{ pin_subpackage('libmambapy', exact=True) }}
 
     test:
