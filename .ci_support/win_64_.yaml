@@ -9,7 +9,7 @@ fmt:
 libarchive:
 - '3.6'
 libcurl:
-- '7'
+- '8'
 openssl:
 - '3'
 pin_run_as_build:
