@@ -11,7 +11,7 @@ source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
   sha256: aa49da9360ef297754cc1f096508e265cea09ad39239c4869678bca369a3900a
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: libmamba
@@ -122,7 +122,7 @@ outputs:
         - {{ pin_subpackage('libmambapy', exact=True) }}
       run:
         - python
-        - conda >=4.14,<23.4
+        - conda >=4.14,<24.0a0
         - {{ pin_subpackage('libmambapy', exact=True) }}
 
     test:
