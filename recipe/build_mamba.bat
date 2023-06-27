@@ -10,6 +10,9 @@ rmdir /Q /S build
 mkdir build
 cd build
 
+rem most likely don't needed on Windows, just for OSX
+rem set "CXXFLAGS=%CXXFLAGS% /D_LIBCPP_DISABLE_AVAILABILITY=1"
+
 if /I "%PKG_NAME%" == "libmamba" (
 	cmake .. ^
 	    %CMAKE_ARGS% ^
@@ -26,6 +29,7 @@ if /I "%PKG_NAME%" == "libmambapy" (
 		-GNinja ^
 		-DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
 		-DCMAKE_PREFIX_PATH=%PREFIX% ^
+                -DPython_EXECUTABLE=%PYTHON% ^
 		-DBUILD_LIBMAMBAPY=ON
 )
 if errorlevel 1 exit 1
