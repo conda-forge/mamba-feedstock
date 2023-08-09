@@ -5,7 +5,7 @@ channel_targets:
 cxx_compiler:
 - vs2019
 fmt:
-- '9'
+- '10'
 libarchive:
 - '3.6'
 libcurl:
