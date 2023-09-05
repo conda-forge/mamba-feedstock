@@ -9,7 +9,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '15'
 fmt:
-- '9'
+- '10'
 libarchive:
 - '3.6'
 libcurl:
@@ -32,6 +32,6 @@ python:
 - 3.9.* *_73_pypy
 - 3.9.* *_cpython
 spdlog:
-- '1.11'
+- '1.12'
 target_platform:
 - osx-64

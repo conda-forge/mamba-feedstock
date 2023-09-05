@@ -11,7 +11,7 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 fmt:
-- '9'
+- '10'
 libarchive:
 - '3.6'
 libcurl:
@@ -32,6 +32,6 @@ python:
 - 3.9.* *_73_pypy
 - 3.9.* *_cpython
 spdlog:
-- '1.11'
+- '1.12'
 target_platform:
 - linux-ppc64le
