@@ -11,7 +11,7 @@ cxx_compiler_version:
 fmt:
 - '10'
 libarchive:
-- '3.6'
+- '3.7'
 libcurl:
 - '8'
 macos_machine:
@@ -27,7 +27,6 @@ pybind11_abi:
 python:
 - 3.10.* *_cpython
 - 3.11.* *_cpython
-- 3.8.* *_73_pypy
 - 3.8.* *_cpython
 - 3.9.* *_73_pypy
 - 3.9.* *_cpython
