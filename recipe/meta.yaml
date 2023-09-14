@@ -11,7 +11,7 @@ source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
   sha256: 17f5be3077558250fc8ba02af68802cebe24d4b8d5bf5a602148ca54b43ebb10
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: libmamba
