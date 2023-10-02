@@ -37,12 +37,16 @@ outputs:
         - libarchive
         - nlohmann_json
         - cpp-expected
+        - reproc
         - reproc-cpp >=14.2.1
         - spdlog
         - yaml-cpp
         - cli11
         - fmt
         - winreg                                 # [win]
+        - zstd
+      run:
+        - libsolv >=0.7.19
     test:
       commands:
         - test -d ${PREFIX}/include/mamba  # [unix]
