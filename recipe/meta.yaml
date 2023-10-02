@@ -11,7 +11,7 @@ source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
   sha256: 17f5be3077558250fc8ba02af68802cebe24d4b8d5bf5a602148ca54b43ebb10
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: libmamba
@@ -37,12 +37,16 @@ outputs:
         - libarchive
         - nlohmann_json
         - cpp-expected
+        - reproc
         - reproc-cpp >=14.2.1
         - spdlog
         - yaml-cpp
         - cli11
         - fmt
         - winreg                                 # [win]
+        - zstd
+      run:
+        - libsolv >=0.7.19
     test:
       commands:
         - test -d ${PREFIX}/include/mamba  # [unix]
@@ -122,7 +126,7 @@ outputs:
         - {{ pin_subpackage('libmambapy', exact=True) }}
       run:
         - python
-        - conda >=4.14,<24.0a0
+        - conda >=4.14,<23.9.0a0
         - {{ pin_subpackage('libmambapy', exact=True) }}
 
     test:
