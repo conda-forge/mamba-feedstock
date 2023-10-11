@@ -14,8 +14,6 @@ fmt:
 - '10'
 libarchive:
 - '3.7'
-libcurl:
-- '8'
 openssl:
 - '3'
 pin_run_as_build:
@@ -34,3 +32,5 @@ spdlog:
 - '1.12'
 target_platform:
 - linux-64
+zstd:
+- '1.5'
