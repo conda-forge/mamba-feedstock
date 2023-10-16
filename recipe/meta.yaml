@@ -10,6 +10,9 @@ package:
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
   sha256: 5fb14912e8d1e1dc5451b475117ad89e8605b770d71e824226e868b334f81fbb
+  patches:
+    - patches/0001-libmambaConfig.patch
+
 build:
   number: 0
 
