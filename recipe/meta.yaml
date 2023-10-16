@@ -1,17 +1,17 @@
 {% set name = "mamba" %}
-{% set libmamba_version = "1.5.1" %}
-{% set libmambapy_version = "1.5.1" %}
-{% set mamba_version = "1.5.1" %}
-{% set release = "2023.09.05" %}
+{% set libmamba_version = "1.5.2" %}
+{% set libmambapy_version = "1.5.2" %}
+{% set mamba_version = "1.5.2" %}
+{% set release = "2023.10.16" %}
 
 package:
   name: mamba-split
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
-  sha256: 17f5be3077558250fc8ba02af68802cebe24d4b8d5bf5a602148ca54b43ebb10
+  sha256: 5fb14912e8d1e1dc5451b475117ad89e8605b770d71e824226e868b334f81fbb
 build:
-  number: 2
+  number: 0
 
 outputs:
   - name: libmamba
@@ -126,7 +126,7 @@ outputs:
         - {{ pin_subpackage('libmambapy', exact=True) }}
       run:
         - python
-        - conda >=4.14,<23.9.0a0
+        - conda >=23.9,<24
         - {{ pin_subpackage('libmambapy', exact=True) }}
 
     test:
