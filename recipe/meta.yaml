@@ -12,7 +12,7 @@ source:
   sha256: 36d617de5971ad2b4460f5446bee7622f33cf3a8a079df8f97bc24e9a5873071
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: libmamba
@@ -32,7 +32,7 @@ outputs:
         - ninja
         - python  # [win]
       host:
-        - libsolv >=0.7.19
+        - libsolv >=0.7.23
         - libcurl >=8.4.0
         - openssl
         - libarchive
@@ -47,7 +47,7 @@ outputs:
         - winreg                                 # [win]
         - zstd
       run:
-        - libsolv >=0.7.19
+        - libsolv >=0.7.23
     test:
       commands:
         - test -d ${PREFIX}/include/mamba  # [unix]
