@@ -6,6 +6,8 @@
 
 package:
   name: mamba-split
+  # Workaround for broken conda-build 3.28, see https://github.com/conda-forge/admin-requests/pull/890
+  version: {{ release }}
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
