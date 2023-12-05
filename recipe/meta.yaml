@@ -1,18 +1,20 @@
 {% set name = "mamba" %}
-{% set libmamba_version = "1.5.3" %}
-{% set libmambapy_version = "1.5.3" %}
-{% set mamba_version = "1.5.3" %}
-{% set release = "2023.10.30" %}
+{% set libmamba_version = "1.5.4" %}
+{% set libmambapy_version = "1.5.4" %}
+{% set mamba_version = "1.5.4" %}
+{% set release = "2023.12.05" %}
 
 package:
   name: mamba-split
+  # Workaround for broken conda-build 3.28, see https://github.com/conda-forge/admin-requests/pull/890
+  version: {{ release }}
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
-  sha256: 36d617de5971ad2b4460f5446bee7622f33cf3a8a079df8f97bc24e9a5873071
+  sha256: 72a84a6910bc569762aa4f34e22e5dc717b4a6a0e4d4ff2ed937c88b53f785c3
 
 build:
-  number: 2
+  number: 0
 
 outputs:
   - name: libmamba
@@ -127,7 +129,7 @@ outputs:
         - {{ pin_subpackage('libmambapy', exact=True) }}
       run:
         - python
-        - conda >=23.9,<24
+        - conda >=23.11,<23.12
         - {{ pin_subpackage('libmambapy', exact=True) }}
 
     test:
