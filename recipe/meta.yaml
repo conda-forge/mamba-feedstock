@@ -142,7 +142,9 @@ outputs:
         - if exist %PREFIX%\condabin\mamba.bat (exit 0) else (exit 1)  # [win]
         - test -f ${PREFIX}/etc/profile.d/mamba.sh  # [linux]
         # these tests work when run on win, but for some reason not during conda build
-        - mamba create -n test_py2 python=2.7 --dry-run  # [linux]
+        - mamba create -n test_py2 python=2.7 --dry-run  # [unix]
+        - mamba clean --all --dry-run  # [unix]
+        - mamba repoquery whoneeds conda  # [unix]
         - mamba install xtensor xsimd -c conda-forge --dry-run  # [linux and x86_64]
         # for some reason tqdm doesn't have a proper colorama dependency so pip check fails
         # but that's completely unrelated to mamba
