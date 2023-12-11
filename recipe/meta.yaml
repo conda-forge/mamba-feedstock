@@ -1,8 +1,8 @@
 {% set name = "mamba" %}
-{% set libmamba_version = "1.5.4" %}
-{% set libmambapy_version = "1.5.4" %}
-{% set mamba_version = "1.5.4" %}
-{% set release = "2023.12.05" %}
+{% set libmamba_version = "1.5.5" %}
+{% set libmambapy_version = "1.5.5" %}
+{% set mamba_version = "1.5.5" %}
+{% set release = "2023.12.11" %}
 
 package:
   name: mamba-split
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
-  sha256: 72a84a6910bc569762aa4f34e22e5dc717b4a6a0e4d4ff2ed937c88b53f785c3
+  sha256: 138259c5ab1197feb22d6e4fa0b856b5ffa3def44f3129d329cdef18c11eb0da
 
 build:
   number: 0
@@ -142,7 +142,9 @@ outputs:
         - if exist %PREFIX%\condabin\mamba.bat (exit 0) else (exit 1)  # [win]
         - test -f ${PREFIX}/etc/profile.d/mamba.sh  # [linux]
         # these tests work when run on win, but for some reason not during conda build
-        - mamba create -n test_py2 python=2.7 --dry-run  # [linux]
+        - mamba create -n test_py2 python=2.7 --dry-run  # [unix]
+        - mamba clean --all --dry-run  # [unix]
+        - mamba repoquery whoneeds conda  # [unix]
         - mamba install xtensor xsimd -c conda-forge --dry-run  # [linux and x86_64]
         # for some reason tqdm doesn't have a proper colorama dependency so pip check fails
         # but that's completely unrelated to mamba
