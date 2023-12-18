@@ -1,11 +1,5 @@
 @echo ON
 
-if /I "%PKG_NAME%" == "mamba" (
-	cd mamba
-	%PYTHON% -m pip install . --no-deps -vv
-	exit 0
-)
-
 rmdir /Q /S build
 mkdir build
 cd build
@@ -43,6 +37,6 @@ if errorlevel 1 exit 1
 if /I "%PKG_NAME%" == "libmambapy" (
 	cd ../libmambapy
 	rmdir /Q /S build
-	%PYTHON% -m pip install . --no-deps -vv
+	%PYTHON% -m pip install . --no-deps --no-build-isolation -vv
 	del *.pyc /a /s
 )

@@ -1,14 +1,3 @@
-if [[ $PKG_NAME == "mamba" ]]; then
-    cd mamba
-    $PYTHON -m pip install . --no-deps -vv
-
-    echo "Adding link to mamba into condabin";
-    mkdir -p $PREFIX/condabin
-    ln -s $PREFIX/bin/mamba $PREFIX/condabin/mamba
-
-    exit 0
-fi 
-
 rm -rf build
 mkdir build
 cd build
@@ -40,6 +29,6 @@ ninja install
 if [[ $PKG_NAME == "libmambapy" ]]; then
     cd ../libmambapy
     rm -rf build
-    $PYTHON -m pip install . --no-deps -vv
+    $PYTHON -m pip install . --no-deps --no-build-isolation -vv
     find libmambapy/bindings* -type f -print0 | xargs -0 rm -f --
 fi

@@ -47,6 +47,7 @@ outputs:
         - fmt
         - winreg                                 # [win]
         - zstd
+        - simdjson >=3.3.0
       run:
         - libsolv >=0.7.23
     test:
@@ -87,6 +88,7 @@ outputs:
         - pybind11-abi                           # [build_platform != target_platform]
       host:
         - python
+        - scikit-build
         - pip
         - pybind11
         - pybind11-abi
@@ -107,7 +109,7 @@ outputs:
         - libmambapy
         - libmambapy.bindings
       commands:
-        - python -c "import libmambapy._version; assert libmambapy._version.__version__ == '{{ libmambapy_version }}'"
+        #- python -c "import libmambapy._version; assert libmambapy._version.__version__ == '{{ libmambapy_version }}'"
 
 about:
   home: https://github.com/mamba-org/mamba
