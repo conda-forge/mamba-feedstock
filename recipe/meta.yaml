@@ -40,7 +40,7 @@ outputs:
         - nlohmann_json
         - cpp-expected
         - reproc
-        - reproc-cpp >=14.2.4post0
+        - reproc-cpp >=14.2.4.post0
         - spdlog
         - yaml-cpp
         - cli11
