@@ -16,7 +16,6 @@ if /I "%PKG_NAME%" == "libmamba" (
         cmake --install build/
 )
 if /I "%PKG_NAME%" == "libmambapy" (
-        set CMAKE_ARGS="-G Ninja "%CMAKE_ARGS%
     	%PYTHON% -m pip install --no-deps --no-build-isolation -vv ./libmambapy
 )
 
