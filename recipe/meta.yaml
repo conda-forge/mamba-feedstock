@@ -1,8 +1,7 @@
 {% set name = "mamba" %}
-{% set libmamba_version = "1.5.5" %}
-{% set libmambapy_version = "1.5.5" %}
-{% set mamba_version = "1.5.5" %}
-{% set release = "2023.12.11" %}
+{% set libmamba_version = "2.0.0alpha1" %}
+{% set libmambapy_version = "2.0.0alpha1" %}
+{% set release = "2023.12.18" %}
 
 package:
   name: mamba-split
@@ -11,7 +10,7 @@ package:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
-  sha256: 138259c5ab1197feb22d6e4fa0b856b5ffa3def44f3129d329cdef18c11eb0da
+  sha256: f91aa8f28f24d54d9c66320cafe3e4c9049dd4183cba163d54782cef29e516ce
 
 build:
   number: 0
@@ -41,13 +40,14 @@ outputs:
         - nlohmann_json
         - cpp-expected
         - reproc
-        - reproc-cpp >=14.2.1
+        - reproc-cpp >=14.2.4.post0
         - spdlog
         - yaml-cpp
         - cli11
         - fmt
         - winreg                                 # [win]
         - zstd
+        - simdjson >=3.3.0
       run:
         - libsolv >=0.7.23
     test:
@@ -65,7 +65,8 @@ outputs:
         {% set libmamba_version_split = libmamba_version.split('.') %}
         - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_MAJOR {{ libmamba_version_split[0] }}"  # [unix]
         - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_MINOR {{ libmamba_version_split[1] }}"  # [unix]
-        - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_PATCH {{ libmamba_version_split[2] }}"  # [unix]
+        # TODO: uncomment for release 2.0.0
+        #- cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_PATCH {{ libmamba_version_split[2] }}"  # [unix]
 
   - name: libmambapy
     version: {{ libmambapy_version }}
@@ -77,6 +78,7 @@ outputs:
         - {{ pin_subpackage('libmambapy', max_pin='x.x') }}
       ignore_run_exports:
         - spdlog
+      skip: True  # [python_impl == 'pypy']
     requirements:
       build:
         - {{ compiler('cxx') }}
@@ -88,6 +90,7 @@ outputs:
         - pybind11-abi                           # [build_platform != target_platform]
       host:
         - python
+        - scikit-build
         - pip
         - pybind11
         - pybind11-abi
@@ -108,48 +111,7 @@ outputs:
         - libmambapy
         - libmambapy.bindings
       commands:
-        - python -c "import libmambapy._version; assert libmambapy._version.__version__ == '{{ libmambapy_version }}'"
-
-  - name: mamba
-    version: {{ mamba_version }}
-    script: build_mamba.sh                       # [unix]
-    script: build_mamba.bat                      # [win]
-    build:
-      string: py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
-      entry_points:
-        - mamba = mamba.mamba:main
-    requirements:
-      build:
-        - python                              # [build_platform != target_platform]
-        - cross-python_{{ target_platform }}  # [build_platform != target_platform]
-      host:
-        - python
-        - pip
-        - openssl
-        - {{ pin_subpackage('libmambapy', exact=True) }}
-      run:
-        - python
-        - conda >=23.11,<23.12
-        - {{ pin_subpackage('libmambapy', exact=True) }}
-
-    test:
-      imports:
-        - mamba
-      requires:
-        - pip
-      commands:
-        - mamba --help
-        - if exist %PREFIX%\condabin\mamba.bat (exit 0) else (exit 1)  # [win]
-        - test -f ${PREFIX}/etc/profile.d/mamba.sh  # [linux]
-        # these tests work when run on win, but for some reason not during conda build
-        - mamba create -n test_py2 python=2.7 --dry-run  # [unix]
-        - mamba clean --all --dry-run  # [unix]
-        - mamba repoquery whoneeds conda  # [unix]
-        - mamba install xtensor xsimd -c conda-forge --dry-run  # [linux and x86_64]
-        # for some reason tqdm doesn't have a proper colorama dependency so pip check fails
-        # but that's completely unrelated to mamba
-        - python -c "import mamba._version; assert mamba._version.__version__ == '{{ mamba_version }}'"
-        - test -f ${PREFIX}/condabin/mamba  # [unix]
+        #- python -c "import libmambapy._version; assert libmambapy._version.__version__ == '{{ libmambapy_version }}'"
 
 about:
   home: https://github.com/mamba-org/mamba

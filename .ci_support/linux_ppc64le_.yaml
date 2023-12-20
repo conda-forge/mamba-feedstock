@@ -3,7 +3,7 @@ cdt_name:
 channel_sources:
 - conda-forge
 channel_targets:
-- conda-forge main
+- conda-forge mamba_dev
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -29,9 +29,19 @@ python:
 - 3.8.* *_cpython
 - 3.9.* *_73_pypy
 - 3.9.* *_cpython
+python_impl:
+- cpython
+- cpython
+- cpython
+- cpython
+- pypy
+- cpython
 spdlog:
 - '1.12'
 target_platform:
 - linux-ppc64le
+zip_keys:
+- - python
+  - python_impl
 zstd:
 - '1.5'
