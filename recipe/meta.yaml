@@ -150,7 +150,7 @@ outputs:
         # We need to run with "call" on Windows since "mamba" runs the batch file; make "call" a passthrough function on Unixes.
         - call() { "${@}" ; }  # [unix]
         - call mamba --help
-        - call mamba create -n test_py2 python=2.7 --dry-run
+        - call mamba create -n test_py37 python=3.7 --dry-run
         - call mamba clean --all --dry-run
         - call mamba repoquery whoneeds conda
         - call mamba install xtensor xsimd -c conda-forge --dry-run
