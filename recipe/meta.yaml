@@ -1,16 +1,14 @@
 {% set name = "mamba" %}
 {% set libmamba_version = "2.0.0alpha1" %}
-{% set libmambapy_version = "2.0.0alpha1" %}
-{% set release = "2023.12.18" %}
+{% set libmambapy_version = "2.0.0alpha2" %}
+{% set release = "2024.02.02" %}
 
 package:
   name: mamba-split
-  # Workaround for broken conda-build 3.28, see https://github.com/conda-forge/admin-requests/pull/890
-  version: {{ release }}
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
-  sha256: f91aa8f28f24d54d9c66320cafe3e4c9049dd4183cba163d54782cef29e516ce
+  sha256: 6c481636da75250c4296bb51ba7f55a513627fe3138fcacdfafebfcfdb65cd13
 
 build:
   number: 0
