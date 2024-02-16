@@ -129,7 +129,7 @@ outputs:
         - {{ pin_subpackage('libmambapy', exact=True) }}
       run:
         - python
-        - conda >=23.11,<23.12
+        - conda >=23.11,<24.2
         - {{ pin_subpackage('libmambapy', exact=True) }}
 
     test:
