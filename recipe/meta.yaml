@@ -12,6 +12,8 @@ package:
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
   sha256: 868bb00385029ae45b35e136174164017868edec6f3710bc1644c670db4c0cdb
+  patches:
+    - 0001-1.x-Fix-repoquery-subcommand-for-Python-3.11-3.12.patch
 
 build:
   number: 0
@@ -111,7 +113,7 @@ outputs:
         - python -c "import libmambapy._version; assert libmambapy._version.__version__ == '{{ libmambapy_version }}'"
 
   - name: mamba
-    version: {{ mamba_version }}
+    version: {{ mamba_version }}.post1
     script: build_mamba.sh                       # [unix]
     script: build_mamba.bat                      # [win]
     build:
@@ -129,7 +131,7 @@ outputs:
         - {{ pin_subpackage('libmambapy', exact=True) }}
       run:
         - python
-        - conda >=23.11,<23.12
+        - conda >=23.11,<24.2
         - {{ pin_subpackage('libmambapy', exact=True) }}
 
     test:
@@ -138,18 +140,25 @@ outputs:
       requires:
         - pip
       commands:
-        - mamba --help
-        - if exist %PREFIX%\condabin\mamba.bat (exit 0) else (exit 1)  # [win]
-        - test -f ${PREFIX}/etc/profile.d/mamba.sh  # [linux]
-        # these tests work when run on win, but for some reason not during conda build
-        - mamba create -n test_py2 python=2.7 --dry-run  # [unix]
-        - mamba clean --all --dry-run  # [unix]
-        - mamba repoquery whoneeds conda  # [unix]
-        - mamba install xtensor xsimd -c conda-forge --dry-run  # [linux and x86_64]
+        - test -f ${PREFIX}/condabin/mamba  # [unix]
+        - test -f ${PREFIX}/etc/profile.d/mamba.sh  # [unix]
+        - if not exist %PREFIX%\condabin\mamba.bat exit 1  # [win]
+
+        # Ensure we run the executable from the prefix and not from the base installation.
+        - test "$(command -v mamba)" = "${PREFIX}/bin/mamba"  # [unix]
+        - cmd /q /c "for /f "delims=" %%f in ('C:\Windows\System32\where mamba.bat') do if "%%~dpf"=="%LIBRARY_BIN%\" (exit 0) else (exit 1)"  # [win]
+        - cmd /q /c "for /f "delims=" %%f in ('C:\Windows\System32\where mamba.exe') do if "%%~dpf"=="%SCRIPTS%\" (exit 0) else (exit 1)"  # [win]
+
+        # We need to run with "call" on Windows since "mamba" runs the batch file; make "call" a passthrough function on Unixes.
+        - call() { "${@}" ; }  # [unix]
+        - call mamba --help
+        - call mamba create -n test_py37 python=3.7 --dry-run
+        - call mamba clean --all --dry-run
+        - call mamba repoquery whoneeds conda
+        - call mamba install xtensor xsimd -c conda-forge --dry-run
         # for some reason tqdm doesn't have a proper colorama dependency so pip check fails
         # but that's completely unrelated to mamba
         - python -c "import mamba._version; assert mamba._version.__version__ == '{{ mamba_version }}'"
-        - test -f ${PREFIX}/condabin/mamba  # [unix]
 
 about:
   home: https://github.com/mamba-org/mamba
