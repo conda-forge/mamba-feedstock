@@ -1,0 +1,47 @@
+From 5bdf918c02aa774d8fa9d17a2e3deb3771e18ac7 Mon Sep 17 00:00:00 2001
+From: Marcel Bargull <marcel.bargull@udo.edu>
+Date: Fri, 2 Feb 2024 12:32:36 +0100
+Subject: [PATCH 1/2] 1.x: Fix repoquery subcommand for Python 3.11/3.12
+
+Signed-off-by: Marcel Bargull <marcel.bargull@udo.edu>
+---
+ mamba/mamba/mamba.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/mamba/mamba/mamba.py b/mamba/mamba/mamba.py
+index 87e44d4100..0ff25387ea 100644
+--- a/mamba/mamba/mamba.py
++++ b/mamba/mamba/mamba.py
+@@ -769,7 +769,7 @@ def format_param(nm, val):
+         exit_code = update(args, parser)
+     elif relative_mod == ".main_init":
+         exit_code = shell_init(args)
+-    elif relative_mod in (".main_repoquery", "repoquery"):
++    elif relative_mod in (".main_repoquery", ".repoquery"):
+         exit_code = repoquery(args, parser)
+     else:
+         print(
+
+From f6021f31f1308c62d6114ab1fb2aae3602e0d07c Mon Sep 17 00:00:00 2001
+From: Marcel Bargull <marcel.bargull@udo.edu>
+Date: Fri, 2 Feb 2024 12:33:21 +0100
+Subject: [PATCH 2/2] 1.x: Return exit code 1 for non-supported commands
+
+Signed-off-by: Marcel Bargull <marcel.bargull@udo.edu>
+---
+ mamba/mamba/mamba.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/mamba/mamba/mamba.py b/mamba/mamba/mamba.py
+index 0ff25387ea..c1ec492b03 100644
+--- a/mamba/mamba/mamba.py
++++ b/mamba/mamba/mamba.py
+@@ -778,7 +778,7 @@ def format_param(nm, val):
+             " deactivate are supported through mamba."
+         )
+ 
+-        return 0
++        return 1
+     return exit_code
+ 
+ 

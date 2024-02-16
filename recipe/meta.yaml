@@ -12,6 +12,8 @@ package:
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
   sha256: 868bb00385029ae45b35e136174164017868edec6f3710bc1644c670db4c0cdb
+  patches:
+    - 0001-1.x-Fix-repoquery-subcommand-for-Python-3.11-3.12.patch
 
 build:
   number: 0
@@ -111,7 +113,7 @@ outputs:
         - python -c "import libmambapy._version; assert libmambapy._version.__version__ == '{{ libmambapy_version }}'"
 
   - name: mamba
-    version: {{ mamba_version }}
+    version: {{ mamba_version }}.post1
     script: build_mamba.sh                       # [unix]
     script: build_mamba.bat                      # [win]
     build:
