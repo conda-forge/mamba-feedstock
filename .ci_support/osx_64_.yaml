@@ -12,6 +12,8 @@ fmt:
 - '10'
 libarchive:
 - '3.7'
+libcurl:
+- '8'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 openssl:
@@ -43,5 +45,7 @@ target_platform:
 zip_keys:
 - - python
   - python_impl
+zlib:
+- '1.2'
 zstd:
 - '1.5'
