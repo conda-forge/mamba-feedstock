@@ -1,6 +1,7 @@
 {% set name = "mamba" %}
 {% set libmamba_version = "2.0.0alpha3" %}
 {% set libmambapy_version = "2.0.0alpha3" %}
+{% set mamba_version = "2.0.0alpha3" %}
 {% set release = "2024.02.28" %}
 
 package:
@@ -11,7 +12,7 @@ source:
   sha256: c5350aea775582e269ba750bd96d207614edc99006b823857b3923095001662d
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: libmamba
@@ -110,6 +111,74 @@ outputs:
         - libmambapy.bindings
       commands:
         #- python -c "import libmambapy._version; assert libmambapy._version.__version__ == '{{ libmambapy_version }}'"
+
+  - name: mamba
+    version: {{ mamba_version }}
+    script: build_mamba.sh                       # [unix]
+    script: build_mamba.bat                      # [win]
+    build:
+      ignore_run_exports_from:
+        - libcurl                     # [unix]
+        - openssl                     # [unix]
+        - spdlog
+        - fmt
+        - {{ compiler('cxx') }}       # [linux]
+        - python                      # [win]
+        - libsolv
+    requirements:
+      build:
+        - {{ compiler('cxx') }}
+        - cmake
+        - ninja
+        - vcpkg-tool      # [win]
+        - python          # [win]
+        - curl >=8.4.0    # [win]
+        - zlib            # [win]
+      host:
+        - cli11 >=2.2,<3
+        - cpp-expected
+        - nlohmann_json
+        - simdjson >=3.3.0
+        - spdlog
+        - fmt
+        - libsolv >=0.7.23
+        - yaml-cpp
+        - reproc
+        - reproc-cpp
+        - libcurl >=8.4.0
+        - libarchive
+        - openssl
+        - zlib                         # [unix]
+        - winreg                       # [win]
+      run:
+        - fmt
+        - libsolv >=0.7.23
+        - cli11 >=2.2,<3
+        - cpp-expected
+        - nlohmann_json
+        - simdjson >=3.3.0
+        - spdlog
+        - fmt
+        - libcurl >=8.4.0
+        - openssl
+        - zlib
+        - winreg                       # [win]
+
+    test:
+      commands:
+        - test -f "${PREFIX}/bin/mamba"                    # [unix]
+        - if not exist %LIBRARY_BIN%\mamba.exe (exit 1)  # [win]
+        - mamba --help
+        - export MAMBA_ROOT_PREFIX="$(mktemp -d)"  # [unix]
+        - mkdir %TEMP%\mamba                       # [win]
+        - set "MAMBA_ROOT_PREFIX=%TEMP%\mamba"     # [win]
+        - mamba clean --all --dry-run  # [unix]
+        - mamba repoquery whoneeds conda  # [unix]
+        - mamba create -n test --override-channels -c conda-forge --yes python=3.9
+        - '"${MAMBA_ROOT_PREFIX}/envs/test/bin/python" --version'       # [unix]
+        - '%MAMBA_ROOT_PREFIX%\envs\test\python.exe --version'          # [win]
+        - '"${MAMBA_ROOT_PREFIX}/envs/test/bin/python" -c "import os"'  # [unix]
+        - '%MAMBA_ROOT_PREFIX%\envs\test\python.exe -c "import os"'     # [win]
 
 about:
   home: https://github.com/mamba-org/mamba

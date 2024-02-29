@@ -12,4 +12,11 @@ if [[ $PKG_NAME == "libmamba" ]]; then
 elif [[ $PKG_NAME == "libmambapy" ]]; then
     export CMAKE_ARGS="-G Ninja ${CMAKE_ARGS}"
     $PYTHON -m pip install --no-deps --no-build-isolation -vv ./libmambapy
+elif [[ $PKG_NAME == "mamba" ]]; then
+    cmake -B build/ ${CMAKE_ARGS}              \
+        -GNinja                         \
+        -D BUILD_LIBMAMBA=ON \
+        -D BUILD_MAMBA=ON
+    cmake --build build/ --parallel ${CPU_COUNT}
+    cmake --install build/
 fi
