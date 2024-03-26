@@ -1,22 +1,37 @@
 set -euxo pipefail
+
 export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY=1"
 
 if [[ $PKG_NAME == "libmamba" ]]; then
-    cmake -B build/ ${CMAKE_ARGS}              \
-        -GNinja                         \
-        -DBUILD_LIBMAMBA=ON             \
-        -DBUILD_SHARED=ON               \
-        -DBUILD_MAMBA_PACKAGE=ON
-    cmake --build build/ --parallel ${CPU_COUNT}
-    cmake --install build/
-elif [[ $PKG_NAME == "libmambapy" ]]; then
-    export CMAKE_ARGS="-G Ninja ${CMAKE_ARGS}"
-    $PYTHON -m pip install --no-deps --no-build-isolation -vv ./libmambapy
-elif [[ $PKG_NAME == "mamba" ]]; then
-    cmake -B build/ ${CMAKE_ARGS}              \
-        -GNinja                         \
+
+    cmake -B build-lib/ \
+        -G Ninja \
+        ${CMAKE_ARGS} \
+        -D BUILD_SHARED=ON \
         -D BUILD_LIBMAMBA=ON \
-        -D BUILD_MAMBA=ON
-    cmake --build build/ --parallel ${CPU_COUNT}
-    cmake --install build/
+        -D BUILD_MAMBA_PACKAGE=ON \
+        -D BUILD_LIBMAMBAPY=OFF \
+        -D BUILD_MAMBA=OFF \
+        -D BUILD_MICROMAMBA=OFF
+    cmake --build build-lib/ --parallel ${CPU_COUNT}
+    cmake --install build-lib/
+
+elif [[ $PKG_NAME == "libmambapy" ]]; then
+
+    export CMAKE_ARGS="-G Ninja ${CMAKE_ARGS}"
+    "${PYTHON}" -m pip install --no-deps --no-build-isolation -vv ./libmambapy
+
+elif [[ $PKG_NAME == "mamba" ]]; then
+
+    cmake -B build-mamba/ \
+        -G Ninja \
+        ${CMAKE_ARGS} \
+        -D BUILD_LIBMAMBA=OFF \
+        -D BUILD_MAMBA_PACKAGE=OFF \
+        -D BUILD_LIBMAMBAPY=OFF \
+        -D BUILD_MAMBA=ON \
+        -D BUILD_MICROMAMBA=OFF
+    cmake --build build-mamba/ --parallel ${CPU_COUNT}
+    cmake --install build-mamba/
+
 fi
