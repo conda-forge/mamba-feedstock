@@ -48,7 +48,17 @@ outputs:
         - zstd
         - simdjson >=3.3.0
       run:
-        - libsolv >=0.7.23
+        # Missing run_export in libsolv
+        - {{ pin_compatible('libsolv', max_pin='x.x.x') }}
+        # Public libmamba dependencies
+        - {{ pin_compatible('fmt', max_pin='x.x') }}
+        - {{ pin_compatible('spdlog', max_pin='x.x') }}
+        - {{ pin_compatible('cpp-expected', max_pin='x.x') }}
+        - {{ pin_compatible('nlohmann_json', max_pin='x.x') }}
+        - {{ pin_compatible('yaml-cpp', max_pin='x.x') }}
+        - {{ pin_compatible('reproc', max_pin='x.x') }}
+        - {{ pin_compatible('reproc-cpp', max_pin='x.x') }}
+
     test:
       commands:
         - test -d ${PREFIX}/include/mamba  # [unix]
@@ -136,33 +146,11 @@ outputs:
         - zlib            # [win]
       host:
         - cli11 >=2.2,<3
-        - cpp-expected
-        - nlohmann_json
-        - simdjson >=3.3.0
-        - spdlog
-        - fmt
-        - libsolv >=0.7.23
-        - yaml-cpp
         - reproc
         - reproc-cpp
-        - libcurl >=8.4.0
-        - libarchive
-        - openssl
-        - zlib                         # [unix]
-        - winreg                       # [win]
+        - {{ pin_subpackage('libmamba', exact=True) }}
       run:
-        - fmt
-        - libsolv >=0.7.23
-        - cli11 >=2.2,<3
-        - cpp-expected
-        - nlohmann_json
-        - simdjson >=3.3.0
-        - spdlog
-        - fmt
-        - libcurl >=8.4.0
-        - openssl
-        - zlib
-        - winreg                       # [win]
+        - {{ pin_subpackage('libmamba', exact=True) }}
 
     test:
       commands:
