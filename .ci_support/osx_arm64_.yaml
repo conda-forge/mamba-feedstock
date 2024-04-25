@@ -41,7 +41,7 @@ python_impl:
 - cpython
 - cpython
 spdlog:
-- '1.12'
+- '1.13'
 target_platform:
 - osx-arm64
 zip_keys:

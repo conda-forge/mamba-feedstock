@@ -33,7 +33,7 @@ python_impl:
 - pypy
 - cpython
 spdlog:
-- '1.12'
+- '1.13'
 target_platform:
 - win-64
 zip_keys:

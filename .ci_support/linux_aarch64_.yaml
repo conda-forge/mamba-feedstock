@@ -47,7 +47,7 @@ python_impl:
 - pypy
 - cpython
 spdlog:
-- '1.12'
+- '1.13'
 target_platform:
 - linux-aarch64
 zip_keys:
