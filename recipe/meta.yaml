@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
-  sha256: d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed
+  sha256: 4c15fdee5cb857e8db222a2cc31dc490e7113c5a28badc60e4a76e2a63dbaafe
 
 build:
   number: 0
