@@ -12,7 +12,7 @@ source:
   sha256: 4c15fdee5cb857e8db222a2cc31dc490e7113c5a28badc60e4a76e2a63dbaafe
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: libmamba
@@ -28,6 +28,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
         - cmake
         - ninja
         - python  # [win]
@@ -91,6 +92,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
         - cmake
         - ninja
         - python                                 # [build_platform != target_platform]
@@ -138,6 +140,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
         - cmake
         - ninja
         - vcpkg-tool      # [win]
