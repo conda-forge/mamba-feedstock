@@ -6,6 +6,7 @@
 
 package:
   name: mamba-split
+  version: {{ mamba_version }}
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
