@@ -6,13 +6,14 @@
 
 package:
   name: mamba-split
+  version: {{ mamba_version }}
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
   sha256: 599ebf665ddffadd13727217f8c8b49669dc0a559eba7227944a71a1cde10bdb
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: libmamba
