@@ -7,7 +7,7 @@ channel_targets:
 cxx_compiler:
 - vs2019
 fmt:
-- '10'
+- '11'
 libarchive:
 - '3.7'
 openssl:
