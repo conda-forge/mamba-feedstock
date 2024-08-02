@@ -43,7 +43,7 @@ python_impl:
 - pypy
 - cpython
 spdlog:
-- '1.13'
+- '1.14'
 target_platform:
 - linux-ppc64le
 zip_keys:
