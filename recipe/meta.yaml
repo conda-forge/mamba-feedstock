@@ -1,8 +1,8 @@
 {% set name = "mamba" %}
-{% set libmamba_version = "2.0.0rc1" %}
-{% set libmambapy_version = "2.0.0rc1" %}
-{% set mamba_version = "2.0.0rc1" %}
-{% set release = "2024.07.26" %}
+{% set libmamba_version = "2.0.0rc2" %}
+{% set libmambapy_version = "2.0.0rc2" %}
+{% set mamba_version = "2.0.0rc2" %}
+{% set release = "2024.08.19" %}
 
 package:
   name: mamba-split
@@ -10,10 +10,10 @@ package:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
-  sha256: 599ebf665ddffadd13727217f8c8b49669dc0a559eba7227944a71a1cde10bdb
+  sha256: d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed
 
 build:
-  number: 2
+  number: 0
 
 outputs:
   - name: libmamba
