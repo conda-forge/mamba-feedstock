@@ -13,7 +13,7 @@ source:
   sha256: 5b59f4dab2eb81e60da60731f7ed22e6ccf26a7b226227ac1c16a6a68de9eeeb
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: libmamba
