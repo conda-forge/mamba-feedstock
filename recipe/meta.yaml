@@ -10,7 +10,7 @@ source:
   sha256: 8e8dd36a6d974a41d3bcd498f0b4f38092b25ed372d954e1721073e49fea9466
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: libmamba
@@ -46,17 +46,6 @@ outputs:
         - winreg                                 # [win]
         - zstd
         - simdjson >=3.3.0
-      run:
-        # Missing run_export in libsolv
-        - {{ pin_compatible('libsolv', max_pin='x.x.x') }}
-        # Public libmamba dependencies
-        - {{ pin_compatible('fmt', max_pin='x.x') }}
-        - {{ pin_compatible('spdlog', max_pin='x.x') }}
-        - {{ pin_compatible('cpp-expected', max_pin='x.x') }}
-        - {{ pin_compatible('nlohmann_json', max_pin='x.x') }}
-        - {{ pin_compatible('yaml-cpp', max_pin='x.x') }}
-        - {{ pin_compatible('reproc', max_pin='x.x') }}
-        - {{ pin_compatible('reproc-cpp', max_pin='x.x') }}
 
     test:
       commands:
