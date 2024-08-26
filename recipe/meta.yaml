@@ -104,6 +104,7 @@ outputs:
         - python
         - scikit-build
         - pip
+        - setuptools
         - pybind11
         - pybind11-abi
         - openssl
@@ -158,7 +159,8 @@ outputs:
 
     test:
       commands:
-        - test -f "${PREFIX}/bin/mamba"                    # [unix]
+        - test -f "${PREFIX}/bin/mamba"                  # [unix]
+        - test -f "${PREFIX}/etc/profile.d/mamba.sh"     # [unix]
         - if not exist %LIBRARY_BIN%\mamba.exe (exit 1)  # [win]
         - mamba --help
         - export MAMBA_ROOT_PREFIX="$(mktemp -d)"  # [unix]
