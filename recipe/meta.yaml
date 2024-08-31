@@ -29,6 +29,7 @@ outputs:
         - python  # [win]
     requirements:
       build:
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
         - cmake
         - ninja
@@ -79,6 +80,7 @@ outputs:
         - spdlog
     requirements:
       build:
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
         - cmake
         - ninja
