@@ -91,6 +91,7 @@ outputs:
       host:
         - python
         - pip
+        - setuptools
         - pybind11
         - pybind11-abi
         - openssl
@@ -127,6 +128,7 @@ outputs:
       host:
         - python
         - pip
+        - setuptools
         - openssl
         - {{ pin_subpackage('libmambapy', exact=True) }}
       run:
