@@ -1,8 +1,8 @@
 {% set name = "mamba" %}
-{% set libmamba_version = "1.5.8" %}
-{% set libmambapy_version = "1.5.8" %}
-{% set mamba_version = "1.5.8" %}
-{% set release = "2024.03.25" %}
+{% set libmamba_version = "1.5.9" %}
+{% set libmambapy_version = "1.5.9" %}
+{% set mamba_version = "1.5.9" %}
+{% set release = "2024.08.31" %}
 
 package:
   name: mamba-split
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
-  sha256: 6ddaf4b0758eb7ca1250f427bc40c2c3ede43257a60bac54e4320a4de66759a6
+  sha256: 59d7dd68a8e4cf70448b54f9f2ec9a9de8b1d46c8cc4d80790b0ed4a7b5e5169
 
 build:
   number: 0
@@ -29,6 +29,7 @@ outputs:
         - python  # [win]
     requirements:
       build:
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
         - cmake
         - ninja
@@ -79,6 +80,7 @@ outputs:
         - spdlog
     requirements:
       build:
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
         - cmake
         - ninja
@@ -89,6 +91,7 @@ outputs:
       host:
         - python
         - pip
+        - setuptools
         - pybind11
         - pybind11-abi
         - openssl
@@ -125,6 +128,7 @@ outputs:
       host:
         - python
         - pip
+        - setuptools
         - openssl
         - {{ pin_subpackage('libmambapy', exact=True) }}
       run:
