@@ -35,7 +35,7 @@ outputs:
         - python  # [win]
       host:
         - libsolv >=0.7.23
-        - libcurl >=8.4.0
+        - libcurl >=8.4.0,<8.10
         - openssl
         - libarchive
         - nlohmann_json
