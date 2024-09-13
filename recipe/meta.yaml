@@ -1,8 +1,8 @@
 {% set name = "mamba" %}
-{% set libmamba_version = "2.0.0rc4" %}
-{% set libmambapy_version = "2.0.0rc4" %}
-{% set mamba_version = "2.0.0rc4" %}
-{% set release = "2024.08.29" %}
+{% set libmamba_version = "2.0.0rc5" %}
+{% set libmambapy_version = "2.0.0rc5" %}
+{% set mamba_version = "2.0.0rc5" %}
+{% set release = "2024.09.13" %}
 
 package:
   name: mamba-split
@@ -10,10 +10,10 @@ package:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
-  sha256: ea0ae0b0c55efe4ab2b30d445ce132b2061fe27b86e2f4cb480a7b4c702dfade
+  sha256: d822338736e506b6d35f13ebd030573e317472d572833fc1f3e449acdb270d26
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - name: libmamba
@@ -35,7 +35,7 @@ outputs:
         - python  # [win]
       host:
         - libsolv >=0.7.23
-        - libcurl >=8.4.0
+        - libcurl >=8.4.0,<8.10
         - openssl
         - libarchive
         - nlohmann_json
@@ -50,6 +50,7 @@ outputs:
         - zstd
         - simdjson >=3.3.0
       run:
+        - libcurl <8.10
         # Missing run_export in libsolv
         - {{ pin_compatible('libsolv', max_pin='x.x.x') }}
         # Public libmamba dependencies
