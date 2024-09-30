@@ -38,6 +38,6 @@ if /I "%PKG_NAME%" == "mamba" (
     cmake --install build-mamba/
     :: Place mamba executable copy to condabin/
     mkdir "%PREFIX%\condabin"
-    copy /Y "%LIBRARY_PREFIX%\bin\mamba.exe" "%PREFIX%\condabin"
+    echo ^"%LIBRARY_BIN%\mamba.exe^" %%* > "%PREFIX%\condabin\mamba.bat"
     if errorlevel 1 exit 1
 )
