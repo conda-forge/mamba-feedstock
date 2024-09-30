@@ -36,5 +36,8 @@ if /I "%PKG_NAME%" == "mamba" (
     cmake --build build-mamba/ --parallel %CPU_COUNT%
     if errorlevel 1 exit 1
     cmake --install build-mamba/
-
+    :: Place mamba executable copy to condabin/
+    mkdir "%PREFIX%\condabin"
+    copy /Y "%LIBRARY_PREFIX%\bin\mamba.exe" "%PREFIX%\condabin"
+    if errorlevel 1 exit 1
 )

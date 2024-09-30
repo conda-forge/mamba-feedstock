@@ -34,4 +34,7 @@ elif [[ $PKG_NAME == "mamba" ]]; then
     cmake --build build-mamba/ --parallel ${CPU_COUNT}
     cmake --install build-mamba/
 
+    # Add symlink to condabin
+    mkdir -p "${PREFIX}/condabin"
+    ln -s "${PREFIX}/bin/mamba" "${PREFIX}/condabin/mamba"
 fi
