@@ -161,9 +161,13 @@ outputs:
     test:
       commands:
         - test -f "${PREFIX}/bin/mamba"                  # [unix]
+        - test -f "${PREFIX}/condabin/mamba"             # [unix]
         - test -f "${PREFIX}/etc/profile.d/mamba.sh"     # [unix]
         - if not exist %LIBRARY_BIN%\mamba.exe (exit 1)  # [win]
+        - if not exist %PREFIX%\condabin\mamba.bat (exit 1)  # [win]
         - mamba --help
+        - "${PREFIX}/condabin/mamba" --help        # [unix]
+        - "%PREFIX%/condabin/mamba.bat" --help     # [win]
         - export MAMBA_ROOT_PREFIX="$(mktemp -d)"  # [unix]
         - mkdir %TEMP%\mamba                       # [win]
         - set "MAMBA_ROOT_PREFIX=%TEMP%\mamba"     # [win]
