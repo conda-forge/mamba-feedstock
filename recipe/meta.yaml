@@ -166,8 +166,8 @@ outputs:
         - if not exist %LIBRARY_BIN%\mamba.exe (exit 1)  # [win]
         - if not exist %PREFIX%\condabin\mamba.bat (exit 1)  # [win]
         - mamba --help
-        - "${PREFIX}/condabin/mamba" --help        # [unix]
-        - "%PREFIX%/condabin/mamba.bat" --help     # [win]
+        - ${PREFIX}/condabin/mamba --help          # [unix]
+        - CALL %PREFIX%/condabin/mamba.bat --help       # [win]
         - export MAMBA_ROOT_PREFIX="$(mktemp -d)"  # [unix]
         - mkdir %TEMP%\mamba                       # [win]
         - set "MAMBA_ROOT_PREFIX=%TEMP%\mamba"     # [win]
