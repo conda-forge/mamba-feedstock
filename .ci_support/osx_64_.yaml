@@ -8,8 +8,12 @@ c_stdlib_version:
 - '10.13'
 channel_sources:
 - conda-forge
+- conda-forge
+- conda-forge
+- conda-forge/label/python_rc,conda-forge
+- conda-forge
 channel_targets:
-- conda-forge mamba_dev
+- conda-forge main
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
@@ -34,15 +38,13 @@ python:
 - 3.10.* *_cpython
 - 3.11.* *_cpython
 - 3.12.* *_cpython
-- 3.8.* *_cpython
-- 3.9.* *_73_pypy
+- 3.13.* *_cp313
 - 3.9.* *_cpython
 python_impl:
 - cpython
 - cpython
 - cpython
 - cpython
-- pypy
 - cpython
 spdlog:
 - '1.14'
@@ -51,5 +53,6 @@ target_platform:
 zip_keys:
 - - python
   - python_impl
+  - channel_sources
 zstd:
 - '1.5'

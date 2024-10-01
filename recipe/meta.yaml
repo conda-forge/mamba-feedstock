@@ -1,8 +1,8 @@
 {% set name = "mamba" %}
-{% set libmamba_version = "2.0.0rc2" %}
-{% set libmambapy_version = "2.0.0rc2" %}
-{% set mamba_version = "2.0.0rc2" %}
-{% set release = "2024.08.19" %}
+{% set libmamba_version = "2.0.1" %}
+{% set libmambapy_version = "2.0.1" %}
+{% set mamba_version = "2.0.1" %}
+{% set release = "2024.09.30" %}
 
 package:
   name: mamba-split
@@ -10,10 +10,10 @@ package:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
-  sha256: 5b59f4dab2eb81e60da60731f7ed22e6ccf26a7b226227ac1c16a6a68de9eeeb
+  sha256: 5fc3ae910963a9c47fab072f04a08101eaccd23dccfe3763949efe30a19b5d39
 
 build:
-  number: 2
+  number: 1
 
 outputs:
   - name: libmamba
@@ -35,7 +35,7 @@ outputs:
         - python  # [win]
       host:
         - libsolv >=0.7.23
-        - libcurl >=8.4.0
+        - libcurl >=8.4.0,<8.10
         - openssl
         - libarchive
         - nlohmann_json
@@ -93,6 +93,7 @@ outputs:
         - python
         - scikit-build
         - pip
+        - setuptools
         - pybind11
         - pybind11-abi
         - openssl
@@ -147,7 +148,8 @@ outputs:
 
     test:
       commands:
-        - test -f "${PREFIX}/bin/mamba"                    # [unix]
+        - test -f "${PREFIX}/bin/mamba"                  # [unix]
+        - test -f "${PREFIX}/etc/profile.d/mamba.sh"     # [unix]
         - if not exist %LIBRARY_BIN%\mamba.exe (exit 1)  # [win]
         - mamba --help
         - export MAMBA_ROOT_PREFIX="$(mktemp -d)"  # [unix]
