@@ -7,7 +7,7 @@ channel_targets:
 cxx_compiler:
 - vs2019
 fmt:
-- '10'
+- '11'
 libarchive:
 - '3.7'
 openssl:
@@ -24,7 +24,7 @@ python:
 - 3.12.* *_cpython
 - 3.9.* *_cpython
 spdlog:
-- '1.12'
+- '1.14'
 target_platform:
 - win-64
 zstd:

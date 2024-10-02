@@ -15,7 +15,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '17'
 fmt:
-- '10'
+- '11'
 libarchive:
 - '3.7'
 macos_machine:
@@ -34,7 +34,7 @@ python:
 - 3.12.* *_cpython
 - 3.9.* *_cpython
 spdlog:
-- '1.12'
+- '1.14'
 target_platform:
 - osx-arm64
 zstd:
