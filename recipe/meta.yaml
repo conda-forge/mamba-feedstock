@@ -13,8 +13,6 @@ source:
   sha256: bee1cbd4c499ef3ed020f9ce152b722b8e30e69a8b25abaa116673ebda833875
 
 build:
-  # Skipping builds for the creation of the `prerelease` branch.
-  skip: true
   number: 2
 
 outputs:
