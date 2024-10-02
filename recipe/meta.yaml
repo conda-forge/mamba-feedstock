@@ -15,7 +15,7 @@ source:
 build:
   # Skipping builds for the creation of the `prerelease` branch.
   skip: true
-  number: 1
+  number: 2
 
 outputs:
   - name: libmamba
