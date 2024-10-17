@@ -36,5 +36,7 @@ if /I "%PKG_NAME%" == "mamba" (
     cmake --build build-mamba/ --parallel %CPU_COUNT%
     if errorlevel 1 exit 1
     cmake --install build-mamba/
-
+    :: Install BAT hooks in condabin/
+    CALL "%LIBRARY_BIN%\mamba.exe" shell hook --shell cmd.exe "%PREFIX%"
+    if errorlevel 1 exit 1
 )
