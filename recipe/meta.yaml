@@ -35,7 +35,7 @@ outputs:
         - python  # [win]
       host:
         - libsolv >=0.7.23
-        - libcurl >=8.4.0,<8.10
+        - libcurl >=8.4.0
         - openssl
         - libarchive
         - nlohmann_json
@@ -50,7 +50,6 @@ outputs:
         - zstd
         - simdjson >=3.3.0
       run:
-        - libcurl <8.10
         # Missing run_export in libsolv
         - {{ pin_compatible('libsolv', max_pin='x.x.x') }}
         # Public libmamba dependencies
