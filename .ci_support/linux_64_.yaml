@@ -3,12 +3,8 @@ c_stdlib:
 c_stdlib_version:
 - '2.17'
 cdt_name:
-- cos7
+- conda
 channel_sources:
-- conda-forge
-- conda-forge
-- conda-forge
-- conda-forge/label/python_rc,conda-forge
 - conda-forge
 channel_targets:
 - conda-forge mamba_prerelease
@@ -49,10 +45,7 @@ spdlog:
 target_platform:
 - linux-64
 zip_keys:
-- - c_stdlib_version
-  - cdt_name
 - - python
   - python_impl
-  - channel_sources
 zstd:
 - '1.5'

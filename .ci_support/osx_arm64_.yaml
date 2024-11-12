@@ -8,16 +8,12 @@ c_stdlib_version:
 - '11.0'
 channel_sources:
 - conda-forge
-- conda-forge
-- conda-forge
-- conda-forge/label/python_rc,conda-forge
-- conda-forge
 channel_targets:
 - conda-forge mamba_prerelease
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '17'
+- '18'
 fmt:
 - '11'
 libarchive:
@@ -53,6 +49,5 @@ target_platform:
 zip_keys:
 - - python
   - python_impl
-  - channel_sources
 zstd:
 - '1.5'
