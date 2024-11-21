@@ -3,7 +3,7 @@ c_stdlib:
 c_stdlib_version:
 - '2.17'
 cdt_name:
-- cos7
+- conda
 channel_sources:
 - conda-forge
 channel_targets:
@@ -35,8 +35,5 @@ spdlog:
 - '1.14'
 target_platform:
 - linux-ppc64le
-zip_keys:
-- - c_stdlib_version
-  - cdt_name
 zstd:
 - '1.5'
