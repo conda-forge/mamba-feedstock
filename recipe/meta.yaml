@@ -12,9 +12,11 @@ package:
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
   sha256: 0791f5eac09611983bdd7c63dbfa046f7fb464525fa6c7967c40805093199d91
+  patches:
+    - 3702_use_conda_activate_reactivate.patch
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: libmamba
