@@ -1,0 +1,71 @@
+From 2adbb72410fa6e481150a4384d556ebfbe82c28e Mon Sep 17 00:00:00 2001
+From: Julien Jerphanion <git@jjerphan.xyz>
+Date: Fri, 3 Jan 2025 11:36:14 +0100
+Subject: [PATCH] build: Generate and install `etc/profile.d/mamba.sh` for
+ mamba only
+
+Signed-off-by: Julien Jerphanion <git@jjerphan.xyz>
+---
+ mamba_package/CMakeLists.txt                  | 10 ---------
+ micromamba/CMakeLists.txt                     | 21 ++++++++++++++++++-
+ .../etc/profile.d/mamba.sh.in                 |  0
+ 3 files changed, 20 insertions(+), 11 deletions(-)
+ rename {mamba_package => micromamba}/etc/profile.d/mamba.sh.in (100%)
+
+diff --git a/mamba_package/CMakeLists.txt b/mamba_package/CMakeLists.txt
+index 23a23e95..cf47433a 100644
+--- a/mamba_package/CMakeLists.txt
++++ b/mamba_package/CMakeLists.txt
+@@ -38,16 +38,6 @@ target_link_libraries(mamba-package PRIVATE mamba::libmamba)
+ 
+ set_target_properties(mamba-package PROPERTIES CXX_STANDARD 17)
+ 
+-configure_file(
+-    "${CMAKE_CURRENT_SOURCE_DIR}/etc/profile.d/mamba.sh.in"
+-    "${CMAKE_CURRENT_BINARY_DIR}/etc/profile.d/mamba.sh"
+-)
+-
+-install(
+-    FILES ${CMAKE_CURRENT_BINARY_DIR}/etc/profile.d/mamba.sh
+-    DESTINATION ${CMAKE_INSTALL_PREFIX}/etc/profile.d/
+-)
+-
+ install(
+     TARGETS mamba-package
+     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+diff --git a/micromamba/CMakeLists.txt b/micromamba/CMakeLists.txt
+index a4f2f152..4d313644 100644
+--- a/micromamba/CMakeLists.txt
++++ b/micromamba/CMakeLists.txt
+@@ -105,4 +105,23 @@ endif()
+ # Installation
+ # ============
+ 
+-install(TARGETS ${mambaexe_targets})
++# The script are only needed for mamba and not for micromamba
++
++if(BUILD_SHARED)
++    configure_file(
++        "${CMAKE_CURRENT_SOURCE_DIR}/etc/profile.d/mamba.sh.in"
++        "${CMAKE_CURRENT_BINARY_DIR}/etc/profile.d/mamba.sh"
++    )
++
++    install(
++        FILES ${CMAKE_CURRENT_BINARY_DIR}/etc/profile.d/mamba.sh
++        DESTINATION ${CMAKE_INSTALL_PREFIX}/etc/profile.d/
++    )
++endif()
++
++install(
++    TARGETS ${mambaexe_targets}
++    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
++    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
++    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
++)
+diff --git a/mamba_package/etc/profile.d/mamba.sh.in b/micromamba/etc/profile.d/mamba.sh.in
+similarity index 100%
+rename from mamba_package/etc/profile.d/mamba.sh.in
+rename to micromamba/etc/profile.d/mamba.sh.in
+-- 
+2.47.1
+
