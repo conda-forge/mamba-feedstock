@@ -13,6 +13,7 @@ source:
   sha256: 4960fc5aa617310fb45e309a1bcfeae74085d70782443b1d2882de4400ac6a48
   patches:
     - 0001-build-Generate-and-install-etc-profile.d-mamba.sh-fo.patch
+    - 0002-build-Only-for-Unix-systems.patch
 
 build:
   number: 2
