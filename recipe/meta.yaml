@@ -1,23 +1,20 @@
 {% set name = "mamba" %}
-{% set libmamba_version = "2.0.5.rc0" %}
-{% set libmambapy_version = "2.0.5.rc0" %}
-{% set mamba_version = "2.0.5.rc0" %}
-{% set release = "2024.12.09" %}
+{% set version = "2.0.6.rc0" %}
 
 package:
   name: mamba-split
-  version: {{ mamba_version }}
+  version: {{ version }}
 
 source:
-  url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
-  sha256: 6a42fa12622b36448e5df1c1aa73158f23d41f2ed161b64012e8aed49f598917
+  url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ version }}.tar.gz
+  sha256: 4eec032454e24009b3a690788db86f12731153768e028c10361bc81cb5b8c466
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - name: libmamba
-    version: {{ libmamba_version }}
+    version: {{ version }}
     script: build_mamba.sh                       # [unix]
     script: build_mamba.bat                      # [win]
     build:
@@ -64,6 +61,10 @@ outputs:
 
     test:
       commands:
+        # Profile script must not be installed for libmamba
+        - test ! -f "${PREFIX}/etc/profile.d/mamba.sh"  # [unix]
+        - if exist %LIBRARY_PREFIX%\etc\profile.d\mamba.sh (exit 1)  # [win]
+        # Headers and cmake files
         - test -d ${PREFIX}/include/mamba  # [unix]
         - test -f ${PREFIX}/include/mamba/version.hpp  # [unix]
         - test -f ${PREFIX}/lib/cmake/libmamba/libmambaConfig.cmake  # [unix]
@@ -74,14 +75,13 @@ outputs:
         - if not exist %LIBRARY_PREFIX%\lib\cmake\libmamba\libmambaConfigVersion.cmake (exit 1)  # [win]
         - if not exist %LIBRARY_PREFIX%\bin\libmamba.dll (exit 1)  # [win]
         - if not exist %LIBRARY_PREFIX%\lib\libmamba.lib (exit 1)  # [win]
-        {% set libmamba_version_split = libmamba_version.split('.') %}
-        - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_MAJOR {{ libmamba_version_split[0] }}"  # [unix]
-        - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_MINOR {{ libmamba_version_split[1] }}"  # [unix]
-        # TODO: uncomment for release 2.0.0
-        #- cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_PATCH {{ libmamba_version_split[2] }}"  # [unix]
+        {% set version_split = version.split('.') %}
+        - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_MAJOR {{ version_split[0] }}"  # [unix]
+        - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_MINOR {{ version_split[1] }}"  # [unix]
+        - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_PATCH {{ version_split[2] }}"  # [unix]
 
   - name: libmambapy
-    version: {{ libmambapy_version }}
+    version: {{ version }}
     script: build_mamba.sh                       # [unix]
     script: build_mamba.bat                      # [win]
     build:
@@ -125,10 +125,10 @@ outputs:
         - libmambapy
         - libmambapy.bindings
       commands:
-        #- python -c "import libmambapy._version; assert libmambapy._version.__version__ == '{{ libmambapy_version }}'"
+        - python -c "import libmambapy; assert libmambapy.__version__ == '{{ version }}'"
 
   - name: mamba
-    version: {{ mamba_version }}
+    version: {{ version }}
     script: build_mamba.sh                       # [unix]
     script: build_mamba.bat                      # [win]
     build:
