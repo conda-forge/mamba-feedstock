@@ -1,5 +1,5 @@
 {% set name = "mamba" %}
-{% set version = "2.0.6.rc0" %}
+{% set version = "2.0.6.rc1" %}
 
 package:
   name: mamba-split
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 4eec032454e24009b3a690788db86f12731153768e028c10361bc81cb5b8c466
+  sha256: bee5998134bb84c9a6275147ffd68d0f33ac761aa4eb9cbfce3456ae7d3f0981
 
 build:
   number: 0
