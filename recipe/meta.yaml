@@ -10,7 +10,7 @@ source:
   sha256: e9c007487c675c30766f3deabbf4fd69d8acf1355cf2cc11d374d5cd181114dd
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: libmamba
@@ -32,7 +32,7 @@ outputs:
         - python  # [win]
       host:
         - libsolv >=0.7.23
-        - libcurl >=8.4.0,<8.10
+        - libcurl >=8.4.0
         - openssl
         - libarchive
         - nlohmann_json
@@ -47,7 +47,6 @@ outputs:
         - zstd
         - simdjson >=3.3.0
       run:
-        - libcurl <8.10
         # Missing run_export in libsolv
         - {{ pin_compatible('libsolv', max_pin='x.x.x') }}
         # Public libmamba dependencies
@@ -161,9 +160,13 @@ outputs:
     test:
       commands:
         - test -f "${PREFIX}/bin/mamba"                  # [unix]
+        - test -f "${PREFIX}/condabin/mamba"             # [unix]
         - test -f "${PREFIX}/etc/profile.d/mamba.sh"     # [unix]
         - if not exist %LIBRARY_BIN%\mamba.exe (exit 1)  # [win]
+        - if not exist %PREFIX%\condabin\mamba.bat (exit 1)  # [win]
         - mamba --help
+        - ${PREFIX}/condabin/mamba --help          # [unix]
+        - CALL %PREFIX%/condabin/mamba.bat --help       # [win]
         - export MAMBA_ROOT_PREFIX="$(mktemp -d)"  # [unix]
         - mkdir %TEMP%\mamba                       # [win]
         - set "MAMBA_ROOT_PREFIX=%TEMP%\mamba"     # [win]
