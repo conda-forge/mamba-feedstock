@@ -10,7 +10,7 @@ source:
   sha256: eb9527e7ea90fd7045d81333bd6d63e6d61e7baa0d479bde940ffd24581b55fa
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: libmamba
@@ -115,6 +115,9 @@ outputs:
         - termcolor-cpp
         - nlohmann_json
         - {{ pin_subpackage('libmamba', exact=True) }}
+        # zstd is not a direct dependency but this specification is needed to
+        # destinguish build of mamba for specific specific version of zstd.
+        - zstd
       run:
         - python
         - {{ pin_subpackage('libmamba', exact=True) }}
@@ -154,6 +157,9 @@ outputs:
         - reproc
         - reproc-cpp
         - {{ pin_subpackage('libmamba', exact=True) }}
+        # zstd is not a direct dependency but this specification is needed to
+        # destinguish builds of libmambapy for specific specific version of zstd.
+        - zstd
       run:
         - {{ pin_subpackage('libmamba', exact=True) }}
 
