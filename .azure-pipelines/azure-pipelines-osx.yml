@@ -8,11 +8,17 @@ jobs:
     vmImage: macOS-13
   strategy:
     matrix:
-      osx_64_:
-        CONFIG: osx_64_
+      osx_64_zstd1.5.6:
+        CONFIG: osx_64_zstd1.5.6
         UPLOAD_PACKAGES: 'True'
-      osx_arm64_:
-        CONFIG: osx_arm64_
+      osx_64_zstd1.5.7:
+        CONFIG: osx_64_zstd1.5.7
+        UPLOAD_PACKAGES: 'True'
+      osx_arm64_zstd1.5.6:
+        CONFIG: osx_arm64_zstd1.5.6
+        UPLOAD_PACKAGES: 'True'
+      osx_arm64_zstd1.5.7:
+        CONFIG: osx_arm64_zstd1.5.7
         UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
   variables: {}
