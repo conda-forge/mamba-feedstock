@@ -1,0 +1,5 @@
+# Temporary workaround to make mamba installable with conda and the rest of conda-forge
+# See: https://github.com/conda-forge/zstandard-feedstock/issues/52#issuecomment-2679063693
+zstd:
+  - 1.5.6
+  - 1.5.7

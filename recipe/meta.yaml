@@ -1,5 +1,5 @@
 {% set name = "mamba" %}
-{% set version = "2.0.6" %}
+{% set version = "2.0.7" %}
 
 package:
   name: mamba-split
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ version }}.tar.gz
-  sha256: e0f3c0b7b055af36a7a1fb2ec783591df4a5cdcfe6df518963276f03c3f3e2ad
+  sha256: 65510e216bd9704e8f4babbf7691583b7556afaf36703a5378d9215ffa23750e
 
 build:
   number: 0
@@ -115,6 +115,9 @@ outputs:
         - termcolor-cpp
         - nlohmann_json
         - {{ pin_subpackage('libmamba', exact=True) }}
+        # zstd is not a direct dependency but this specification is needed to
+        # destinguish build of libmambapy for specific specific version of zstd.
+        - zstd
       run:
         - python
         - {{ pin_subpackage('libmamba', exact=True) }}
@@ -154,6 +157,9 @@ outputs:
         - reproc
         - reproc-cpp
         - {{ pin_subpackage('libmamba', exact=True) }}
+        # zstd is not a direct dependency but this specification is needed to
+        # destinguish builds of mamba for specific specific version of zstd.
+        - zstd
       run:
         - {{ pin_subpackage('libmamba', exact=True) }}
 
