@@ -43,9 +43,9 @@ python_impl:
 spdlog:
 - '1.15'
 target_platform:
-- linux-aarch64
+- linux-ppc64le
 zip_keys:
 - - python
   - python_impl
 zstd:
-- '1.5'
+- 1.5.6
