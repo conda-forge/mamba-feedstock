@@ -206,45 +206,87 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64</td>
+              <td>linux_64_zstd1.5.6</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6434&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_zstd1.5.6" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64</td>
+              <td>linux_64_zstd1.5.7</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6434&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_zstd1.5.7" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_ppc64le</td>
+              <td>linux_aarch64_zstd1.5.6</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6434&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_zstd1.5.6" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64</td>
+              <td>linux_aarch64_zstd1.5.7</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6434&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_zstd1.5.7" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_arm64</td>
+              <td>linux_ppc64le_zstd1.5.6</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6434&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_zstd1.5.6" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>win_64</td>
+              <td>linux_ppc64le_zstd1.5.7</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6434&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=win&configuration=win%20win_64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_zstd1.5.7" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_zstd1.5.6</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6434&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_zstd1.5.6" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_zstd1.5.7</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6434&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_zstd1.5.7" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64_zstd1.5.6</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6434&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_zstd1.5.6" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64_zstd1.5.7</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6434&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_zstd1.5.7" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64_zstd1.5.6</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6434&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=win&configuration=win%20win_64_zstd1.5.6" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64_zstd1.5.7</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6434&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mamba-feedstock?branchName=main&jobName=win&configuration=win%20win_64_zstd1.5.7" alt="variant">
                 </a>
               </td>
             </tr>
@@ -267,14 +309,14 @@ Current release info
 Installing mamba-split
 ======================
 
-Installing `mamba-split` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `mamba-split` from the `conda-forge/label/mamba_prerelease` channel can be achieved by adding `conda-forge/label/mamba_prerelease` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/mamba_prerelease
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `libmamba, libmambapy, mamba` can be installed with `conda`:
+Once the `conda-forge/label/mamba_prerelease` channel has been enabled, `libmamba, libmambapy, mamba` can be installed with `conda`:
 
 ```
 conda install libmamba libmambapy mamba
@@ -289,26 +331,26 @@ mamba install libmamba libmambapy mamba
 It is possible to list all of the versions of `libmamba` available on your platform with `conda`:
 
 ```
-conda search libmamba --channel conda-forge
+conda search libmamba --channel conda-forge/label/mamba_prerelease
 ```
 
 or with `mamba`:
 
 ```
-mamba search libmamba --channel conda-forge
+mamba search libmamba --channel conda-forge/label/mamba_prerelease
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search libmamba --channel conda-forge
+mamba repoquery search libmamba --channel conda-forge/label/mamba_prerelease
 
 # List packages depending on `libmamba`:
-mamba repoquery whoneeds libmamba --channel conda-forge
+mamba repoquery whoneeds libmamba --channel conda-forge/label/mamba_prerelease
 
 # List dependencies of `libmamba`:
-mamba repoquery depends libmamba --channel conda-forge
+mamba repoquery depends libmamba --channel conda-forge/label/mamba_prerelease
 ```
 
 
