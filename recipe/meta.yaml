@@ -16,6 +16,8 @@ build:
 outputs:
   - name: libmamba
     version: {{ version }}
+    script: build_mamba.sh                       # [unix]
+    script: build_mamba.bat                      # [win]
     build:
       run_exports:
         - {{ pin_subpackage('libmamba', max_pin='x.x') }}
@@ -81,6 +83,8 @@ outputs:
 
   - name: libmambapy
     version: {{ version }}
+    script: build_mamba.sh                       # [unix]
+    script: build_mamba.bat                      # [win]
     build:
       string: py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       run_exports:
@@ -129,6 +133,8 @@ outputs:
 
   - name: mamba
     version: {{ version }}
+    script: build_mamba.sh                       # [unix]
+    script: build_mamba.bat                      # [win]
     build:
       ignore_run_exports_from:
         - libcurl                     # [unix]
