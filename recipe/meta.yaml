@@ -117,7 +117,7 @@ outputs:
         - nlohmann_json
         - {{ pin_subpackage('libmamba', exact=True) }}
         # zstd is not a direct dependency but this specification is needed to
-        # destinguish build of libmambapy for specific specific version of zstd.
+        # destinguish build of mamba for specific specific version of zstd.
         - zstd
       run:
         - python
@@ -159,7 +159,7 @@ outputs:
         - reproc-cpp
         - {{ pin_subpackage('libmamba', exact=True) }}
         # zstd is not a direct dependency but this specification is needed to
-        # destinguish builds of mamba for specific specific version of zstd.
+        # destinguish builds of libmambapy for specific specific version of zstd.
         - zstd
       run:
         - {{ pin_subpackage('libmamba', exact=True) }}
