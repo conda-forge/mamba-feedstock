@@ -9,7 +9,7 @@ c_stdlib_version:
 channel_sources:
 - conda-forge
 channel_targets:
-- conda-forge mamba_prerelease
+- conda-forge main
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
