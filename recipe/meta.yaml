@@ -11,7 +11,7 @@ source:
   sha256: 4960fc5aa617310fb45e309a1bcfeae74085d70782443b1d2882de4400ac6a48
 
 build:
-  number: 2
+  number: 3
 
 outputs:
   - name: libmamba
@@ -43,7 +43,7 @@ outputs:
         - spdlog
         - yaml-cpp
         - cli11
-        - fmt
+        - fmt <11.1
         - winreg                                 # [win]
         - zstd
         - simdjson >=3.3.0
@@ -113,7 +113,7 @@ outputs:
         - yaml-cpp
         - cpp-expected
         - spdlog
-        - fmt
+        - fmt <11.1
         - termcolor-cpp
         - nlohmann_json
         - {{ pin_subpackage('libmamba', exact=True) }}
