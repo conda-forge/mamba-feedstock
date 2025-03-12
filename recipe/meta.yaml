@@ -10,7 +10,7 @@ source:
   sha256: 65510e216bd9704e8f4babbf7691583b7556afaf36703a5378d9215ffa23750e
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: libmamba
@@ -139,7 +139,7 @@ outputs:
         - libcurl                     # [unix]
         - openssl                     # [unix]
         - spdlog
-        - fmt <11.1
+        - fmt
         - {{ compiler('cxx') }}       # [linux]
         - python                      # [win]
         - libsolv
