@@ -61,9 +61,9 @@ outputs:
     test:
       commands:
         # Profile script must not be installed for libmamba
-        # TODO: uncomment for next release
-        # - test ! -f "${PREFIX}/etc/profile.d/mamba.sh"  # [unix]
-        # - if exist %LIBRARY_PREFIX%\etc\profile.d\mamba.sh (exit 1)  # [win]
+        # TODO: remove `etc/profile.d/mamba.sh` after 30th Sept. 2025
+        - test ! -f "${PREFIX}/etc/profile.d/mamba.sh"  # [unix]
+        - if exist %LIBRARY_PREFIX%\etc\profile.d\mamba.sh (exit 1)  # [win]
         # Headers and cmake files
         - test -d ${PREFIX}/include/mamba  # [unix]
         - test -f ${PREFIX}/include/mamba/version.hpp  # [unix]
@@ -168,8 +168,10 @@ outputs:
       commands:
         - test -f "${PREFIX}/bin/mamba"                  # [unix]
         - test -f "${PREFIX}/condabin/mamba"             # [unix]
-        # TODO: uncomment for next release
-        # - test -f "${PREFIX}/etc/profile.d/mamba.sh"     # [unix]
+        # TODO: remove `etc/profile.d/mamba.sh` after 30th Sept. 2025
+        - test -f "${PREFIX}/etc/profile.d/mamba.sh"     # [unix]
+        # Execute this script
+        - . ${PREFIX}/etc/profile.d/mamba.sh
         - if not exist %LIBRARY_BIN%\mamba.exe (exit 1)  # [win]
         - if not exist %PREFIX%\condabin\mamba.bat (exit 1)  # [win]
         - mamba --help
