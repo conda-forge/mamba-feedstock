@@ -1,5 +1,5 @@
 {% set name = "mamba" %}
-{% set version = "2.0.7" %}
+{% set version = "2.0.8" %}
 
 package:
   name: mamba-split
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 65510e216bd9704e8f4babbf7691583b7556afaf36703a5378d9215ffa23750e
+  sha256: a62ff2c5bf79badd70fdecbf781a79aa1d4e687d889d613d17e242355031df78
 
 build:
-  number: 2
+  number: 0
 
 outputs:
   - name: libmamba
@@ -61,9 +61,9 @@ outputs:
     test:
       commands:
         # Profile script must not be installed for libmamba
-        # TODO: uncomment for next release
-        # - test ! -f "${PREFIX}/etc/profile.d/mamba.sh"  # [unix]
-        # - if exist %LIBRARY_PREFIX%\etc\profile.d\mamba.sh (exit 1)  # [win]
+        # TODO: remove `etc/profile.d/mamba.sh` after 30th Sept. 2025
+        - test ! -f "${PREFIX}/etc/profile.d/mamba.sh"  # [unix]
+        - if exist %LIBRARY_PREFIX%\etc\profile.d\mamba.sh (exit 1)  # [win]
         # Headers and cmake files
         - test -d ${PREFIX}/include/mamba  # [unix]
         - test -f ${PREFIX}/include/mamba/version.hpp  # [unix]
@@ -168,8 +168,10 @@ outputs:
       commands:
         - test -f "${PREFIX}/bin/mamba"                  # [unix]
         - test -f "${PREFIX}/condabin/mamba"             # [unix]
-        # TODO: uncomment for next release
-        # - test -f "${PREFIX}/etc/profile.d/mamba.sh"     # [unix]
+        # TODO: remove `etc/profile.d/mamba.sh` after 30th Sept. 2025
+        - test -f "${PREFIX}/etc/profile.d/mamba.sh"     # [unix]
+        # Execute this script
+        - . ${PREFIX}/etc/profile.d/mamba.sh     # [unix]
         - if not exist %LIBRARY_BIN%\mamba.exe (exit 1)  # [win]
         - if not exist %PREFIX%\condabin\mamba.bat (exit 1)  # [win]
         - mamba --help
