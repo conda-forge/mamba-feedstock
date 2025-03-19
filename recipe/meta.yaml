@@ -171,7 +171,7 @@ outputs:
         # TODO: remove `etc/profile.d/mamba.sh` after 30th Sept. 2025
         - test -f "${PREFIX}/etc/profile.d/mamba.sh"     # [unix]
         # Execute this script
-        - . ${PREFIX}/etc/profile.d/mamba.sh
+        - . ${PREFIX}/etc/profile.d/mamba.sh     # [unix]
         - if not exist %LIBRARY_BIN%\mamba.exe (exit 1)  # [win]
         - if not exist %PREFIX%\condabin\mamba.bat (exit 1)  # [win]
         - mamba --help
