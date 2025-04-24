@@ -46,6 +46,9 @@ outputs:
         - winreg                                 # [win]
         - zstd
         - simdjson >=3.3.0
+      run:
+        - {{ pin_compatible('cpp-expected', exact=True) }}
+        - {{ pin_compatible('nlohmann_json', exact=True) }}
 
     test:
       commands:
