@@ -47,8 +47,19 @@ outputs:
         - zstd
         - simdjson >=3.3.0
       run:
-        - {{ pin_compatible('cpp-expected', exact=True) }}
+        # `nlohmann_json` is pinned because we expose it in the API of libmamba
+        # (`nlohmann_json` objects are put in version namespaces because the author
+        # does not want to take any risk regarding ABI compatibility)
+        #
+        # Since `nlohmann_json` is a heaer only library, it does not have run_export,
+        # and we don't have the choice, we need to pin it here exactly
+        #
+        # Therefore, any library exchanging `nlohmann_json` objects with libmamba
+        # must be built with exactly the same version of nlohmann_json as that
+        # used to build mamba.
         - {{ pin_compatible('nlohmann_json', exact=True) }}
+        # Similar reasons apply to `cpp-expected`.
+        - {{ pin_compatible('cpp-expected', exact=True) }}
 
     test:
       commands:
