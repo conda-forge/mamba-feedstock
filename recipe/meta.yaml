@@ -35,7 +35,7 @@ outputs:
         - libcurl >=8.4.0
         - openssl
         - libarchive
-        - nlohmann_json
+        - nlohmann_json <3.12
         - cpp-expected
         - reproc
         - reproc-cpp >=14.2.4.post0
@@ -117,7 +117,7 @@ outputs:
         - spdlog
         - fmt
         - termcolor-cpp
-        - nlohmann_json
+        - nlohmann_json <3.12
         - {{ pin_subpackage('libmamba', exact=True) }}
         # zstd is not a direct dependency but this specification is needed to
         # distinguish builds of libmambapy for specific specific version of zstd.
