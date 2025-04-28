@@ -10,7 +10,7 @@ source:
   sha256: 8e8dd36a6d974a41d3bcd498f0b4f38092b25ed372d954e1721073e49fea9466
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: libmamba
@@ -35,7 +35,7 @@ outputs:
         - libcurl >=8.4.0
         - openssl
         - libarchive
-        - nlohmann_json
+        - nlohmann_json <3.12
         - cpp-expected
         - reproc
         - reproc-cpp >=14.2.4.post0
@@ -47,16 +47,19 @@ outputs:
         - zstd
         - simdjson >=3.3.0
       run:
-        # Missing run_export in libsolv
-        - {{ pin_compatible('libsolv', max_pin='x.x.x') }}
-        # Public libmamba dependencies
-        - {{ pin_compatible('fmt', max_pin='x.x') }}
-        - {{ pin_compatible('spdlog', max_pin='x.x') }}
-        - {{ pin_compatible('cpp-expected', max_pin='x.x') }}
-        - {{ pin_compatible('nlohmann_json', max_pin='x.x') }}
-        - {{ pin_compatible('yaml-cpp', max_pin='x.x') }}
-        - {{ pin_compatible('reproc', max_pin='x.x') }}
-        - {{ pin_compatible('reproc-cpp', max_pin='x.x') }}
+        # `nlohmann_json` is pinned because we expose it in the API of libmamba
+        # (`nlohmann_json` objects are put in version namespaces because the author
+        # does not want to take any risk regarding ABI compatibility)
+        #
+        # Since `nlohmann_json` is a heaer only library, it does not have run_export,
+        # and we don't have the choice, we need to pin it here exactly
+        #
+        # Therefore, any library exchanging `nlohmann_json` objects with libmamba
+        # must be built with exactly the same version of nlohmann_json as that
+        # used to build mamba.
+        - {{ pin_compatible('nlohmann_json', max_pin='x.x.x') }}
+        # Similar reasons apply to `cpp-expected`.
+        - {{ pin_compatible('cpp-expected', max_pin='x.x.x') }}
 
     test:
       commands:
@@ -105,7 +108,7 @@ outputs:
         - python
         - scikit-build
         - pip
-        - setuptools
+        - setuptools <79
         - pybind11
         - pybind11-abi
         - openssl
@@ -114,7 +117,7 @@ outputs:
         - spdlog
         - fmt
         - termcolor-cpp
-        - nlohmann_json
+        - nlohmann_json <3.12
         - {{ pin_subpackage('libmamba', exact=True) }}
         # zstd is not a direct dependency but this specification is needed to
         # distinguish builds of libmambapy for specific specific version of zstd.
