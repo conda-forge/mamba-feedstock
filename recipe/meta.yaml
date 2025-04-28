@@ -108,7 +108,7 @@ outputs:
         - python
         - scikit-build
         - pip
-        - setuptools
+        - setuptools <79
         - pybind11
         - pybind11-abi
         - openssl
