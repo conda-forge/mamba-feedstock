@@ -1,5 +1,5 @@
 {% set name = "mamba" %}
-{% set version = "2.1.1" %}
+{% set version = "2.2.0" %}
 
 package:
   name: mamba-split
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 789d3d89fe8ca9f06344da21797e3d949ad1ff0ae4c633dc242a333e0ee37485
+  sha256: b489d997bb288ada1c9988ed2fe2f8b6e49527487d9f1acf7cd4dd8e965bf32b
 
 build:
   number: 0
@@ -15,8 +15,8 @@ build:
 outputs:
   - name: libmamba
     version: {{ version }}
-    script: build_mamba.sh                       # [unix]
-    script: build_mamba.bat                      # [win]
+    script: build_mamba.sh  # [unix]
+    script: build_mamba.bat  # [win]
     build:
       run_exports:
         - {{ pin_subpackage('libmamba', max_pin='x.x') }}
@@ -85,15 +85,15 @@ outputs:
 
   - name: libmambapy
     version: {{ version }}
-    script: build_mamba.sh                       # [unix]
-    script: build_mamba.bat                      # [win]
+    script: build_mamba.sh  # [unix]
+    script: build_mamba.bat  # [win]
     build:
       string: py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       run_exports:
         - {{ pin_subpackage('libmambapy', max_pin='x.x') }}
       ignore_run_exports:
         - spdlog
-      skip: True  # [python_impl == 'pypy']
+      skip: true  # [python_impl == 'pypy']
     requirements:
       build:
         - {{ compiler('cxx') }}
@@ -135,8 +135,8 @@ outputs:
 
   - name: mamba
     version: {{ version }}
-    script: build_mamba.sh                       # [unix]
-    script: build_mamba.bat                      # [win]
+    script: build_mamba.sh  # [unix]
+    script: build_mamba.bat  # [win]
     build:
       ignore_run_exports_from:
         - libcurl                     # [unix]
