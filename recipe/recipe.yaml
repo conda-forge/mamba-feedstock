@@ -189,7 +189,6 @@ outputs:
             # Execute this script
             - . ${PREFIX}/etc/profile.d/mamba.sh
             - ${PREFIX}/condabin/mamba --help
-            - export MAMBA_ROOT_PREFIX="$(mktemp -d)"
             - mamba clean --all --dry-run
             # The following test is segfaulting but we couod not reproduce it outside the build
             # environment, so we're moving on with the 2.0.0beta0 release.
