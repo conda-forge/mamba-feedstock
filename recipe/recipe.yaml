@@ -63,30 +63,26 @@ outputs:
         # Similar reasons apply to `cpp-expected`.
         - ${{ pin_compatible('cpp-expected', upper_bound='x.x.x') }}
     tests:
+      - package_contents:
+          lib:
+            - libmamba
+          include:
+            - mamba/version.hpp
+          files:
+            exists:
+              - ${{ "%LIBRARY_PREFIX%/" if win }}lib/cmake/libmamba/libmambaConfig.cmake
+              - ${{ "%LIBRARY_PREFIX%/" if win }}lib/cmake/libmamba/libmambaConfigVersion.cmake
+            not_exists:
+              - etc/profile.d/mamba.sh
+              - ${{ "%LIBRARY_PREFIX%/" if win }}lib/libmambapy*
+              - ${{ "%LIBRARY_PREFIX%/" if win }}lib/site-package/*
       - script:
         - if: unix
           then:
-            # Profile script must not be installed for libmamba
-            - test ! -f "${PREFIX}/etc/profile.d/mamba.sh"
-            # Headers and cmake files
-            - test -d ${PREFIX}/include/mamba
-            - test -f ${PREFIX}/include/mamba/version.hpp
-            - test -f ${PREFIX}/lib/cmake/libmamba/libmambaConfig.cmake
-            - test -f ${PREFIX}/lib/cmake/libmamba/libmambaConfigVersion.cmake
-            - test -e ${PREFIX}/lib/libmamba${SHLIB_EXT}
             # Version tests
             - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_MAJOR ${{ (version | split('.'))[0] }}"
             - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_MINOR ${{ (version | split('.'))[1] }}"
             - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_PATCH ${{ (version | split('.'))[2] }}"
-          else:
-            # Profile script must not be installed for libmamba
-            - if exist %LIBRARY_PREFIX%\etc\profile.d\mamba.sh (exit 1)
-            # Headers and cmake files
-            - if not exist %LIBRARY_PREFIX%\include\mamba\version.hpp (exit 1)
-            - if not exist %LIBRARY_PREFIX%\lib\cmake\libmamba\libmambaConfig.cmake (exit 1)
-            - if not exist %LIBRARY_PREFIX%\lib\cmake\libmamba\libmambaConfigVersion.cmake (exit 1)
-            - if not exist %LIBRARY_PREFIX%\bin\libmamba.dll (exit 1)
-            - if not exist %LIBRARY_PREFIX%\lib\libmamba.lib (exit 1)
 
   - package:
       name: libmambapy
@@ -134,6 +130,11 @@ outputs:
         - python
         - ${{ pin_subpackage('libmamba', exact=True) }}
     tests:
+      - package_contents:
+          files:
+            not_exists:
+              - ${{ "%LIBRARY_PREFIX%/" if win }}lib/cmake/libmamba/libmambaConfig.cmake
+              - ${{ "%LIBRARY_PREFIX%/" if win }}lib/libmamba*
       - python:
           imports:
             - libmambapy
@@ -180,13 +181,21 @@ outputs:
       run:
         - ${{ pin_subpackage('libmamba', exact=True) }}
     tests:
+      - package_contents:
+          bin: 
+            - mamba
+          files:
+            exists:
+              - condabin/mamba${{ ".bat" if win }}
+              - if: unix
+                then: etc/profile.d/mamba.sh
+            not_exists:
+              - ${{ "%LIBRARY_PREFIX%/" if win }}lib/libmamba*
+              - ${{ "%LIBRARY_PREFIX%/" if win }}lib/site-package/*
       - script:
         - mamba --help
         - if: unix
           then:
-            - test -f "${PREFIX}/bin/mamba"
-            - test -f "${PREFIX}/condabin/mamba"
-            - test -f "${PREFIX}/etc/profile.d/mamba.sh"
             # Execute this script
             - . ${PREFIX}/etc/profile.d/mamba.sh
             - ${PREFIX}/condabin/mamba --help
@@ -196,8 +205,6 @@ outputs:
             - ./myenv/bin/python --version
             - ./myenv/bin/python -c 'import os'
           else:
-            - if not exist %LIBRARY_BIN%\mamba.exe (exit 1)
-            - if not exist %PREFIX%\condabin\mamba.bat (exit 1)
             - CALL %PREFIX%/condabin/mamba.bat --help
             - mkdir %TEMP%\mamba
             - mamba create -p ./myenv --override-channels -c conda-forge --yes python=3.9
