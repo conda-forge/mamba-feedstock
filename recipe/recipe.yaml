@@ -70,12 +70,12 @@ outputs:
             - mamba/version.hpp
           files:
             exists:
-              - ${{ "%LIBRARY_PREFIX%/" if win }}lib/cmake/libmamba/libmambaConfig.cmake
-              - ${{ "%LIBRARY_PREFIX%/" if win }}lib/cmake/libmamba/libmambaConfigVersion.cmake
+              - ${{ "Library/" if win }}lib/cmake/libmamba/libmambaConfig.cmake
+              - ${{ "Library/" if win }}lib/cmake/libmamba/libmambaConfigVersion.cmake
             not_exists:
               - etc/profile.d/mamba.sh
-              - ${{ "%LIBRARY_PREFIX%/" if win }}lib/libmambapy*
-              - ${{ "%LIBRARY_PREFIX%/" if win }}lib/site-package/*
+              - ${{ "Library/" if win }}lib/libmambapy*
+              - ${{ "Library/" if win }}lib/site-package/*
       - script:
         - if: unix
           then:
@@ -133,8 +133,8 @@ outputs:
       - package_contents:
           files:
             not_exists:
-              - ${{ "%LIBRARY_PREFIX%/" if win }}lib/cmake/libmamba/libmambaConfig.cmake
-              - ${{ "%LIBRARY_PREFIX%/" if win }}lib/libmamba*
+              - ${{ "Library/" if win }}lib/cmake/libmamba/libmambaConfig.cmake
+              - ${{ "Library/" if win }}lib/libmamba*
       - python:
           imports:
             - libmambapy
@@ -190,8 +190,8 @@ outputs:
               - if: unix
                 then: etc/profile.d/mamba.sh
             not_exists:
-              - ${{ "%LIBRARY_PREFIX%/" if win }}lib/libmamba*
-              - ${{ "%LIBRARY_PREFIX%/" if win }}lib/site-package/*
+              - ${{ "Library/" if win }}lib/libmamba*
+              - ${{ "Library/" if win }}lib/site-package/*
       - script:
         - mamba --help
         - if: unix
