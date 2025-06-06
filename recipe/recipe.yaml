@@ -190,9 +190,7 @@ outputs:
             - . ${PREFIX}/etc/profile.d/mamba.sh
             - ${PREFIX}/condabin/mamba --help
             - mamba clean --all --dry-run
-            # The following test is segfaulting but we couod not reproduce it outside the build
-            # environment, so we're moving on with the 2.0.0beta0 release.
-            # - mamba repoquery depends mamba
+            - mamba repoquery depends mamba
             - mamba create -p ./myenv --override-channels -c conda-forge --yes python=3.9
             - ./myenv/bin/python --version
             - ./myenv/bin/python -c 'import os'
