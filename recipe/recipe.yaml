@@ -201,10 +201,9 @@ outputs:
             - if not exist %PREFIX%\condabin\mamba.bat (exit 1)
             - CALL %PREFIX%/condabin/mamba.bat --help
             - mkdir %TEMP%\mamba
-            - set "MAMBA_ROOT_PREFIX=%TEMP%\mamba"
-            - mamba create -n test --override-channels -c conda-forge --yes python=3.9
-            - '%MAMBA_ROOT_PREFIX%\envs\test\python.exe --version'
-            - '%MAMBA_ROOT_PREFIX%\envs\test\python.exe -c "import os"'
+            - mamba create -p ./myenv --override-channels -c conda-forge --yes python=3.9
+            - myenv\python.exe --version
+            - myenv\python.exe -c "import os"
 
 about:
   homepage: https://github.com/mamba-org/mamba
