@@ -66,7 +66,6 @@ outputs:
         - if: unix
           then:
             # Profile script must not be installed for libmamba
-            # TODO: remove `etc/profile.d/mamba.sh` after 30th Sept. 2025
             - test ! -f "${PREFIX}/etc/profile.d/mamba.sh"
             # Headers and cmake files
             - test -d ${PREFIX}/include/mamba
@@ -186,7 +185,6 @@ outputs:
           then:
             - test -f "${PREFIX}/bin/mamba"
             - test -f "${PREFIX}/condabin/mamba"
-            # TODO: remove `etc/profile.d/mamba.sh` after 30th Sept. 2025
             - test -f "${PREFIX}/etc/profile.d/mamba.sh"
             # Execute this script
             - . ${PREFIX}/etc/profile.d/mamba.sh
