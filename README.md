@@ -428,6 +428,3 @@ Feedstock Maintainers
 * [@jjerphan](https://github.com/jjerphan/)
 * [@wolfv](https://github.com/wolfv/)
 
-
-<!-- dummy commit to enable rerendering -->
-
