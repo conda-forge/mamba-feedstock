@@ -17,7 +17,7 @@ docker_image:
 fmt:
 - '11.1'
 libarchive:
-- '3.7'
+- '3.8'
 libcurl:
 - '8'
 openssl:
