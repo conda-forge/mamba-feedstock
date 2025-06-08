@@ -37,6 +37,6 @@ python:
 spdlog:
 - '1.15'
 target_platform:
-- linux-64
+- linux-ppc64le
 zstd:
-- 1.5.6
+- '1.5'

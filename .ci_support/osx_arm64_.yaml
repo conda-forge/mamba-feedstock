@@ -41,4 +41,4 @@ spdlog:
 target_platform:
 - osx-arm64
 zstd:
-- 1.5.6
+- '1.5'
