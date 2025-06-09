@@ -86,8 +86,6 @@ outputs:
     build:
       script: build_mamba
       string: py${{ python | version_to_buildstring }}h${{ hash }}_${{ build_number }}
-      skip:
-        - python_impl == 'pypy'
     requirements:
       run_exports:
         - ${{ pin_subpackage('libmambapy', upper_bound='x.x') }}
