@@ -8,11 +8,8 @@ jobs:
     vmImage: windows-2022
   strategy:
     matrix:
-      win_64_zstd1.5.6:
-        CONFIG: win_64_zstd1.5.6
-        UPLOAD_PACKAGES: 'True'
-      win_64_zstd1.5.7:
-        CONFIG: win_64_zstd1.5.7
+      win_64_:
+        CONFIG: win_64_
         UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
   variables:
