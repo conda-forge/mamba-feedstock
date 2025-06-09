@@ -24,14 +24,11 @@ outputs:
       ignore_run_exports:
         by_name:
           - spdlog
-          - if: win
-            then: python
       build:
         - ${{ compiler('cxx') }}
         - ${{ stdlib("c") }}
         - cmake
         - ninja
-        - ${{ "python" if win }}
       host:
         - libsolv >=0.7.23
         - libcurl >=8.4.0
