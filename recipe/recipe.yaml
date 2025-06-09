@@ -150,7 +150,6 @@ outputs:
           - fmt
           - libsolv
           - ${{ compiler('cxx') if linux }}
-          - ${{ "python" if win }}
           - if: unix
             then:
               - libcurl
@@ -163,7 +162,6 @@ outputs:
         - if: win
           then:
           - vcpkg-tool
-          - python
           - curl >=8.4.0
           - zlib
       host:
