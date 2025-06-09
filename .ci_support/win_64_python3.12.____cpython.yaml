@@ -17,7 +17,7 @@ pin_run_as_build:
 pybind11_abi:
 - '4'
 python:
-- 3.10.* *_cpython
+- 3.12.* *_cpython
 python_impl:
 - cpython
 spdlog:
@@ -30,4 +30,4 @@ zip_keys:
 zlib:
 - '1'
 zstd:
-- 1.5.7
+- '1.5'

@@ -1,13 +1,23 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '11.0'
+MACOSX_SDK_VERSION:
+- '11.0'
 c_stdlib:
-- vs
+- macosx_deployment_target
+c_stdlib_version:
+- '11.0'
 channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- vs2019
+- clangxx
+cxx_compiler_version:
+- '18'
 libarchive:
 - '3.7'
+macos_machine:
+- arm64-apple-darwin20.0.0
 openssl:
 - '3'
 pin_run_as_build:
@@ -17,17 +27,23 @@ pin_run_as_build:
 pybind11_abi:
 - '4'
 python:
+- 3.10.* *_cpython
 - 3.11.* *_cpython
+- 3.12.* *_cpython
+- 3.13.* *_cp313
+- 3.9.* *_cpython
 python_impl:
+- cpython
+- cpython
+- cpython
+- cpython
 - cpython
 spdlog:
 - '1.15'
 target_platform:
-- win-64
+- osx-arm64
 zip_keys:
 - - python
   - python_impl
-zlib:
-- '1'
 zstd:
-- 1.5.6
+- '1.5'
