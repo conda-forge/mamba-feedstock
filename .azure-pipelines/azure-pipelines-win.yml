@@ -8,11 +8,35 @@ jobs:
     vmImage: windows-2022
   strategy:
     matrix:
-      win_64_zstd1.5.6:
-        CONFIG: win_64_zstd1.5.6
+      win_64_python3.10.____cpythonzstd1.5.6:
+        CONFIG: win_64_python3.10.____cpythonzstd1.5.6
         UPLOAD_PACKAGES: 'True'
-      win_64_zstd1.5.7:
-        CONFIG: win_64_zstd1.5.7
+      win_64_python3.10.____cpythonzstd1.5.7:
+        CONFIG: win_64_python3.10.____cpythonzstd1.5.7
+        UPLOAD_PACKAGES: 'True'
+      win_64_python3.11.____cpythonzstd1.5.6:
+        CONFIG: win_64_python3.11.____cpythonzstd1.5.6
+        UPLOAD_PACKAGES: 'True'
+      win_64_python3.11.____cpythonzstd1.5.7:
+        CONFIG: win_64_python3.11.____cpythonzstd1.5.7
+        UPLOAD_PACKAGES: 'True'
+      win_64_python3.12.____cpythonzstd1.5.6:
+        CONFIG: win_64_python3.12.____cpythonzstd1.5.6
+        UPLOAD_PACKAGES: 'True'
+      win_64_python3.12.____cpythonzstd1.5.7:
+        CONFIG: win_64_python3.12.____cpythonzstd1.5.7
+        UPLOAD_PACKAGES: 'True'
+      win_64_python3.13.____cp313zstd1.5.6:
+        CONFIG: win_64_python3.13.____cp313zstd1.5.6
+        UPLOAD_PACKAGES: 'True'
+      win_64_python3.13.____cp313zstd1.5.7:
+        CONFIG: win_64_python3.13.____cp313zstd1.5.7
+        UPLOAD_PACKAGES: 'True'
+      win_64_python3.9.____cpythonzstd1.5.6:
+        CONFIG: win_64_python3.9.____cpythonzstd1.5.6
+        UPLOAD_PACKAGES: 'True'
+      win_64_python3.9.____cpythonzstd1.5.7:
+        CONFIG: win_64_python3.9.____cpythonzstd1.5.7
         UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
   variables:

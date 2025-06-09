@@ -14,12 +14,8 @@ cxx_compiler:
 - clangxx
 cxx_compiler_version:
 - '18'
-fmt:
-- '11.1'
 libarchive:
 - '3.7'
-libcurl:
-- '8'
 macos_machine:
 - arm64-apple-darwin20.0.0
 openssl:
