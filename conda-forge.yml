@@ -1,5 +1,6 @@
 bot:
   abi_migration_branches:
+  - dev
   - 1.x
   - prerelease
 build_platform:
