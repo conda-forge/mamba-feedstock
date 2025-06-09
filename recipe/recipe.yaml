@@ -1,6 +1,6 @@
 context:
   version: "2.2.0.post0dev0"
-  build_number: 1
+  build_number: 2
 
 recipe:
   name: mamba-split
@@ -33,7 +33,8 @@ outputs:
         - libsolv >=0.7.23
         - libcurl >=8.4.0
         - openssl
-        - libarchive
+        # Build with lgpl so that there is no question about the license
+        - libarchive * lgpl_*
         - nlohmann_json <3.12
         - cpp-expected
         - reproc
