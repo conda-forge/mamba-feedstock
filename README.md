@@ -126,14 +126,14 @@ Current release info
 Installing libmamba
 ===================
 
-Installing `libmamba` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `libmamba` from the `conda-forge/label/mamba_dev` channel can be achieved by adding `conda-forge/label/mamba_dev` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/mamba_dev
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `libmamba, libmambapy, mamba` can be installed with `conda`:
+Once the `conda-forge/label/mamba_dev` channel has been enabled, `libmamba, libmambapy, mamba` can be installed with `conda`:
 
 ```
 conda install libmamba libmambapy mamba
@@ -148,26 +148,26 @@ mamba install libmamba libmambapy mamba
 It is possible to list all of the versions of `libmamba` available on your platform with `conda`:
 
 ```
-conda search libmamba --channel conda-forge
+conda search libmamba --channel conda-forge/label/mamba_dev
 ```
 
 or with `mamba`:
 
 ```
-mamba search libmamba --channel conda-forge
+mamba search libmamba --channel conda-forge/label/mamba_dev
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search libmamba --channel conda-forge
+mamba repoquery search libmamba --channel conda-forge/label/mamba_dev
 
 # List packages depending on `libmamba`:
-mamba repoquery whoneeds libmamba --channel conda-forge
+mamba repoquery whoneeds libmamba --channel conda-forge/label/mamba_dev
 
 # List dependencies of `libmamba`:
-mamba repoquery depends libmamba --channel conda-forge
+mamba repoquery depends libmamba --channel conda-forge/label/mamba_dev
 ```
 
 
