@@ -3,5 +3,3 @@
 zstd:
   - 1.5.6
   - 1.5.7
-channel_targets:
-  - conda-forge mamba_dev

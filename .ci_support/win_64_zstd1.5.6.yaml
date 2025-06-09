@@ -6,6 +6,8 @@ channel_targets:
 - conda-forge main
 cxx_compiler:
 - vs2019
+fmt:
+- '11.1'
 libarchive:
 - '3.7'
 openssl:
@@ -17,8 +19,16 @@ pin_run_as_build:
 pybind11_abi:
 - '4'
 python:
+- 3.10.* *_cpython
+- 3.11.* *_cpython
+- 3.12.* *_cpython
 - 3.13.* *_cp313
+- 3.9.* *_cpython
 python_impl:
+- cpython
+- cpython
+- cpython
+- cpython
 - cpython
 spdlog:
 - '1.15'
@@ -30,4 +40,4 @@ zip_keys:
 zlib:
 - '1'
 zstd:
-- 1.5.7
+- 1.5.6
