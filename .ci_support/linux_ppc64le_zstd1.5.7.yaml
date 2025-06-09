@@ -34,18 +34,9 @@ python:
 - 3.12.* *_cpython
 - 3.13.* *_cp313
 - 3.9.* *_cpython
-python_impl:
-- cpython
-- cpython
-- cpython
-- cpython
-- cpython
 spdlog:
 - '1.15'
 target_platform:
 - linux-ppc64le
-zip_keys:
-- - python
-  - python_impl
 zstd:
 - 1.5.7
