@@ -93,7 +93,6 @@ outputs:
         - {{ pin_subpackage('libmambapy', max_pin='x.x') }}
       ignore_run_exports:
         - spdlog
-      skip: true  # [python_impl == 'pypy']
     requirements:
       build:
         - {{ compiler('cxx') }}
