@@ -143,6 +143,7 @@ outputs:
     build:
       script: build_mamba
       noarch: python
+      skip: target_plaform != build_platform
     requirements:
       host:
         - python >=${{ python_min }}
