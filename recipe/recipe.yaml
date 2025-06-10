@@ -145,7 +145,7 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python
+        - python >=${{ python_min }}
         - pip
         - setuptools
         - mypy
