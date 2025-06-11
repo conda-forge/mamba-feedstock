@@ -10,7 +10,7 @@ source:
   sha256: b489d997bb288ada1c9988ed2fe2f8b6e49527487d9f1acf7cd4dd8e965bf32b
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: libmamba
@@ -22,14 +22,12 @@ outputs:
         - {{ pin_subpackage('libmamba', max_pin='x.x') }}
       ignore_run_exports:
         - spdlog
-        - python  # [win]
     requirements:
       build:
         - {{ compiler('cxx') }}
         - {{ stdlib("c") }}
         - cmake
         - ninja
-        - python  # [win]
       host:
         - libsolv >=0.7.23
         - libcurl >=8.4.0
@@ -95,7 +93,6 @@ outputs:
         - {{ pin_subpackage('libmambapy', max_pin='x.x') }}
       ignore_run_exports:
         - spdlog
-      skip: true  # [python_impl == 'pypy']
     requirements:
       build:
         - {{ compiler('cxx') }}
@@ -146,7 +143,6 @@ outputs:
         - spdlog
         - fmt
         - {{ compiler('cxx') }}       # [linux]
-        - python                      # [win]
         - libsolv
     requirements:
       build:
@@ -155,7 +151,6 @@ outputs:
         - cmake
         - ninja
         - vcpkg-tool      # [win]
-        - python          # [win]
         - curl >=8.4.0    # [win]
         - zlib            # [win]
       host:
