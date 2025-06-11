@@ -17,7 +17,7 @@ docker_image:
 fmt:
 - '11.1'
 libarchive:
-- '3.7'
+- '3.8'
 libcurl:
 - '8'
 openssl:
@@ -39,4 +39,4 @@ spdlog:
 target_platform:
 - linux-ppc64le
 zstd:
-- 1.5.6
+- '1.5'

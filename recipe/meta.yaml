@@ -33,6 +33,8 @@ outputs:
         - libcurl >=8.4.0
         - openssl
         - libarchive
+        # Build with lgpl so that there is no question about the license
+        - libarchive * lgpl_*
         - nlohmann_json
         - cpp-expected
         - reproc
