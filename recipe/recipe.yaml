@@ -1,6 +1,6 @@
 context:
   version: "2.3.0"
-  build_number: 0
+  build_number: 1
 
 recipe:
   name: mamba-split
@@ -137,6 +137,27 @@ outputs:
             - libmambapy.bindings
       - script:
         - python -c "import libmambapy; assert libmambapy.__version__ == '${{ ( version | split('.') ) [:3] | join('.') }}'"
+
+  - package:
+      name: libmambapy-stubs
+    build:
+      script: build_mamba
+      noarch: python
+      skip: target_plaform != build_platform
+    requirements:
+      host:
+        - python >=${{ python_min }}
+        - pip
+        - setuptools
+        - mypy
+        - ${{ pin_subpackage('libmambapy', exact=True) }}
+      run_constraints:
+        - ${{ pin_subpackage('libmambapy', exact=True) }}
+    tests:
+      - package_contents:
+          files:
+            exists:
+              - '**/*.pyi'
 
   - package:
       name: mamba
