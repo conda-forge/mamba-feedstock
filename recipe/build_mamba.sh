@@ -1,6 +1,6 @@
 set -euxo pipefail
 
-export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY=1"
+export CXXFLAGS="${CXXFLAGS:-} -D_LIBCPP_DISABLE_AVAILABILITY=1"
 
 if [[ $PKG_NAME == "libmamba" ]]; then
 
