@@ -143,16 +143,16 @@ outputs:
     build:
       script: build_mamba
       noarch: python
-      skip: target_plaform != build_platform
+      skip: env.exists('CI') and not (linux and x86_64)
     requirements:
       host:
         - python >=${{ python_min }}
         - pip
         - setuptools
         - mypy
-        - ${{ pin_subpackage('libmambapy', exact=True) }}
+        - libmambapy ==${{ version }}
       run_constraints:
-        - ${{ pin_subpackage('libmambapy', exact=True) }}
+        - libmambapy ==${{ version }}
     tests:
       - package_contents:
           files:
