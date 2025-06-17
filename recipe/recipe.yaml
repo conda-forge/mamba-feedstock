@@ -150,9 +150,9 @@ outputs:
         - pip
         - setuptools
         - mypy
-        - libmambapy ==${{version}}
+        - libmambapy ==${{ version }}
       run_constraints:
-        - libmambapy ==${{version}}
+        - libmambapy ==${{ version }}
     tests:
       - package_contents:
           files:
