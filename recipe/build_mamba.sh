@@ -21,6 +21,10 @@ elif [[ $PKG_NAME == "libmambapy" ]]; then
     export CMAKE_ARGS="-G Ninja ${CMAKE_ARGS}"
     "${PYTHON}" -m pip install --no-deps --no-build-isolation -vv ./libmambapy
 
+elif [[ $PKG_NAME == "libmambapy-stubs" ]]; then
+
+    "${PYTHON}" -m pip install --no-deps --no-build-isolation --ignore-requires-python -vv ./libmambapy-stubs
+
 elif [[ $PKG_NAME == "mamba" ]]; then
 
     cmake -B build-mamba/ \
