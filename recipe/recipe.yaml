@@ -1,6 +1,6 @@
 context:
   version: "2.3.0"
-  build_number: 1
+  build_number: 2
 
 recipe:
   name: mamba-split
@@ -75,12 +75,12 @@ outputs:
               - ${{ "Library/" if win }}lib/libmambapy*
               - ${{ "Library/" if win }}lib/site-package/*
       - script:
-        - if: unix
-          then:
+          - if: unix
+            then:
             # Version tests
-            - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_MAJOR ${{ (version | split('.'))[0] }}"
-            - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_MINOR ${{ (version | split('.'))[1] }}"
-            - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_PATCH ${{ (version | split('.'))[2] }}"
+              - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_MAJOR ${{ (version | split('.'))[0] }}"
+              - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_MINOR ${{ (version | split('.'))[1] }}"
+              - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_PATCH ${{ (version | split('.'))[2] }}"
 
   - package:
       name: libmambapy
@@ -136,7 +136,7 @@ outputs:
             - libmambapy
             - libmambapy.bindings
       - script:
-        - python -c "import libmambapy; assert libmambapy.__version__ == '${{ ( version | split('.') ) [:3] | join('.') }}'"
+          - python -c "import libmambapy; assert libmambapy.__version__ == '${{ ( version | split('.') ) [:3] | join('.') }}'"
 
   - package:
       name: libmambapy-stubs
@@ -181,9 +181,9 @@ outputs:
         - ninja
         - if: win
           then:
-          - vcpkg-tool
-          - curl >=8.4.0
-          - zlib
+            - vcpkg-tool
+            - curl >=8.4.0
+            - zlib
       host:
         - cli11 >=2.2,<3
         - reproc
@@ -197,7 +197,7 @@ outputs:
         - ${{ pin_subpackage('libmamba', exact=True) }}
     tests:
       - package_contents:
-          bin: 
+          bin:
             - mamba
           files:
             exists:
@@ -208,23 +208,23 @@ outputs:
               - ${{ "Library/" if win }}lib/libmamba*
               - ${{ "Library/" if win }}lib/site-package/*
       - script:
-        - mamba --help
-        - if: unix
-          then:
+          - mamba --help
+          - if: unix
+            then:
             # Execute this script
-            - . ${PREFIX}/etc/profile.d/mamba.sh
-            - ${PREFIX}/condabin/mamba --help
-            - mamba clean --all --dry-run
-            - mamba repoquery depends mamba
-            - mamba create -p ./myenv --override-channels -c conda-forge --yes python=3.9
-            - ./myenv/bin/python --version
-            - ./myenv/bin/python -c 'import os'
-          else:
-            - CALL %PREFIX%/condabin/mamba.bat --help
-            - mkdir %TEMP%\mamba
-            - mamba create -p ./myenv --override-channels -c conda-forge --yes python=3.9
-            - myenv\python.exe --version
-            - myenv\python.exe -c "import os"
+              - . ${PREFIX}/etc/profile.d/mamba.sh
+              - ${PREFIX}/condabin/mamba --help
+              - mamba clean --all --dry-run
+              - mamba repoquery depends mamba
+              - mamba create -p ./myenv --override-channels -c conda-forge --yes python=3.9
+              - ./myenv/bin/python --version
+              - ./myenv/bin/python -c 'import os'
+            else:
+              - CALL %PREFIX%/condabin/mamba.bat --help
+              - mkdir %TEMP%\mamba
+              - mamba create -p ./myenv --override-channels -c conda-forge --yes python=3.9
+              - myenv\python.exe --version
+              - myenv\python.exe -c "import os"
 
 about:
   homepage: https://github.com/mamba-org/mamba
