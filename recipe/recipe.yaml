@@ -1,14 +1,14 @@
 context:
   version: "2.3.2"
-  build_number: 0
+  build_number: 1
 
 recipe:
   name: mamba-split
   version: ${{ version }}
 
 source:
-  url: https://github.com/mamba-org/mamba/archive/refs/tags/${{ version }}.tar.gz
-  sha256: c969d189b0263218467b9e3b8922fcad8f7023bd8b5a981edc37e0da27cf953f
+  url: https://github.com/LecrisUT/mamba/archive/refs/heads/scikit-build-core.tar.gz
+  sha256: 16c55b489f53392518e4719becda6bf2c90acc09cbd08d5167227be3ecb7459e
 
 build:
   number: ${{ build_number }}
@@ -106,7 +106,8 @@ outputs:
             - pybind11-abi
       host:
         - python
-        - scikit-build
+        - scikit-build-core
+        - setuptools-scm
         - pip
         - setuptools <79
         - pybind11 <3.0
