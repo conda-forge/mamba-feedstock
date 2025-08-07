@@ -1,6 +1,6 @@
 context:
   version: "2.3.1"
-  build_number: 1
+  build_number: 2
 
 recipe:
   name: mamba-split
@@ -9,6 +9,8 @@ recipe:
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/${{ version }}.tar.gz
   sha256: a742b22c656f736408e0f044d412674ce9cfa84e8b85e9475afa5477f28a94ef
+  patches:
+    - 0001-libmambapy-Switch-build-backend-to-scikit-build-core.patch
 
 build:
   number: ${{ build_number }}

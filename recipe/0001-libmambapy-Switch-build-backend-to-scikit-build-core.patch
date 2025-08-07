@@ -1,0 +1,358 @@
+From 6c4578fdcd98ff829550bc4f0abdfe1672dc19f0 Mon Sep 17 00:00:00 2001
+From: Cristian Le <git@lecris.dev>
+Date: Wed, 5 Feb 2025 11:22:23 +0100
+Subject: [PATCH] libmambapy: Switch build backend to `scikit-build-core`
+
+Signed-off-by: Cristian Le <git@lecris.dev>
+---
+ .git_archival.txt                             |  3 ++
+ .gitattributes                                |  4 ++
+ dev/environment-dev.yml                       |  3 +-
+ libmamba/CMakeLists.txt                       |  6 +--
+ libmambapy/.gitignore                         |  1 +
+ libmambapy/CMakeLists.txt                     | 21 +++++----
+ libmambapy/MANIFEST.in                        |  2 -
+ .../libmambapy => }/bindings/bind_utils.hpp   |  0
+ .../libmambapy => }/bindings/bindings.cpp     |  0
+ .../libmambapy => }/bindings/bindings.hpp     |  0
+ .../bindings/expected_caster.hpp              |  0
+ .../bindings/flat_set_caster.hpp              |  0
+ .../{src/libmambapy => }/bindings/legacy.cpp  |  0
+ .../bindings/longpath.manifest                |  0
+ .../libmambapy => }/bindings/path_caster.hpp  |  0
+ .../{src/libmambapy => }/bindings/solver.cpp  |  0
+ .../bindings/solver_libsolv.cpp               |  0
+ .../{src/libmambapy => }/bindings/specs.cpp   |  0
+ .../{src/libmambapy => }/bindings/utils.cpp   |  0
+ .../bindings/weakening_map_bind.hpp           |  0
+ libmambapy/pyproject.toml                     | 22 +++++-----
+ libmambapy/setup.py                           | 43 -------------------
+ libmambapy/src/libmambapy/version.py          |  5 ---
+ libmambapy/src/libmambapy/version.py.tmpl     |  5 ---
+ releaser.py                                   |  1 -
+ 25 files changed, 34 insertions(+), 82 deletions(-)
+ create mode 100644 .git_archival.txt
+ create mode 100644 .gitattributes
+ delete mode 100644 libmambapy/MANIFEST.in
+ rename libmambapy/{src/libmambapy => }/bindings/bind_utils.hpp (100%)
+ rename libmambapy/{src/libmambapy => }/bindings/bindings.cpp (100%)
+ rename libmambapy/{src/libmambapy => }/bindings/bindings.hpp (100%)
+ rename libmambapy/{src/libmambapy => }/bindings/expected_caster.hpp (100%)
+ rename libmambapy/{src/libmambapy => }/bindings/flat_set_caster.hpp (100%)
+ rename libmambapy/{src/libmambapy => }/bindings/legacy.cpp (100%)
+ rename libmambapy/{src/libmambapy => }/bindings/longpath.manifest (100%)
+ rename libmambapy/{src/libmambapy => }/bindings/path_caster.hpp (100%)
+ rename libmambapy/{src/libmambapy => }/bindings/solver.cpp (100%)
+ rename libmambapy/{src/libmambapy => }/bindings/solver_libsolv.cpp (100%)
+ rename libmambapy/{src/libmambapy => }/bindings/specs.cpp (100%)
+ rename libmambapy/{src/libmambapy => }/bindings/utils.cpp (100%)
+ rename libmambapy/{src/libmambapy => }/bindings/weakening_map_bind.hpp (100%)
+ delete mode 100644 libmambapy/setup.py
+ delete mode 100644 libmambapy/src/libmambapy/version.py
+ delete mode 100644 libmambapy/src/libmambapy/version.py.tmpl
+
+diff --git a/.git_archival.txt b/.git_archival.txt
+new file mode 100644
+index 00000000..be59c4cd
+--- /dev/null
++++ b/.git_archival.txt
+@@ -0,0 +1,3 @@
++node: $Format:%H$
++node-date: $Format:%cI$
++describe-name: $Format:%(describe:tags=true,match=[0-9]*)$
+diff --git a/.gitattributes b/.gitattributes
+new file mode 100644
+index 00000000..35f19dfb
+--- /dev/null
++++ b/.gitattributes
+@@ -0,0 +1,4 @@
++# Generate the .git_archival.txt file with the git metadata when running `git archive`
++# This is used by libmambapy to construct the version information when built from a git
++# archive (e.g. downstream packagers would need it)
++.git_archival.txt  export-subst
+diff --git a/dev/environment-dev.yml b/dev/environment-dev.yml
+index 309606c2..58444ced 100644
+--- a/dev/environment-dev.yml
++++ b/dev/environment-dev.yml
+@@ -45,7 +45,8 @@ dependencies:
+   - cryptography
+   - securesystemslib
+   # libmambapy build dependencies
+-  - scikit-build
++  - scikit-build-core
++  - setuptools-scm
+   # libmambapy dependencies
+   - python
+   - pybind11<3.0.0
+diff --git a/libmamba/CMakeLists.txt b/libmamba/CMakeLists.txt
+index 582d82bd..cf7fe384 100644
+--- a/libmamba/CMakeLists.txt
++++ b/libmamba/CMakeLists.txt
+@@ -782,8 +782,7 @@ configure_package_config_file(
+ # Configure 'mambaConfig.cmake' for an install tree
+ set(MAMBA_CONFIG_CODE "")
+ configure_package_config_file(
+-    ${PROJECT_NAME}Config.cmake.in
+-    "${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/${PROJECT_NAME}Config.cmake"
++    ${PROJECT_NAME}Config.cmake.in "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+     INSTALL_DESTINATION ${LIBMAMBA_CMAKECONFIG_INSTALL_DIR}
+ )
+ 
+@@ -793,7 +792,7 @@ write_basic_package_version_file(
+     COMPATIBILITY AnyNewerVersion
+ )
+ install(
+-    FILES ${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/${PROJECT_NAME}Config.cmake
++    FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+           ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+     DESTINATION ${LIBMAMBA_CMAKECONFIG_INSTALL_DIR}
+ )
+@@ -804,3 +803,4 @@ install(
+     DESTINATION ${LIBMAMBA_CMAKECONFIG_INSTALL_DIR}
+     COMPONENT Mamba_Development
+ )
++export(EXPORT ${PROJECT_NAME}Targets NAMESPACE mamba::)
+diff --git a/libmambapy/.gitignore b/libmambapy/.gitignore
+index 635f00a0..841cad00 100644
+--- a/libmambapy/.gitignore
++++ b/libmambapy/.gitignore
+@@ -1,2 +1,3 @@
+ libmambapy/bindings*
+ libmambapy.egg-info/
++/src/libmambapy/version.py
+diff --git a/libmambapy/CMakeLists.txt b/libmambapy/CMakeLists.txt
+index 18cff2e2..d4d87934 100644
+--- a/libmambapy/CMakeLists.txt
++++ b/libmambapy/CMakeLists.txt
+@@ -21,16 +21,16 @@ find_package(pybind11 REQUIRED)
+ 
+ pybind11_add_module(
+     bindings
+-    src/libmambapy/bindings/longpath.manifest
++    bindings/longpath.manifest
+     # Entry point to all submodules
+-    src/libmambapy/bindings/bindings.cpp
++    bindings/bindings.cpp
+     # All bindings used to live in a global module
+-    src/libmambapy/bindings/legacy.cpp
++    bindings/legacy.cpp
+     # Submodules
+-    src/libmambapy/bindings/utils.cpp
+-    src/libmambapy/bindings/specs.cpp
+-    src/libmambapy/bindings/solver.cpp
+-    src/libmambapy/bindings/solver_libsolv.cpp
++    bindings/utils.cpp
++    bindings/specs.cpp
++    bindings/solver.cpp
++    bindings/solver_libsolv.cpp
+ )
+ # TODO: remove when `SubdirData::cache_path()` is removed
+ if(
+@@ -40,12 +40,11 @@ if(
+ )
+     # This file uses capturing structured bindings, which was fixed in C++20
+     set_source_files_properties(
+-        src/libmambapy/bindings/legacy.cpp
+-        PROPERTIES COMPILE_FLAGS -Wno-error=deprecated-declarations
++        bindings/legacy.cpp PROPERTIES COMPILE_FLAGS -Wno-error=deprecated-declarations
+     )
+ endif()
+ 
+-target_include_directories(bindings PRIVATE src/libmambapy/bindings)
++target_include_directories(bindings PRIVATE bindings)
+ 
+ mamba_target_add_compile_warnings(bindings WARNING_AS_ERROR ${MAMBA_WARNING_AS_ERROR})
+ 
+@@ -62,7 +61,7 @@ set_target_properties(
+ # Installation
+ 
+ if(SKBUILD)
+-    install(TARGETS bindings DESTINATION ${MAMBA_INSTALL_PYTHON_EXT_LIBDIR})
++    install(TARGETS bindings DESTINATION libmambapy)
+ else()
+     # WARNING: this default should probably not be used for installation but only for local
+     # development and testing. Proper installation should be controlled externally by a Python
+diff --git a/libmambapy/MANIFEST.in b/libmambapy/MANIFEST.in
+deleted file mode 100644
+index 6cf71aa0..00000000
+--- a/libmambapy/MANIFEST.in
++++ /dev/null
+@@ -1,2 +0,0 @@
+-include libmambapy/bindings*
+-exclude src/
+diff --git a/libmambapy/src/libmambapy/bindings/bind_utils.hpp b/libmambapy/bindings/bind_utils.hpp
+similarity index 100%
+rename from libmambapy/src/libmambapy/bindings/bind_utils.hpp
+rename to libmambapy/bindings/bind_utils.hpp
+diff --git a/libmambapy/src/libmambapy/bindings/bindings.cpp b/libmambapy/bindings/bindings.cpp
+similarity index 100%
+rename from libmambapy/src/libmambapy/bindings/bindings.cpp
+rename to libmambapy/bindings/bindings.cpp
+diff --git a/libmambapy/src/libmambapy/bindings/bindings.hpp b/libmambapy/bindings/bindings.hpp
+similarity index 100%
+rename from libmambapy/src/libmambapy/bindings/bindings.hpp
+rename to libmambapy/bindings/bindings.hpp
+diff --git a/libmambapy/src/libmambapy/bindings/expected_caster.hpp b/libmambapy/bindings/expected_caster.hpp
+similarity index 100%
+rename from libmambapy/src/libmambapy/bindings/expected_caster.hpp
+rename to libmambapy/bindings/expected_caster.hpp
+diff --git a/libmambapy/src/libmambapy/bindings/flat_set_caster.hpp b/libmambapy/bindings/flat_set_caster.hpp
+similarity index 100%
+rename from libmambapy/src/libmambapy/bindings/flat_set_caster.hpp
+rename to libmambapy/bindings/flat_set_caster.hpp
+diff --git a/libmambapy/src/libmambapy/bindings/legacy.cpp b/libmambapy/bindings/legacy.cpp
+similarity index 100%
+rename from libmambapy/src/libmambapy/bindings/legacy.cpp
+rename to libmambapy/bindings/legacy.cpp
+diff --git a/libmambapy/src/libmambapy/bindings/longpath.manifest b/libmambapy/bindings/longpath.manifest
+similarity index 100%
+rename from libmambapy/src/libmambapy/bindings/longpath.manifest
+rename to libmambapy/bindings/longpath.manifest
+diff --git a/libmambapy/src/libmambapy/bindings/path_caster.hpp b/libmambapy/bindings/path_caster.hpp
+similarity index 100%
+rename from libmambapy/src/libmambapy/bindings/path_caster.hpp
+rename to libmambapy/bindings/path_caster.hpp
+diff --git a/libmambapy/src/libmambapy/bindings/solver.cpp b/libmambapy/bindings/solver.cpp
+similarity index 100%
+rename from libmambapy/src/libmambapy/bindings/solver.cpp
+rename to libmambapy/bindings/solver.cpp
+diff --git a/libmambapy/src/libmambapy/bindings/solver_libsolv.cpp b/libmambapy/bindings/solver_libsolv.cpp
+similarity index 100%
+rename from libmambapy/src/libmambapy/bindings/solver_libsolv.cpp
+rename to libmambapy/bindings/solver_libsolv.cpp
+diff --git a/libmambapy/src/libmambapy/bindings/specs.cpp b/libmambapy/bindings/specs.cpp
+similarity index 100%
+rename from libmambapy/src/libmambapy/bindings/specs.cpp
+rename to libmambapy/bindings/specs.cpp
+diff --git a/libmambapy/src/libmambapy/bindings/utils.cpp b/libmambapy/bindings/utils.cpp
+similarity index 100%
+rename from libmambapy/src/libmambapy/bindings/utils.cpp
+rename to libmambapy/bindings/utils.cpp
+diff --git a/libmambapy/src/libmambapy/bindings/weakening_map_bind.hpp b/libmambapy/bindings/weakening_map_bind.hpp
+similarity index 100%
+rename from libmambapy/src/libmambapy/bindings/weakening_map_bind.hpp
+rename to libmambapy/bindings/weakening_map_bind.hpp
+diff --git a/libmambapy/pyproject.toml b/libmambapy/pyproject.toml
+index 0e31aa56..8e8aa7c2 100644
+--- a/libmambapy/pyproject.toml
++++ b/libmambapy/pyproject.toml
+@@ -1,12 +1,6 @@
+ [build-system]
+-requires = [
+-    "setuptools>=42",
+-    "wheel",
+-    "scikit-build>=0.13",
+-    "cmake>=3.18",
+-    "ninja",
+-]
+-build-backend = "setuptools.build_meta"
++requires = ["scikit-build-core", "pybind11"]
++build-backend = "scikit_build_core.build"
+ 
+ [project]
+ name = "libmambapy"
+@@ -26,9 +20,15 @@ keywords = ["mamba", "conda", "packaging"]
+ license = {text = "BSD-3-Clause"}
+ dependencies = []
+ dynamic = ["version"]
+-[projet.url]
++
++[project.urls]
+ Documentation = "https://mamba.readthedocs.io"
+ Repository = "https://github.com/mamba-org/mamba/"
+ 
+-[tool.setuptools]
+-platforms = ["Windows", "Linux", "Mac OS X"]
++[tool.scikit-build]
++metadata.version.provider = "scikit_build_core.metadata.setuptools_scm"
++sdist.include = ["src/libmambapy/version.py"]
++
++[tool.setuptools_scm]
++root = "../"
++write_to = "libmambapy/src/libmambapy/version.py"
+diff --git a/libmambapy/setup.py b/libmambapy/setup.py
+deleted file mode 100644
+index b8bc2828..00000000
+--- a/libmambapy/setup.py
++++ /dev/null
+@@ -1,43 +0,0 @@
+-import importlib.util
+-import os
+-import pathlib
+-import sys
+-
+-import skbuild
+-import skbuild.constants
+-
+-__dir__ = pathlib.Path(__file__).parent.absolute()
+-
+-
+-def CMAKE_INSTALL_DIR():
+-    """Where scikit-build configures CMAKE_INSTALL_PREFIX."""
+-    return os.path.abspath(skbuild.constants.CMAKE_INSTALL_DIR())
+-
+-
+-def libmambapy_version():
+-    """Get the version of libmambapy from its version module."""
+-    spec = importlib.util.spec_from_file_location(
+-        "libmambapy_version", __dir__ / "src/libmambapy/version.py"
+-    )
+-    ver = importlib.util.module_from_spec(spec)
+-    spec.loader.exec_module(ver)
+-    return ver.__version__
+-
+-
+-def get_cmake_args():
+-    cmake_args = [f"-DMAMBA_INSTALL_PYTHON_EXT_LIBDIR={CMAKE_INSTALL_DIR()}/src/libmambapy"]
+-    if sys.platform != "win32" and sys.platform != "cygwin":
+-        cmake_args += ["-DMAMBA_WARNING_AS_ERROR=ON"]
+-    return cmake_args
+-
+-
+-skbuild.setup(
+-    version=libmambapy_version(),
+-    packages=["libmambapy", "libmambapy.bindings", "libmambapy.solver"],
+-    package_dir={"": "src"},
+-    package_data={"libmambapy": ["py.typed", "__init__.pyi"]},
+-    cmake_languages=["CXX"],
+-    cmake_minimum_required_version="3.17",
+-    cmake_install_dir="src/libmambapy",  # Must match package_dir layout
+-    cmake_args=get_cmake_args(),
+-)
+diff --git a/libmambapy/src/libmambapy/version.py b/libmambapy/src/libmambapy/version.py
+deleted file mode 100644
+index e31b4e4c..00000000
+--- a/libmambapy/src/libmambapy/version.py
++++ /dev/null
+@@ -1,5 +0,0 @@
+-version_info = ("2", "3", "1")
+-version_prerelease = ""
+-__version__ = ".".join(map(str, version_info))
+-if version_prerelease != "":
+-    __version__ = f"{__version__}.{version_prerelease}"
+diff --git a/libmambapy/src/libmambapy/version.py.tmpl b/libmambapy/src/libmambapy/version.py.tmpl
+deleted file mode 100644
+index 7bf744ce..00000000
+--- a/libmambapy/src/libmambapy/version.py.tmpl
++++ /dev/null
+@@ -1,5 +0,0 @@
+-version_info = ("{{ version_major }}", "{{ version_minor }}", "{{ version_patch }}")
+-version_prerelease = "{{ version_prerelease_name }}"
+-__version__ = ".".join(map(str, version_info))
+-if version_prerelease != "":
+-    __version__ = f"{__version__}.{version_prerelease}"
+diff --git a/releaser.py b/releaser.py
+index 987676e1..7326a2ff 100644
+--- a/releaser.py
++++ b/releaser.py
+@@ -13,7 +13,6 @@ template = {"version": None, "changes": []}
+ templates = {
+     "libmamba": "libmamba/include/mamba/version.hpp.tmpl",
+     "micromamba": "micromamba/src/version.hpp.tmpl",
+-    "libmambapy": "libmambapy/src/libmambapy/version.py.tmpl",
+ }
+ 
+ 
+-- 
+2.49.0
+
