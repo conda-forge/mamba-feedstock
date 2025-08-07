@@ -108,7 +108,8 @@ outputs:
             - pybind11-abi
       host:
         - python
-        - scikit-build
+        - scikit-build-core
+        - setuptools-scm
         - pip
         - setuptools <79
         - pybind11
