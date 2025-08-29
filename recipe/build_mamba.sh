@@ -18,6 +18,7 @@ if [[ $PKG_NAME == "libmamba" ]]; then
 
 elif [[ $PKG_NAME == "libmambapy" ]]; then
 
+    export SETUPTOOLS_SCM_PRETEND_VERSION_FOR_libmambapy="2.3.2"
     export CMAKE_ARGS="-G Ninja ${CMAKE_ARGS}"
     "${PYTHON}" -m pip install --no-deps --no-build-isolation -vv ./libmambapy
 
