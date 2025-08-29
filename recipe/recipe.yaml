@@ -8,7 +8,7 @@ recipe:
 
 source:
   url: https://github.com/LecrisUT/mamba/archive/refs/heads/scikit-build-core.tar.gz
-  sha256: 16c55b489f53392518e4719becda6bf2c90acc09cbd08d5167227be3ecb7459e
+  sha256: 0d25ef7874761690ec9c946a2b3bdb9b99f1b6dd63074ebbd435ec7fa01e37f3
 
 build:
   number: ${{ build_number }}
@@ -107,7 +107,6 @@ outputs:
       host:
         - python
         - scikit-build-core
-        - setuptools-scm
         - pip
         - setuptools <79
         - pybind11 <3.0
