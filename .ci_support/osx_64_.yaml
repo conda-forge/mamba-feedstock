@@ -13,13 +13,7 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '18'
-fmt:
-- '11.1'
-libarchive:
-- '3.8'
-libcurl:
-- '8'
+- '19'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 openssl:
@@ -29,13 +23,15 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 pybind11_abi:
+- '11'
 - '4'
 python:
 - 3.10.* *_cpython
 - 3.11.* *_cpython
 - 3.12.* *_cpython
 - 3.13.* *_cp313
-- 3.9.* *_cpython
+python_min:
+- '3.10'
 spdlog:
 - '1.15'
 target_platform:

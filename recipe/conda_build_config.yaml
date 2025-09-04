@@ -1,2 +1,5 @@
 channel_targets:
   - conda-forge mamba_prerelease
+pybind11_abi:
+- '4'
+- '11'
