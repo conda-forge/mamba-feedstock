@@ -102,7 +102,7 @@ outputs:
           then:
             - python
             - cross-python_${{ target_platform }}
-            - pybind11 <3.0
+            - pybind11
             - pybind11-abi
       host:
         - python
