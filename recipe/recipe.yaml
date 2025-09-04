@@ -109,7 +109,7 @@ outputs:
         - scikit-build-core
         - pip
         - setuptools <79
-        - pybind11 <3.0
+        - pybind11
         - pybind11-abi
         - openssl
         - yaml-cpp
