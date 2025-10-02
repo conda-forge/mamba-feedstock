@@ -7,7 +7,7 @@
 
 [project]
 name = "mamba-feedstock"
-version = "3.52.0"  # conda-smithy version used to generate this file
+version = "3.52.2"  # conda-smithy version used to generate this file
 description = "Pixi configuration for conda-forge/mamba-feedstock"
 authors = ["@conda-forge/mamba"]
 channels = ["conda-forge"]
@@ -25,42 +25,78 @@ description = "List contents of all packages found in rattler-build build direct
 [tasks.build]
 cmd = "rattler-build build --recipe recipe"
 description = "Build mamba-feedstock directly (without setup scripts), no particular variant specified"
-[tasks."build-linux_64_"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_.yaml"
-description = "Build mamba-feedstock with variant linux_64_ directly (without setup scripts)"
-[tasks."inspect-linux_64_"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_.yaml"
-description = "List contents of mamba-feedstock packages built for variant linux_64_"
-[tasks."build-linux_aarch64_"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_.yaml"
-description = "Build mamba-feedstock with variant linux_aarch64_ directly (without setup scripts)"
-[tasks."inspect-linux_aarch64_"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_.yaml"
-description = "List contents of mamba-feedstock packages built for variant linux_aarch64_"
-[tasks."build-linux_ppc64le_"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/linux_ppc64le_.yaml"
-description = "Build mamba-feedstock with variant linux_ppc64le_ directly (without setup scripts)"
-[tasks."inspect-linux_ppc64le_"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_ppc64le_.yaml"
-description = "List contents of mamba-feedstock packages built for variant linux_ppc64le_"
-[tasks."build-osx_64_"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/osx_64_.yaml"
-description = "Build mamba-feedstock with variant osx_64_ directly (without setup scripts)"
-[tasks."inspect-osx_64_"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_.yaml"
-description = "List contents of mamba-feedstock packages built for variant osx_64_"
-[tasks."build-osx_arm64_"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_.yaml"
-description = "Build mamba-feedstock with variant osx_arm64_ directly (without setup scripts)"
-[tasks."inspect-osx_arm64_"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_.yaml"
-description = "List contents of mamba-feedstock packages built for variant osx_arm64_"
-[tasks."build-win_64_"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/win_64_.yaml"
-description = "Build mamba-feedstock with variant win_64_ directly (without setup scripts)"
-[tasks."inspect-win_64_"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_64_.yaml"
-description = "List contents of mamba-feedstock packages built for variant win_64_"
+[tasks."build-linux_64_channel_sourcesconda-forge"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_channel_sourcesconda-forge.yaml"
+description = "Build mamba-feedstock with variant linux_64_channel_sourcesconda-forge directly (without setup scripts)"
+[tasks."inspect-linux_64_channel_sourcesconda-forge"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_channel_sourcesconda-forge.yaml"
+description = "List contents of mamba-feedstock packages built for variant linux_64_channel_sourcesconda-forge"
+[tasks."build-linux_64_channel_sourcesconda-forgeconda-forgelabelpython_rc"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_channel_sourcesconda-forgeconda-forgelabelpython_rc.yaml"
+description = "Build mamba-feedstock with variant linux_64_channel_sourcesconda-forgeconda-forgelabelpython_rc directly (without setup scripts)"
+[tasks."inspect-linux_64_channel_sourcesconda-forgeconda-forgelabelpython_rc"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_channel_sourcesconda-forgeconda-forgelabelpython_rc.yaml"
+description = "List contents of mamba-feedstock packages built for variant linux_64_channel_sourcesconda-forgeconda-forgelabelpython_rc"
+[tasks."build-linux_aarch64_channel_sourcesconda-forge"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_channel_sourcesconda-forge.yaml"
+description = "Build mamba-feedstock with variant linux_aarch64_channel_sourcesconda-forge directly (without setup scripts)"
+[tasks."inspect-linux_aarch64_channel_sourcesconda-forge"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_channel_sourcesconda-forge.yaml"
+description = "List contents of mamba-feedstock packages built for variant linux_aarch64_channel_sourcesconda-forge"
+[tasks."build-linux_aarch64_channel_sourcesconda-forgeconda-forgelabelpython_rc"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_channel_sourcesconda-forgeconda-forgelabelpython_rc.yaml"
+description = "Build mamba-feedstock with variant linux_aarch64_channel_sourcesconda-forgeconda-forgelabelpython_rc directly (without setup scripts)"
+[tasks."inspect-linux_aarch64_channel_sourcesconda-forgeconda-forgelabelpython_rc"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_channel_sourcesconda-forgeconda-forgelabelpython_rc.yaml"
+description = "List contents of mamba-feedstock packages built for variant linux_aarch64_channel_sourcesconda-forgeconda-forgelabelpython_rc"
+[tasks."build-linux_ppc64le_channel_sourcesconda-forge"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_ppc64le_channel_sourcesconda-forge.yaml"
+description = "Build mamba-feedstock with variant linux_ppc64le_channel_sourcesconda-forge directly (without setup scripts)"
+[tasks."inspect-linux_ppc64le_channel_sourcesconda-forge"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_ppc64le_channel_sourcesconda-forge.yaml"
+description = "List contents of mamba-feedstock packages built for variant linux_ppc64le_channel_sourcesconda-forge"
+[tasks."build-linux_ppc64le_channel_sourcesconda-forgeconda-forgelabelpython_rc"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_ppc64le_channel_sourcesconda-forgeconda-forgelabelpython_rc.yaml"
+description = "Build mamba-feedstock with variant linux_ppc64le_channel_sourcesconda-forgeconda-forgelabelpython_rc directly (without setup scripts)"
+[tasks."inspect-linux_ppc64le_channel_sourcesconda-forgeconda-forgelabelpython_rc"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_ppc64le_channel_sourcesconda-forgeconda-forgelabelpython_rc.yaml"
+description = "List contents of mamba-feedstock packages built for variant linux_ppc64le_channel_sourcesconda-forgeconda-forgelabelpython_rc"
+[tasks."build-osx_64_channel_sourcesconda-forge"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_64_channel_sourcesconda-forge.yaml"
+description = "Build mamba-feedstock with variant osx_64_channel_sourcesconda-forge directly (without setup scripts)"
+[tasks."inspect-osx_64_channel_sourcesconda-forge"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_channel_sourcesconda-forge.yaml"
+description = "List contents of mamba-feedstock packages built for variant osx_64_channel_sourcesconda-forge"
+[tasks."build-osx_64_channel_sourcesconda-forgeconda-forgelabelpython_rc"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_64_channel_sourcesconda-forgeconda-forgelabelpython_rc.yaml"
+description = "Build mamba-feedstock with variant osx_64_channel_sourcesconda-forgeconda-forgelabelpython_rc directly (without setup scripts)"
+[tasks."inspect-osx_64_channel_sourcesconda-forgeconda-forgelabelpython_rc"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_channel_sourcesconda-forgeconda-forgelabelpython_rc.yaml"
+description = "List contents of mamba-feedstock packages built for variant osx_64_channel_sourcesconda-forgeconda-forgelabelpython_rc"
+[tasks."build-osx_arm64_channel_sourcesconda-forge"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_channel_sourcesconda-forge.yaml"
+description = "Build mamba-feedstock with variant osx_arm64_channel_sourcesconda-forge directly (without setup scripts)"
+[tasks."inspect-osx_arm64_channel_sourcesconda-forge"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_channel_sourcesconda-forge.yaml"
+description = "List contents of mamba-feedstock packages built for variant osx_arm64_channel_sourcesconda-forge"
+[tasks."build-osx_arm64_channel_sourcesconda-forgeconda-forgelabelpython_rc"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_channel_sourcesconda-forgeconda-forgelabelpython_rc.yaml"
+description = "Build mamba-feedstock with variant osx_arm64_channel_sourcesconda-forgeconda-forgelabelpython_rc directly (without setup scripts)"
+[tasks."inspect-osx_arm64_channel_sourcesconda-forgeconda-forgelabelpython_rc"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_channel_sourcesconda-forgeconda-forgelabelpython_rc.yaml"
+description = "List contents of mamba-feedstock packages built for variant osx_arm64_channel_sourcesconda-forgeconda-forgelabelpython_rc"
+[tasks."build-win_64_channel_sourcesconda-forge"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/win_64_channel_sourcesconda-forge.yaml"
+description = "Build mamba-feedstock with variant win_64_channel_sourcesconda-forge directly (without setup scripts)"
+[tasks."inspect-win_64_channel_sourcesconda-forge"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_64_channel_sourcesconda-forge.yaml"
+description = "List contents of mamba-feedstock packages built for variant win_64_channel_sourcesconda-forge"
+[tasks."build-win_64_channel_sourcesconda-forgeconda-forgelabelpython_rc"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/win_64_channel_sourcesconda-forgeconda-forgelabelpython_rc.yaml"
+description = "Build mamba-feedstock with variant win_64_channel_sourcesconda-forgeconda-forgelabelpython_rc directly (without setup scripts)"
+[tasks."inspect-win_64_channel_sourcesconda-forgeconda-forgelabelpython_rc"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_64_channel_sourcesconda-forgeconda-forgelabelpython_rc.yaml"
+description = "List contents of mamba-feedstock packages built for variant win_64_channel_sourcesconda-forgeconda-forgelabelpython_rc"
 
 [feature.smithy.dependencies]
 conda-smithy = "*"
