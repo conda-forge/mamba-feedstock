@@ -1,6 +1,6 @@
 context:
   version: "2.3.2"
-  build_number: 1
+  build_number: 2
 
 recipe:
   name: mamba-split
@@ -36,6 +36,7 @@ outputs:
         # Build with lgpl so that there is no question about the license
         - libarchive * lgpl_*
         - nlohmann_json <3.12
+        - nlohmann_json-abi
         - cpp-expected
         - reproc
         - reproc-cpp >=14.2.4.post0
@@ -47,18 +48,16 @@ outputs:
         - simdjson >=3.3.0
         - ${{ "winreg" if win }}
       run:
-        # `nlohmann_json` is pinned because we expose it in the API of libmamba
-        # (`nlohmann_json` objects are put in version namespaces because the author
+        # `cpp-expected` is pinned because we expose it in the API of libmamba
+        # (`cpp-expected` objects are put in version namespaces because the author
         # does not want to take any risk regarding ABI compatibility)
         #
-        # Since `nlohmann_json` is a heaer only library, it does not have run_export,
+        # Since `cpp-expected` is a heaer only library, it does not have run_export,
         # and we don't have the choice, we need to pin it here exactly
         #
-        # Therefore, any library exchanging `nlohmann_json` objects with libmamba
-        # must be built with exactly the same version of nlohmann_json as that
+        # Therefore, any library exchanging `cpp-expected` objects with libmamba
+        # must be built with exactly the same version of cpp-expected as that
         # used to build mamba.
-        - ${{ pin_compatible('nlohmann_json', upper_bound='x.x.x') }}
-        # Similar reasons apply to `cpp-expected`.
         - ${{ pin_compatible('cpp-expected', upper_bound='x.x.x') }}
     tests:
       - package_contents:
@@ -118,6 +117,7 @@ outputs:
         - fmt >=11.1.0
         - termcolor-cpp
         - nlohmann_json <3.12
+        - nlohmann_json-abi
         - ${{ pin_subpackage('libmamba', exact=True) }}
         # zstd is not a direct dependency but this specification is needed to
         # distinguish builds of libmambapy for specific specific version of zstd.
