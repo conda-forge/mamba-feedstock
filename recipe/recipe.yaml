@@ -35,7 +35,7 @@ outputs:
         - openssl
         # Build with lgpl so that there is no question about the license
         - libarchive * lgpl_*
-        - nlohmann_json <4.0
+        - nlohmann_json >=3.12,<4.0
         - nlohmann_json-abi
         - cpp-expected
         - reproc
@@ -114,7 +114,7 @@ outputs:
         - spdlog
         - fmt >=11.1.0
         - termcolor-cpp
-        - nlohmann_json <4.0
+        - nlohmann_json >=3.12,<4.0
         - nlohmann_json-abi
         - ${{ pin_subpackage('libmamba', exact=True) }}
         # zstd is not a direct dependency but this specification is needed to
