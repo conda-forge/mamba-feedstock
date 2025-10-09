@@ -48,11 +48,9 @@ outputs:
         - simdjson >=3.3.0
         - ${{ "winreg" if win }}
       run:
-        # `cpp-expected` is pinned because we expose it in the API of libmamba
-        # (`cpp-expected` objects are put in version namespaces because the author
-        # does not want to take any risk regarding ABI compatibility)
+        # `cpp-expected` is pinned because we expose it in the API of libmamba.
         #
-        # Since `cpp-expected` is a heaer only library, it does not have run_export,
+        # Since `cpp-expected` is a header only library, it does not have run_export,
         # and we don't have the choice, we need to pin it here exactly
         #
         # Therefore, any library exchanging `cpp-expected` objects with libmamba
