@@ -2,10 +2,8 @@ c_stdlib:
 - sysroot
 c_stdlib_version:
 - '2.17'
-cdt_name:
-- conda
 channel_sources:
-- conda-forge,conda-forge/label/python_rc
+- conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -23,6 +21,10 @@ pin_run_as_build:
 pybind11_abi:
 - '4'
 python:
+- 3.10.* *_cpython
+- 3.11.* *_cpython
+- 3.12.* *_cpython
+- 3.13.* *_cp313
 - 3.14.* *_cp314
 python_min:
 - '3.10'
@@ -30,8 +32,5 @@ spdlog:
 - '1.15'
 target_platform:
 - linux-64
-zip_keys:
-- - python
-  - channel_sources
 zstd:
 - '1.5'
