@@ -189,7 +189,6 @@ outputs:
         - reproc
         - reproc-cpp
         - nlohmann_json >=3.12,<4.0
-        - nlohmann_json-abi
         - ${{ pin_subpackage('libmamba', exact=True) }}
         - spdlog
         # zstd is not a direct dependency but this specification is needed to
