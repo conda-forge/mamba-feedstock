@@ -50,12 +50,14 @@ outputs:
       run:
         # `cpp-expected` is pinned because we expose it in the API of libmamba.
         #
-        # Since `cpp-expected` is a header only library, it does not have run_export,
-        # and we don't have the choice, we need to pin it here exactly
-        #
         # Therefore, any library exchanging `cpp-expected` objects with libmamba
         # must be built with exactly the same version of cpp-expected as that
         # used to build mamba.
+        #
+        # Currently, there's no way to encode this semantic (`host_export` has
+        # been proposed for this purpose but is not implemented yet).
+        #
+        # For discussions, see: https://github.com/conda/ceps/issues/77
         - ${{ pin_compatible('cpp-expected', upper_bound='x.x.x') }}
     tests:
       - package_contents:
