@@ -7,7 +7,7 @@
 
 [project]
 name = "mamba-feedstock"
-version = "3.52.1"  # conda-smithy version used to generate this file
+version = "3.52.3"  # conda-smithy version used to generate this file
 description = "Pixi configuration for conda-forge/mamba-feedstock"
 authors = ["@conda-forge/mamba"]
 channels = ["conda-forge"]
