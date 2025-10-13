@@ -13,9 +13,9 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '18'
+- '19'
 fmt:
-- '11.1'
+- '12.0'
 libarchive:
 - '3.8'
 macos_machine:
@@ -32,9 +32,9 @@ python:
 - 3.10.* *_cpython
 - 3.11.* *_cpython
 - 3.12.* *_cpython
-- 3.9.* *_cpython
+- 3.13.* *_cp313
 spdlog:
-- '1.15'
+- '1.16'
 target_platform:
 - osx-arm64
 zstd:
