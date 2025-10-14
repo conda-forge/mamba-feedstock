@@ -18,7 +18,11 @@ pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
+pybind11:
+- '2'
+- '3'
 pybind11_abi:
+- '4'
 - '11'
 python:
 - 3.10.* *_cpython
@@ -32,5 +36,8 @@ spdlog:
 - '1.16'
 target_platform:
 - linux-aarch64
+zip_keys:
+- - pybind11
+  - pybind11_abi
 zstd:
 - '1.5'
