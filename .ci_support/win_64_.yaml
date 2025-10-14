@@ -23,7 +23,7 @@ python:
 python_min:
 - '3.10'
 spdlog:
-- '1.15'
+- '1.16'
 target_platform:
 - win-64
 zlib:
