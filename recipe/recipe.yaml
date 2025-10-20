@@ -1,6 +1,6 @@
 context:
   version: "2.3.3"
-  build_number: 1
+  build_number: 2
 
 recipe:
   name: mamba-split
@@ -101,14 +101,14 @@ outputs:
           then:
             - python
             - cross-python_${{ target_platform }}
-            - pybind11 <3.0
+            - pybind11
             - pybind11-abi
       host:
-        - python
+        - python >=${{ python_min }}
         - scikit-build-core
         - pip
         - setuptools <79
-        - pybind11 <3.0
+        - pybind11
         - pybind11-abi
         - openssl
         - yaml-cpp
@@ -123,7 +123,7 @@ outputs:
         # distinguish builds of libmambapy for specific specific version of zstd.
         - zstd
       run:
-        - python
+        - python >=${{ python_min }}
         - ${{ pin_subpackage('libmamba', exact=True) }}
     tests:
       - package_contents:
