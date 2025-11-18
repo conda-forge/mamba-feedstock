@@ -1,6 +1,6 @@
 context:
-  version: "2.3.3.alpha1"
-  build_number: 1
+  version: "2.4.0.rc0"
+  build_number: 0
 
 recipe:
   name: mamba-split
@@ -8,7 +8,7 @@ recipe:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/${{ version }}.tar.gz
-  sha256: c7537d7c534efe6059800031e2d02c8d5349133601a354c5226c76716a17ef85
+  sha256: 92d91646516062cf8292e1c202cdacce443fdec3e685c22217bf2f4b663ac540
 
 build:
   number: ${{ build_number }}
