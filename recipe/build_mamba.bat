@@ -1,5 +1,18 @@
 @echo ON
 
+if /I "%PKG_NAME%" == "libmamba-spdlog" (
+
+    cmake -B build-lib-spdlog/ ^
+        -G Ninja ^
+        %CMAKE_ARGS% ^
+        -D BUILD_LIBMAMBA_SPDLOG=ON ^
+        -D BUILD_LIBMAMBA_SPDLOG_TESTS=ON
+    if errorlevel 1 exit 1
+    cmake --build build-lib-spdlog/ --parallel %CPU_COUNT%
+    if errorlevel 1 exit 1
+    cmake --install build-lib-spdlog/
+
+)
 if /I "%PKG_NAME%" == "libmamba" (
 
     cmake -B build-lib/ ^
