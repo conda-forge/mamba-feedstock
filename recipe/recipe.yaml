@@ -7,8 +7,8 @@ recipe:
   version: ${{ version }}
 
 source:
-  url: https://github.com/Klaim/mamba/archive/refs/heads/libmamba-splog.tar.gz
-  sha256: 60c8bd6c171b7a7b3fef03f67c9db96877dfdaf08cd71c8f6d1ce3ed384c5be6
+  url: https://github.com/mamba-org/mamba/archive/refs/heads/main.tar.gz
+  sha256: 9968a6acd106671a00de5bacd082dcbca53e1f45e4584e34669368d4fe0d7ae5
 
 build:
   number: ${{ build_number }}
