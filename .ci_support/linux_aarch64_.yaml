@@ -33,7 +33,7 @@ python:
 python_min:
 - '3.10'
 spdlog:
-- '1.16'
+- '1.17'
 target_platform:
 - linux-aarch64
 zip_keys:
