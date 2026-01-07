@@ -12,6 +12,7 @@ source:
   patches:
     - b49f8b51d4548a5c3d1d7f28eb1f1e28ecf9958a.patch
     - 0001-build-Include-GNUInstallDirs.patch
+    - 0001-build-Use-mamba-namespace-for-targets.patch
 
 build:
   number: ${{ build_number }}
