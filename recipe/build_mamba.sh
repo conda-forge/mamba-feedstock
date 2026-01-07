@@ -8,7 +8,7 @@ if [[ $PKG_NAME == "libmamba-spdlog" ]]; then
         -G Ninja \
         ${CMAKE_ARGS} \
         -D BUILD_LIBMAMBA_SPDLOG=ON \
-        -D BUILD_LIBMAMBA_SPDLOG_TESTS=ON
+        -D BUILD_SHARED=ON
     cmake --build build-lib-spdlog/ --parallel ${CPU_COUNT}
     cmake --install build-lib-spdlog/
 
