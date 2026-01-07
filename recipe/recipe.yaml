@@ -9,6 +9,9 @@ recipe:
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/heads/main.tar.gz
   sha256: 9968a6acd106671a00de5bacd082dcbca53e1f45e4584e34669368d4fe0d7ae5
+  patches:
+    - b49f8b51d4548a5c3d1d7f28eb1f1e28ecf9958a.patch
+    - 0001-build-Include-GNUInstallDirs.patch
 
 build:
   number: ${{ build_number }}

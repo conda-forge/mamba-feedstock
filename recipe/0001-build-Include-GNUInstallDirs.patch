@@ -1,0 +1,25 @@
+From 0907998999086cdfd2abca99d89d2f5cb30aaa44 Mon Sep 17 00:00:00 2001
+From: Julien Jerphanion <git@jjerphan.xyz>
+Date: Wed, 7 Jan 2026 11:40:29 +0100
+Subject: [PATCH] build: Include `GNUInstallDirs`
+
+Signed-off-by: Julien Jerphanion <git@jjerphan.xyz>
+---
+ libmamba-spdlog/CMakeLists.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/libmamba-spdlog/CMakeLists.txt b/libmamba-spdlog/CMakeLists.txt
+index 2b677ce1..249b36c3 100644
+--- a/libmamba-spdlog/CMakeLists.txt
++++ b/libmamba-spdlog/CMakeLists.txt
+@@ -76,6 +76,7 @@ else()
+     message(FATAL_ERROR "Select at least a build variant for libmamba")
+ endif()
+ 
++include(GNUInstallDirs)
+ include(CMakePackageConfigHelpers)
+ write_basic_package_version_file(
+     "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Version.cmake"
+-- 
+2.52.0
+
