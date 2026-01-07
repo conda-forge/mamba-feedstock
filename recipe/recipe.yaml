@@ -1,6 +1,6 @@
 context:
   version: "2.4.0.rc0"
-  build_number: 1
+  build_number: 2
 
 recipe:
   name: mamba-split
@@ -43,7 +43,7 @@ outputs:
         - spdlog
         - yaml-cpp
         - cli11
-        - fmt >=11.1.0
+        - fmt
         - zstd
         - simdjson >=3.3.0
         - ${{ "winreg" if win }}
@@ -114,7 +114,7 @@ outputs:
         - yaml-cpp
         - cpp-expected
         - spdlog
-        - fmt >=11.1.0
+        - fmt
         - termcolor-cpp
         - nlohmann_json >=3.12,<4.0
         - nlohmann_json-abi

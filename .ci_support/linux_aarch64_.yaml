@@ -12,6 +12,8 @@ cxx_compiler_version:
 - '14'
 docker_image:
 - quay.io/condaforge/linux-anvil-x86_64:alma9
+fmt:
+- '12.1'
 openssl:
 - '3.5'
 pin_run_as_build:

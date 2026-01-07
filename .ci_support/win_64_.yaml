@@ -6,6 +6,8 @@ channel_targets:
 - conda-forge mamba_prerelease
 cxx_compiler:
 - vs2022
+fmt:
+- '12.1'
 openssl:
 - '3.5'
 pin_run_as_build:
