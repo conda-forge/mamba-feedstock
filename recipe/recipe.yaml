@@ -1,14 +1,14 @@
 context:
-  version: "2.4.0"
-  build_number: 2
+  version: "2.5.0.rc0"
+  build_number: 0
 
 recipe:
   name: mamba-split
   version: ${{ version }}
 
 source:
-  url: https://github.com/mamba-org/mamba/archive/refs/heads/main.tar.gz
-  sha256: f16ebac01888c2300c94174bffe82621bba95ab6dedd677b21d0a8148ef96226
+  url: https://github.com/mamba-org/mamba/archive/refs/tags/${{ version }}.tar.gz
+  sha256: 9eb9b7d79f29c03104ab8293da0b7f9c47adc39af51a1d5aba932f80d30140ff
 
 build:
   number: ${{ build_number }}
@@ -87,8 +87,6 @@ outputs:
         from_package:
           - spdlog
           - fmt
-      run_exports:
-        - ${{ pin_subpackage('libmamba-spdlog', upper_bound='x.x') }}
       build:
         - ${{ compiler('cxx') }}
         - ${{ stdlib("c") }}
@@ -96,9 +94,8 @@ outputs:
         - ninja
       host:
         - spdlog
-        - fmt >=11.1.0
-      run:
-        - ${{ pin_subpackage('libmamba-spdlog', exact=True) }}
+        - fmt
+        - ${{ pin_subpackage('libmamba', exact=True) }}
     tests:
       - package_contents:
           files:
