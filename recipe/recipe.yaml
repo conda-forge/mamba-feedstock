@@ -8,7 +8,7 @@ recipe:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/heads/main.tar.gz
-  sha256: 9968a6acd106671a00de5bacd082dcbca53e1f45e4584e34669368d4fe0d7ae5
+  sha256: f16ebac01888c2300c94174bffe82621bba95ab6dedd677b21d0a8148ef96226
 
 build:
   number: ${{ build_number }}
