@@ -156,7 +156,7 @@ outputs:
             - libmambapy
             - libmambapy.bindings
       - script:
-          - python -c "import libmambapy; assert libmambapy.__version__ == '${{ ( version | split('.') ) [:3] | join('.') }}'"
+          - python -c "import libmambapy; assert libmambapy.__version__ == '${{ version }}'"
 
   - package:
       name: libmambapy-stubs
