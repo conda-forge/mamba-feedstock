@@ -120,6 +120,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libmamba-green.svg)](https://anaconda.org/conda-forge/libmamba) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmamba.svg)](https://anaconda.org/conda-forge/libmamba) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmamba.svg)](https://anaconda.org/conda-forge/libmamba) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmamba.svg)](https://anaconda.org/conda-forge/libmamba) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libmamba--spdlog-green.svg)](https://anaconda.org/conda-forge/libmamba-spdlog) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmamba-spdlog.svg)](https://anaconda.org/conda-forge/libmamba-spdlog) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmamba-spdlog.svg)](https://anaconda.org/conda-forge/libmamba-spdlog) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmamba-spdlog.svg)](https://anaconda.org/conda-forge/libmamba-spdlog) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libmambapy-green.svg)](https://anaconda.org/conda-forge/libmambapy) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmambapy.svg)](https://anaconda.org/conda-forge/libmambapy) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmambapy.svg)](https://anaconda.org/conda-forge/libmambapy) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmambapy.svg)](https://anaconda.org/conda-forge/libmambapy) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libmambapy--stubs-green.svg)](https://anaconda.org/conda-forge/libmambapy-stubs) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmambapy-stubs.svg)](https://anaconda.org/conda-forge/libmambapy-stubs) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmambapy-stubs.svg)](https://anaconda.org/conda-forge/libmambapy-stubs) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmambapy-stubs.svg)](https://anaconda.org/conda-forge/libmambapy-stubs) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mamba-green.svg)](https://anaconda.org/conda-forge/mamba) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mamba.svg)](https://anaconda.org/conda-forge/mamba) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mamba.svg)](https://anaconda.org/conda-forge/mamba) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mamba.svg)](https://anaconda.org/conda-forge/mamba) |
@@ -134,16 +135,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `libmamba, libmambapy, libmambapy-stubs, mamba` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `libmamba, libmamba-spdlog, libmambapy, libmambapy-stubs, mamba` can be installed with `conda`:
 
 ```
-conda install libmamba libmambapy libmambapy-stubs mamba
+conda install libmamba libmamba-spdlog libmambapy libmambapy-stubs mamba
 ```
 
 or with `mamba`:
 
 ```
-mamba install libmamba libmambapy libmambapy-stubs mamba
+mamba install libmamba libmamba-spdlog libmambapy libmambapy-stubs mamba
 ```
 
 It is possible to list all of the versions of `libmamba` available on your platform with `conda`:
