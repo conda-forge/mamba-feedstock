@@ -1,6 +1,6 @@
 context:
-  version: "2.4.0.rc0"
-  build_number: 2
+  version: "2.5.0.rc0"
+  build_number: 0
 
 recipe:
   name: mamba-split
@@ -8,7 +8,7 @@ recipe:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/${{ version }}.tar.gz
-  sha256: 92d91646516062cf8292e1c202cdacce443fdec3e685c22217bf2f4b663ac540
+  sha256: 9eb9b7d79f29c03104ab8293da0b7f9c47adc39af51a1d5aba932f80d30140ff
 
 build:
   number: ${{ build_number }}
@@ -21,9 +21,6 @@ outputs:
     requirements:
       run_exports:
         - ${{ pin_subpackage('libmamba', upper_bound='x.x') }}
-      ignore_run_exports:
-        by_name:
-          - spdlog
       build:
         - ${{ compiler('cxx') }}
         - ${{ stdlib("c") }}
@@ -82,6 +79,30 @@ outputs:
               - cat $PREFIX/include/mamba/version.hpp | grep "LIBMAMBA_VERSION_PATCH ${{ (version | split('.'))[2] }}"
 
   - package:
+      name: libmamba-spdlog
+    build:
+      script: build_mamba
+    requirements:
+      ignore_run_exports:
+        from_package:
+          - spdlog
+          - fmt
+      build:
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib("c") }}
+        - cmake
+        - ninja
+      host:
+        - spdlog
+        - fmt
+        - ${{ pin_subpackage('libmamba', exact=True) }}
+    tests:
+      - package_contents:
+          files:
+            exists:
+              - ${{ "Library/" if win }}lib/cmake/libmamba-spdlog/libmamba-spdlogConfig.cmake
+
+  - package:
       name: libmambapy
     build:
       script: build_mamba
@@ -89,9 +110,6 @@ outputs:
     requirements:
       run_exports:
         - ${{ pin_subpackage('libmambapy', upper_bound='x.x') }}
-      ignore_run_exports:
-        by_name:
-          - spdlog
       build:
         - ${{ compiler('cxx') }}
         - ${{ stdlib("c") }}
@@ -119,12 +137,14 @@ outputs:
         - nlohmann_json >=3.12,<4.0
         - nlohmann_json-abi
         - ${{ pin_subpackage('libmamba', exact=True) }}
+        - ${{ pin_subpackage('libmamba-spdlog', exact=True) }}
         # zstd is not a direct dependency but this specification is needed to
         # distinguish builds of libmambapy for specific specific version of zstd.
         - zstd
       run:
         - python
         - ${{ pin_subpackage('libmamba', exact=True) }}
+        - ${{ pin_subpackage('libmamba-spdlog', exact=True) }}
     tests:
       - package_contents:
           files:
@@ -190,7 +210,7 @@ outputs:
         - reproc-cpp
         - nlohmann_json >=3.12,<4.0
         - ${{ pin_subpackage('libmamba', exact=True) }}
-        - spdlog
+        - ${{ pin_subpackage('libmamba-spdlog', exact=True) }}
         # zstd is not a direct dependency but this specification is needed to
         # distinguish build of mamba for specific specific version of zstd.
         - zstd
