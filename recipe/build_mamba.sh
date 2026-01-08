@@ -2,7 +2,17 @@ set -euxo pipefail
 
 export CXXFLAGS="${CXXFLAGS:-} -D_LIBCPP_DISABLE_AVAILABILITY=1"
 
-if [[ $PKG_NAME == "libmamba" ]]; then
+if [[ $PKG_NAME == "libmamba-spdlog" ]]; then
+
+    cmake -B build-lib-spdlog/ \
+        -G Ninja \
+        ${CMAKE_ARGS} \
+        -D BUILD_LIBMAMBA_SPDLOG=ON \
+        -D BUILD_SHARED=ON
+    cmake --build build-lib-spdlog/ --parallel ${CPU_COUNT}
+    cmake --install build-lib-spdlog/
+
+elif [[ $PKG_NAME == "libmamba" ]]; then
 
     cmake -B build-lib/ \
         -G Ninja \
