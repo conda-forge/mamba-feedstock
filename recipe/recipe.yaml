@@ -9,6 +9,8 @@ recipe:
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/${{ version }}.tar.gz
   sha256: 89a676dd2e1c9a4a744d861888523511d78126299dd4f1fb12d3757176191c32
+  patches:
+    - 0001-fix-Adapt-bindings-for-UnresolvedChannel-location.patch
 
 build:
   number: ${{ build_number }}
