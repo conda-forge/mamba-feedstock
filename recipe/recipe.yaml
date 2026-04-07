@@ -1,5 +1,5 @@
 context:
-  version: "2.5.0.rc0"
+  version: "2.6.0.rc0"
   build_number: 0
 
 recipe:
@@ -8,7 +8,9 @@ recipe:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/${{ version }}.tar.gz
-  sha256: 9eb9b7d79f29c03104ab8293da0b7f9c47adc39af51a1d5aba932f80d30140ff
+  sha256: 89a676dd2e1c9a4a744d861888523511d78126299dd4f1fb12d3757176191c32
+  patches:
+    - 0001-fix-Adapt-bindings-for-UnresolvedChannel-s-readonly-.patch
 
 build:
   number: ${{ build_number }}
@@ -37,6 +39,7 @@ outputs:
         - cpp-expected
         - reproc
         - reproc-cpp >=14.2.4.post0
+        - libmsgpack-c
         - spdlog
         - yaml-cpp
         - cli11
