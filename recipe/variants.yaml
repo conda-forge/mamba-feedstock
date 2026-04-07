@@ -6,3 +6,5 @@ pybind11_abi:
   - 11
 zip_keys:
   - [pybind11, pybind11_abi]
+channel_targets:
+  - conda-forge mamba_prerelease
