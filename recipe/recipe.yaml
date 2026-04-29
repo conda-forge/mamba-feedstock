@@ -29,7 +29,6 @@ outputs:
       host:
         - libsolv >=0.7.23
         - libcurl >=8.4.0
-        - libmsgpack-c
         - openssl
         # Build with lgpl so that there is no question about the license
         - libarchive * lgpl_*
@@ -38,6 +37,7 @@ outputs:
         - cpp-expected
         - reproc
         - reproc-cpp >=14.2.4.post0
+        - libmsgpack-c
         - spdlog
         - yaml-cpp
         - cli11
