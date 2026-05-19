@@ -35,7 +35,5 @@ target_platform:
 zip_keys:
 - - pybind11
   - pybind11_abi
-zlib:
-- '1'
 zstd:
 - '1.5'
