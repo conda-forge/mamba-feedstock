@@ -1,5 +1,5 @@
 context:
-  version: "2.6.1"
+  version: "2.6.2"
   build_number: 0
 
 recipe:
@@ -8,7 +8,7 @@ recipe:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/${{ version }}.tar.gz
-  sha256: 2e8135891b97560f1aedaae8114b711f5b036af0e338ed84c4e7db31c0f679ae
+  sha256: cf085e4bbc5a3b2ec9c58761586287431453b604f75a87ea5990e252cab026fe
 
 build:
   number: ${{ build_number }}
@@ -204,7 +204,7 @@ outputs:
           then:
             - vcpkg-tool
             - curl >=8.4.0
-            - zlib
+            - zlib <1.3.2
       host:
         - cli11 >=2.2,<3
         - reproc
