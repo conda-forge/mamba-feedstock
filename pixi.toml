@@ -5,7 +5,7 @@
 
 [workspace]
 name = "mamba-feedstock"
-version = "2026.5.29"  # conda-smithy version used to generate this file
+version = "2026.6.14"  # conda-smithy version used to generate this file
 description = "Pixi configuration for conda-forge/mamba-feedstock"
 authors = ["@conda-forge/mamba"]
 channels = ["conda-forge"]
@@ -59,6 +59,12 @@ description = "Build mamba-feedstock with variant win_64_ directly (without setu
 [tasks."inspect-win_64_"]
 cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_64_.yaml"
 description = "List contents of mamba-feedstock packages built for variant win_64_"
+[tasks."build-win_arm64_"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/win_arm64_.yaml"
+description = "Build mamba-feedstock with variant win_arm64_ directly (without setup scripts)"
+[tasks."inspect-win_arm64_"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_arm64_.yaml"
+description = "List contents of mamba-feedstock packages built for variant win_arm64_"
 
 [feature.smithy.dependencies]
 conda-smithy = "*"

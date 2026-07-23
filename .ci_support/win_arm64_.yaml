@@ -1,17 +1,11 @@
 c_stdlib:
-- sysroot
-c_stdlib_version:
-- '2.17'
+- vs
 channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- gxx
-cxx_compiler_version:
-- '14'
-docker_image:
-- quay.io/condaforge/linux-anvil-x86_64:alma10
+- vs2022
 fmt:
 - '12.1'
 openssl:
@@ -27,17 +21,13 @@ pybind11_abi:
 - 4
 - 11
 python:
-- 3.10.* *_cpython
-- 3.11.* *_cpython
-- 3.12.* *_cpython
-- 3.13.* *_cp313
 - 3.14.* *_cp314
 python_min:
-- '3.10'
+- '3.14'
 spdlog:
 - '1.17'
 target_platform:
-- linux-64
+- win-arm64
 zip_keys:
 - - pybind11
   - pybind11_abi
