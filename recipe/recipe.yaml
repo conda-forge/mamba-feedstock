@@ -167,11 +167,13 @@ outputs:
       skip: env.exists('CI') and not (linux and x86_64)
     requirements:
       host:
-        - python >=${{ python_min }}
+        - python ${{ python_min }}.*
         - pip
         - setuptools
         - mypy
         - libmambapy ==${{ version }}
+      run:
+        - python >=${{ python_min }}
       run_constraints:
         - libmambapy ==${{ version }}
     tests:
