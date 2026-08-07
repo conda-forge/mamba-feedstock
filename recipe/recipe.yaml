@@ -249,7 +249,7 @@ outputs:
               - ./myenv/bin/python -c 'import os'
             else:
               - CALL %PREFIX%/condabin/mamba.bat --help
-              - mkdir %TEMP%\mamba
+              - if not exist "%TEMP%\mamba" mkdir "%TEMP%\mamba"
               - mamba create -p ./myenv --override-channels -c conda-forge --yes python=3.9
               - myenv\python.exe --version
               - myenv\python.exe -c "import os"
