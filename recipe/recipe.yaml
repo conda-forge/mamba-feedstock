@@ -3,7 +3,7 @@ context:
   build_number: 0
 
 recipe:
-  name: mamba
+  name: mamba-split
   version: ${{ version }}
 
 source:
