@@ -26,16 +26,10 @@ pin_run_as_build:
     max_pin: x.x
 pybind11:
 - 2
-- 3
 pybind11_abi:
 - 4
-- 11
 python:
 - 3.10.* *_cpython
-- 3.11.* *_cpython
-- 3.12.* *_cpython
-- 3.13.* *_cp313
-- 3.14.* *_cp314
 python_min:
 - '3.10'
 spdlog:
