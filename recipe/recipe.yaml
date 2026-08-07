@@ -26,6 +26,10 @@ outputs:
         - ${{ stdlib("c") }}
         - cmake
         - ninja
+        # We don't need python to build, but placing it
+        # here convinces smithy to render with all Python versions
+        # https://github.com/conda-forge/mamba-feedstock/pull/393#issuecomment-5215091136
+        - python
       host:
         - libsolv >=0.7.23
         - libcurl >=8.4.0
