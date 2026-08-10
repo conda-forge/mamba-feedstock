@@ -5,7 +5,7 @@
 
 [workspace]
 name = "mamba-feedstock"
-version = "2026.8.5"  # conda-smithy version used to generate this file
+version = "2026.8.9"  # conda-smithy version used to generate this file
 description = "Pixi configuration for conda-forge/mamba-feedstock"
 authors = ["@conda-forge/mamba"]
 channels = ["conda-forge"]
