@@ -209,7 +209,6 @@ outputs:
         - if: win
           then:
             - curl >=8.4.0
-            - zlib <1.3.2
       host:
         - cli11 >=2.2,<3
         - reproc
