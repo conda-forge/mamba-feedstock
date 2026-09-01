@@ -244,13 +244,13 @@ outputs:
               - ${PREFIX}/condabin/mamba --help
               - mamba clean --all --dry-run
               - mamba repoquery depends mamba
-              - mamba create -p ./myenv --override-channels -c conda-forge --yes python=3.9
+              - mamba create -p ./myenv --override-channels -c conda-forge --yes python=3.14
               - ./myenv/bin/python --version
               - ./myenv/bin/python -c 'import os'
             else:
               - CALL %PREFIX%/condabin/mamba.bat --help
               - if not exist "%TEMP%\mamba" mkdir "%TEMP%\mamba"
-              - mamba create -p ./myenv --override-channels -c conda-forge --yes python=3.9
+              - mamba create -p ./myenv --override-channels -c conda-forge --yes python=3.14
               - myenv\python.exe --version
               - myenv\python.exe -c "import os"
 
@@ -307,3 +307,4 @@ extra:
     - JohanMabille
     - wolfv
     - ericmjl
+    - isuruf

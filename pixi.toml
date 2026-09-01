@@ -5,7 +5,7 @@
 
 [workspace]
 name = "mamba-feedstock"
-version = "2026.8.5"  # conda-smithy version used to generate this file
+version = "2026.8.9"  # conda-smithy version used to generate this file
 description = "Pixi configuration for conda-forge/mamba-feedstock"
 authors = ["@conda-forge/mamba"]
 channels = ["conda-forge"]
@@ -64,6 +64,15 @@ description = "Build mamba-feedstock with variant linux_ppc64le_ directly (witho
 [feature.build.tasks."inspect-linux_ppc64le_"]
 cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_ppc64le_.yaml"
 description = "List contents of mamba-feedstock packages built for variant linux_ppc64le_"
+[feature.build.tasks."build-linux_riscv64_"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_riscv64_.yaml"
+description = "Build mamba-feedstock with variant linux_riscv64_ directly (without setup scripts)"
+[feature.build.tasks."debug-linux_riscv64_"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_riscv64_.yaml"
+description = "Build mamba-feedstock with variant linux_riscv64_ directly (without setup scripts)"
+[feature.build.tasks."inspect-linux_riscv64_"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_riscv64_.yaml"
+description = "List contents of mamba-feedstock packages built for variant linux_riscv64_"
 [feature.build.tasks."build-osx_64_"]
 cmd = "rattler-build build --recipe recipe -m .ci_support/osx_64_.yaml"
 description = "Build mamba-feedstock with variant osx_64_ directly (without setup scripts)"
