@@ -1,12 +1,3 @@
-# Pin compilers until GCC 15 and LLVM 21 are tested upstream
-# with `cxx-compiler 2.0`.
-# See: https://github.com/mamba-org/mamba/pull/4382
-cxx_compiler_version:
-  - if: linux
-    then: '14'
-  - if: osx
-    then: '19'
-
 pybind11:
   - 2
   - 3
