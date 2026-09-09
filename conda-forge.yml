@@ -16,7 +16,3 @@ provider:
   osx_arm64: default
   win_arm64: default
 test: native_and_emulated
-workflow_settings:
-  free_disk_space:
-    - platform: [linux_64, linux_aarch64, linux_ppc64le]
-      value: quick
