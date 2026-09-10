@@ -1,6 +1,6 @@
 context:
   version: "2.9.0"
-  build_number: 0
+  build_number: 1
 
 recipe:
   name: mamba-split
@@ -208,9 +208,7 @@ outputs:
         - ninja
         - if: win
           then:
-            - vcpkg-tool
             - curl >=8.4.0
-            - zlib <1.3.2
       host:
         - cli11 >=2.2,<3
         - reproc
