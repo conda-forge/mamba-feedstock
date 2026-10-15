@@ -1,0 +1,39 @@
+c_stdlib:
+- vs
+channel_sources:
+- conda-forge
+- conda-forge
+- conda-forge
+- conda-forge
+channel_targets:
+- conda-forge mamba_prerelease
+cxx_compiler:
+- vs2022
+fmt:
+- '12.1'
+openssl:
+- '3.5'
+pin_run_as_build:
+  python:
+    min_pin: x.x
+    max_pin: x.x
+pybind11_abi:
+- '11'
+python:
+- 3.11.* *_cpython
+- 3.12.* *_cpython
+- 3.13.* *_cp313
+- 3.14.* *_cp314
+python_min:
+- '3.11'
+spdlog:
+- '1.17'
+target_platform:
+- win-64
+zip_keys:
+- - python
+  - channel_sources
+zlib:
+- '1'
+zstd:
+- '1.5'

@@ -1,6 +1,6 @@
 context:
   version: "2.9.0.rc1"
-  build_number: 1
+  build_number: 2
 
 recipe:
   name: mamba-split
@@ -164,7 +164,7 @@ outputs:
     build:
       script: build_mamba
       noarch: python
-      skip: env.exists('CI') and not (linux and x86_64)
+      skip: (env.exists('CI') and not (linux and x86_64)) or "python_rc" in channel_sources
     requirements:
       host:
         - python ${{ python_min }}.*
