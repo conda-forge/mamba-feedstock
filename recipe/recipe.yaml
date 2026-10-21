@@ -1,6 +1,6 @@
 context:
   version: "2.9.0"
-  build_number: 2
+  build_number: 3
 
 recipe:
   name: mamba-split
@@ -61,6 +61,8 @@ outputs:
         #
         # For discussions, see: https://github.com/conda/ceps/issues/77
         - ${{ pin_compatible('cpp-expected', upper_bound='x.x.x') }}
+      run_constraints:
+        - ca-certificates >=2026.10.19
     tests:
       - package_contents:
           lib:
@@ -221,6 +223,8 @@ outputs:
         - zstd
       run:
         - ${{ pin_subpackage('libmamba', exact=True) }}
+      run_constraints:
+        - ca-certificates >=2026.10.19
     tests:
       - package_contents:
           bin:
