@@ -1,6 +1,6 @@
 context:
-  version: "2.9.0"
-  build_number: 3
+  version: "2.10.0"
+  build_number: 0
 
 recipe:
   name: mamba-split
@@ -8,7 +8,7 @@ recipe:
 
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/${{ version }}.tar.gz
-  sha256: 57befdcc985b07f95d1a495569ac249a270c71167d111374ff08443154821e1d
+  sha256: 396cf6c08f16ecbc0a98b45a3f14469911aa2f6dda9c3b4ca98d010cea017835
 
 build:
   number: ${{ build_number }}
@@ -49,6 +49,9 @@ outputs:
         - zstd
         - simdjson >=3.3.0
         - ${{ "winreg" if win }}
+        - if: osx
+          then:
+            - howardhinnant_date
       run:
         # `cpp-expected` is pinned because we expose it in the API of libmamba.
         #
