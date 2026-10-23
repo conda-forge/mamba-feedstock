@@ -1,6 +1,6 @@
 context:
   version: "2.10.0"
-  build_number: 0
+  build_number: 1
 
 recipe:
   name: mamba-split
@@ -167,6 +167,12 @@ outputs:
             - libmambapy.bindings
       - script:
           - python -c "import libmambapy; assert libmambapy.__version__ == '${{ version }}'"
+      - script:
+          - conda create -n testing-conda-libmamba-solver -c conda-forge --solver libmamba --dry-run conda-forge-pinning 
+        requirements:
+          run:
+            - conda
+            - conda-libmamba-solver
 
   - package:
       name: libmambapy-stubs
