@@ -49,6 +49,9 @@ outputs:
         - zstd
         - simdjson >=3.3.0
         - ${{ "winreg" if win }}
+        - if: osx
+          then:
+            - howardhinnant_date
       run:
         # `cpp-expected` is pinned because we expose it in the API of libmamba.
         #
