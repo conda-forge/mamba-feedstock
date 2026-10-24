@@ -1,0 +1,103 @@
+From 704671ac80f9d72ca3aafe73c012e9c378b5f8f8 Mon Sep 17 00:00:00 2001
+From: Johan Mabille <johan.mabille@gmail.com>
+Date: Fri, 23 Oct 2026 23:34:44 +0200
+Subject: [PATCH] Restored PackageInfo bindings to fix downstream breakage
+
+---
+ CHANGELOG.md                   | 2 +-
+ libmamba/CHANGELOG.md          | 2 +-
+ libmambapy/bindings/specs.cpp  | 9 +++++++++
+ libmambapy/tests/test_specs.py | 6 ++++++
+ micromamba/CHANGELOG.md        | 2 +-
+ 5 files changed, 18 insertions(+), 3 deletions(-)
+
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 96a5aa10..d8e5bc04 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -43,7 +43,7 @@ Bug fixes:
+ CI fixes and doc:
+ 
+ - [all] ci: recreate coverage environment with cached downloads by @maresb in <https://github.com/mamba-org/mamba/pull/4424>
+-- [micromamba, libmamba] ci: Add Windows ARM64 shared-library test workflow  by @jjerphan in <https://github.com/mamba-org/mamba/pull/4383>
++- [micromamba, libmamba] ci: Add Windows ARM64 shared-library test workflow by @jjerphan in <https://github.com/mamba-org/mamba/pull/4383>
+ - [libmambapy, libmamba] Add comments and documentation for `exclude_newer` policy by @Hind-M in <https://github.com/mamba-org/mamba/pull/4409>
+ - [all] ci: Add `win-arm64` static builds workflows by @jjerphan in <https://github.com/mamba-org/mamba/pull/4357>
+ 
+diff --git a/libmamba/CHANGELOG.md b/libmamba/CHANGELOG.md
+index c2ac544a..63afc2a1 100644
+--- a/libmamba/CHANGELOG.md
++++ b/libmamba/CHANGELOG.md
+@@ -40,7 +40,7 @@ Bug fixes:
+ CI fixes and doc:
+ 
+ - ci: recreate coverage environment with cached downloads by @maresb in <https://github.com/mamba-org/mamba/pull/4424>
+-- ci: Add Windows ARM64 shared-library test workflow  by @jjerphan in <https://github.com/mamba-org/mamba/pull/4383>
++- ci: Add Windows ARM64 shared-library test workflow by @jjerphan in <https://github.com/mamba-org/mamba/pull/4383>
+ - Add comments and documentation for `exclude_newer` policy by @Hind-M in <https://github.com/mamba-org/mamba/pull/4409>
+ - ci: Add `win-arm64` static builds workflows by @jjerphan in <https://github.com/mamba-org/mamba/pull/4357>
+ 
+diff --git a/libmambapy/bindings/specs.cpp b/libmambapy/bindings/specs.cpp
+index b019c6e1..d82b5a55 100644
+--- a/libmambapy/bindings/specs.cpp
++++ b/libmambapy/bindings/specs.cpp
+@@ -684,6 +684,8 @@ namespace mambapy
+                        decltype(PackageInfo::python_site_packages_path) python_site_packages_path,
+                        decltype(PackageInfo::md5) md5,
+                        decltype(PackageInfo::sha256) sha256,
++                       // Kept for backward compatibility; content trust was removed.
++                       std::string /* signatures */,
+                        decltype(PackageInfo::track_features) track_features,
+                        decltype(PackageInfo::dependencies) depends,
+                        decltype(PackageInfo::constrains) constrains,
+@@ -727,6 +729,7 @@ namespace mambapy
+                 py::arg("python_site_packages_path") = decltype(PackageInfo::python_site_packages_path)(),
+                 py::arg("md5") = decltype(PackageInfo::md5)(),
+                 py::arg("sha256") = decltype(PackageInfo::sha256)(),
++                py::arg("signatures") = std::string(),
+                 py::arg("track_features") = decltype(PackageInfo::track_features)(),
+                 py::arg("depends") = decltype(PackageInfo::dependencies)(),
+                 py::arg("constrains") = decltype(PackageInfo::constrains)(),
+@@ -770,6 +773,12 @@ namespace mambapy
+             .def_readwrite("dependencies", &PackageInfo::dependencies)
+             .def_readwrite("constrains", &PackageInfo::constrains)
+             .def_readwrite("defaulted_keys", &PackageInfo::defaulted_keys)
++            .def_property(
++                // Kept for backward compatibility; content trust was removed.
++                "signatures",
++                [](py::handle) { return std::string(); },
++                [](py::handle, py::handle) {}
++            )
+             .def(py::self == py::self)
+             .def(py::self != py::self)
+             .def("__str__", &PackageInfo::str)
+diff --git a/libmambapy/tests/test_specs.py b/libmambapy/tests/test_specs.py
+index d02fa7c0..4d8320d0 100644
+--- a/libmambapy/tests/test_specs.py
++++ b/libmambapy/tests/test_specs.py
+@@ -847,6 +847,12 @@ def test_PackageInfo():
+     custom_pkg = PackageInfo(name="foo", defaulted_keys=["_initialized", "license", "timestamp"])
+     assert custom_pkg.defaulted_keys == ["_initialized", "license", "timestamp"]
+ 
++    # Deprecated signatures are accepted and ignored (used by conda-libmamba-solver)
++    signed_pkg = PackageInfo(name="foo", signatures="sig")
++    assert signed_pkg.signatures == ""
++    signed_pkg.signatures = "sig"
++    assert signed_pkg.signatures == ""
++
+ 
+ def test_PackageInfo_V2Migrator():
+     """Explicit migration help added from v1 to v2."""
+diff --git a/micromamba/CHANGELOG.md b/micromamba/CHANGELOG.md
+index 472bc0ef..a2cd0d38 100644
+--- a/micromamba/CHANGELOG.md
++++ b/micromamba/CHANGELOG.md
+@@ -24,7 +24,7 @@ Bug fixes:
+ CI fixes and doc:
+ 
+ - ci: recreate coverage environment with cached downloads by @maresb in <https://github.com/mamba-org/mamba/pull/4424>
+-- ci: Add Windows ARM64 shared-library test workflow  by @jjerphan in <https://github.com/mamba-org/mamba/pull/4383>
++- ci: Add Windows ARM64 shared-library test workflow by @jjerphan in <https://github.com/mamba-org/mamba/pull/4383>
+ - ci: Add `win-arm64` static builds workflows by @jjerphan in <https://github.com/mamba-org/mamba/pull/4357>
+ 
+ Maintenance:
