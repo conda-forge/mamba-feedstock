@@ -170,12 +170,15 @@ outputs:
             - libmambapy.bindings
       - script:
           - python -c "import libmambapy; assert libmambapy.__version__ == '${{ version }}'"
-      - script:
-          - conda create -n testing-conda-libmamba-solver -c conda-forge --solver libmamba --dry-run conda-forge-pinning 
-        requirements:
-          run:
-            - conda
-            - conda-libmamba-solver
+      # conda not available yet for 3.15
+      - if: match(python, "<3.15")
+        then:
+          - requirements:
+              run:
+                - conda
+                - conda-libmamba-solver
+            script:
+              - conda create -n testing-conda-libmamba-solver -c conda-forge --solver libmamba --dry-run conda-forge-pinning
 
   - package:
       name: libmambapy-stubs
