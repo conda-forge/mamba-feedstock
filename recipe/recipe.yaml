@@ -1,6 +1,6 @@
 context:
   version: "2.10.0"
-  build_number: 0
+  build_number: 1
 
 recipe:
   name: mamba-split
@@ -9,6 +9,9 @@ recipe:
 source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/${{ version }}.tar.gz
   sha256: 396cf6c08f16ecbc0a98b45a3f14469911aa2f6dda9c3b4ca98d010cea017835
+  patches:
+    # backport https://github.com/mamba-org/mamba/pull/4443
+    - patches/0001-Restored-PackageInfo-bindings-to-fix-downstream-brea.patch
 
 build:
   number: ${{ build_number }}
@@ -167,6 +170,15 @@ outputs:
             - libmambapy.bindings
       - script:
           - python -c "import libmambapy; assert libmambapy.__version__ == '${{ version }}'"
+      # conda not available yet for 3.15
+      - if: match(python, "<3.15")
+        then:
+          - requirements:
+              run:
+                - conda
+                - conda-libmamba-solver
+            script:
+              - conda create -n testing-conda-libmamba-solver -c conda-forge --solver libmamba --dry-run conda-forge-pinning
 
   - package:
       name: libmambapy-stubs
