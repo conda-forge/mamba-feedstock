@@ -1,6 +1,6 @@
 context:
   version: "2.10.0"
-  build_number: 1
+  build_number: 2
 
 recipe:
   name: mamba-split
@@ -50,7 +50,9 @@ outputs:
         - cli11
         - fmt
         - zstd
-        - simdjson >=3.3.0
+        # simdjson 5.0.7 causes segfaults:
+        # https://github.com/conda-forge/mamba-feedstock/issues/409
+        - simdjson >=3.3.0,!=5.0.7
         - ${{ "winreg" if win }}
         - if: osx
           then:
@@ -67,6 +69,9 @@ outputs:
         #
         # For discussions, see: https://github.com/conda/ceps/issues/77
         - ${{ pin_compatible('cpp-expected', upper_bound='x.x.x') }}
+        # simdjson 5.0.7 causes segfaults:
+        # https://github.com/conda-forge/mamba-feedstock/issues/409
+        - simdjson !=5.0.7
       run_constraints:
         - ca-certificates >=2026.10.19
     tests:
