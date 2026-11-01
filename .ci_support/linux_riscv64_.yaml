@@ -1,9 +1,11 @@
+DOCKER_PLATFORM:
+- linux/amd64
 c_stdlib:
 - sysroot
 c_stdlib_version:
-- '2.17'
+- '2.39'
 channel_sources:
-- conda-forge,conda-forge/label/python_rc
+- conda-forge
 channel_targets:
 - conda-forge mamba_prerelease
 cxx_compiler:
@@ -23,15 +25,13 @@ pin_run_as_build:
 pybind11_abi:
 - '11'
 python:
+- 3.14.* *_cp314
 - 3.15.* *_cp315
 python_min:
-- '3.11'
+- '3.14'
 spdlog:
 - '1.17'
 target_platform:
-- linux-ppc64le
-zip_keys:
-- - python
-  - channel_sources
+- linux-riscv64
 zstd:
 - '1.5'
