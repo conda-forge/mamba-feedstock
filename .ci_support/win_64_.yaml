@@ -29,7 +29,7 @@ python:
 python_min:
 - '3.11'
 simdjson:
-- '5.1'
+- '5.2'
 spdlog:
 - '1.17'
 target_platform:
