@@ -11,7 +11,7 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '21'
+- '22'
 fmt:
 - '12.1'
 macos_machine:
@@ -37,7 +37,7 @@ python:
 python_min:
 - '3.11'
 simdjson:
-- '5.1'
+- '5.3'
 spdlog:
 - '1.17'
 target_platform:
