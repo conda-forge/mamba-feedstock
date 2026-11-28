@@ -34,4 +34,4 @@ spdlog:
 target_platform:
 - linux-riscv64
 zstd:
-- '1.5'
+- '1.6'
